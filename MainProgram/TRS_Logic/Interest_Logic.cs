@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Windows.Controls.Primitives;
-using TRS_Domain;
-using TRS_DAL;
+﻿using System.Collections.Generic;
 using TRS_DAL.REPOSITORIES;
 using TRS_Domain.INTEREST;
 

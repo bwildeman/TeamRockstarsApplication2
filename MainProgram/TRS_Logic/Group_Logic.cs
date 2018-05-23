@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
 using TRS_DAL.REPOSITORIES;
-using TRS_Domain.GROUP;
-using TRS_Domain.USER;
 
 namespace TRS_Logic
 {

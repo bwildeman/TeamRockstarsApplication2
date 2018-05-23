@@ -30,11 +30,9 @@ namespace TRS_Logic
                 int userId = _userRepo.Login(email, password); ;
                 if (userId == 0)
                 {
-                    MessageBox.Show("Check your connection, something went wrong connecting to the database.", "Caution:");
                 }
                 else if (userId == -1)
                 {
-                    MessageBox.Show("This combination isn't in our database.", "Caution:");
                 }
                 else
                 {

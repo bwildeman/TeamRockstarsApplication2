@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainProgram", "MainProgram.csproj", "{BDE70347-F4C3-498B-9140-7D0A6F93549C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamRockStarsIT", "..\TeamRockStarsIT\TeamRockStarsIT.csproj", "{88F60A21-1C8E-44F5-A1A4-2A47C1BD3957}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRS_Logic", "TRS_Logic\TRS_Logic.csproj", "{490104B1-C2FF-4A00-A57C-788ACEEE4FD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRS_Logic", "TRS_Logic\TRS_Logic.csproj", "{490104B1-C2FF-4A00-A57C-788ACEEE4FD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRS_DAL", "TRS_DAL\TRS_DAL.csproj", "{F97C6163-B55A-49EA-8CE3-BC2011C61AB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRS_DAL", "TRS_DAL\TRS_DAL.csproj", "{F97C6163-B55A-49EA-8CE3-BC2011C61AB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRS_Domain", "TRS_Domain\TRS_Domain.csproj", "{D7A67C1A-33CD-4624-BC42-31209B5BDACA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRS_Domain", "TRS_Domain\TRS_Domain.csproj", "{D7A67C1A-33CD-4624-BC42-31209B5BDACA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BDE70347-F4C3-498B-9140-7D0A6F93549C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDE70347-F4C3-498B-9140-7D0A6F93549C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDE70347-F4C3-498B-9140-7D0A6F93549C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDE70347-F4C3-498B-9140-7D0A6F93549C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88F60A21-1C8E-44F5-A1A4-2A47C1BD3957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88F60A21-1C8E-44F5-A1A4-2A47C1BD3957}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F60A21-1C8E-44F5-A1A4-2A47C1BD3957}.Release|Any CPU.ActiveCfg = Release|Any CPU
