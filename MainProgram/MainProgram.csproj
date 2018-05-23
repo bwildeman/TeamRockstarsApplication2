@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BDE70347-F4C3-498B-9140-7D0A6F93549C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MainProgram</RootNamespace>
+    <AssemblyName>MainProgram</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CHAT\Data.cs" />
+    <Compile Include="CHAT\Logic.cs" />
+    <Compile Include="CHAT\Message.cs" />
+    <Compile Include="CONTROLLERS\Controller_Login.cs" />
+    <Compile Include="CONTROLLERS\Controller_Main.cs" />
+    <Compile Include="DATABASE\DBConnect.cs" />
+    <Compile Include="FORMS\COMPONENTS\MAINPANEL\Group_Selector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAINPANEL\Group_Selector.Designer.cs">
+      <DependentUpon>Group_Selector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\POPUPS\Group_JoinOrNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\POPUPS\Group_JoinOrNew.Designer.cs">
+      <DependentUpon>Group_JoinOrNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\SIDEPANEL\Blank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\SIDEPANEL\Blank.Designer.cs">
+      <DependentUpon>Blank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\SIDEPANEL\ListChannels_SidePanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\SIDEPANEL\ListChannels_SidePanel.Designer.cs">
+      <DependentUpon>ListChannels_SidePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\SIDEPANEL\ListUsers_SidePanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\SIDEPANEL\ListUsers_SidePanel.Designer.cs">
+      <DependentUpon>ListUsers_SidePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAINPANEL\Chat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAINPANEL\Chat.Designer.cs">
+      <DependentUpon>Chat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\Form_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\Form_Login.Designer.cs">
+      <DependentUpon>Form_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\Form_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\Form_Main.Designer.cs">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAINPANEL\Profile_Create.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAINPANEL\Profile_Create.Designer.cs">
+      <DependentUpon>Profile_Create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAINPANEL\Profile_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAINPANEL\Profile_Edit.Designer.cs">
+      <DependentUpon>Profile_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAINPANEL\Profile_Show.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAINPANEL\Profile_Show.Designer.cs">
+      <DependentUpon>Profile_Show.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHER\Form_UserInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHER\Form_UserInformation.Designer.cs">
+      <DependentUpon>Form_UserInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GROUP\COMPONENTS\POPUPS\Group_Builder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GROUP\COMPONENTS\POPUPS\Group_Builder.Designer.cs">
+      <DependentUpon>Group_Builder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GROUP\COMPONENTS\SmallSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GROUP\COMPONENTS\SmallSelector.Designer.cs">
+      <DependentUpon>SmallSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GROUP\Data.cs" />
+    <Compile Include="GROUP\Display.cs" />
+    <Compile Include="GROUP\Logic.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="USER\Data.cs" />
+    <Compile Include="USER\Display.cs" />
+    <EmbeddedResource Include="FORMS\COMPONENTS\MAINPANEL\Group_Selector.resx">
+      <DependentUpon>Group_Selector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\COMPONENTS\POPUPS\Group_JoinOrNew.resx">
+      <DependentUpon>Group_JoinOrNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\COMPONENTS\SIDEPANEL\Blank.resx">
+      <DependentUpon>Blank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\COMPONENTS\SIDEPANEL\ListChannels_SidePanel.resx">
+      <DependentUpon>ListChannels_SidePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\COMPONENTS\SIDEPANEL\ListUsers_SidePanel.resx">
+      <DependentUpon>ListUsers_SidePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\COMPONENTS\MAINPANEL\Chat.resx">
+      <DependentUpon>Chat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\Form_Login.resx">
+      <DependentUpon>Form_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\Form_Main.resx">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\COMPONENTS\MAINPANEL\Profile_Create.resx">
+      <DependentUpon>Profile_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\COMPONENTS\MAINPANEL\Profile_Edit.resx">
+      <DependentUpon>Profile_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\COMPONENTS\MAINPANEL\Profile_Show.resx">
+      <DependentUpon>Profile_Show.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\COMPONENTS\OTHER\Form_UserInformation.resx">
+      <DependentUpon>Form_UserInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GROUP\COMPONENTS\POPUPS\Group_Builder.resx">
+      <DependentUpon>Group_Builder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GROUP\COMPONENTS\SmallSelector.resx">
+      <DependentUpon>SmallSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserAvatar3.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

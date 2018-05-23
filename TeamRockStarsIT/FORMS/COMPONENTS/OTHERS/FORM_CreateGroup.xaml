@@ -1,0 +1,26 @@
+﻿<Window x:Class="TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.FORM_CreateGroup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS"
+        mc:Ignorable="d"
+        Title="FORM_CreateGroup" Height="321.951" Width="547.866" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/BlackBackGround1.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Rectangle x:Name="RCTL_GroupImage" HorizontalAlignment="Center" Height="200" Margin="330,10,10,0" VerticalAlignment="Top" Width="200" RadiusY="99.5" RadiusX="99.5">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/ROCKSTAR LOGO SEETHROUGH.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Content="Group name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Foreground="White"/>
+        <Label Content="Group description:" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Foreground="White"/>
+        <TextBox x:Name="TB_Name" HorizontalAlignment="Left" Height="23" Margin="131,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontSize="16" FontFamily="Segoe UI Semibold" Background="White" SelectionBrush="#FFFFE000" Text=""/>
+        <TextBox x:Name="TB_Description" HorizontalAlignment="Left" Height="196" Margin="10,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" FontSize="16" FontFamily="Segoe UI Semibold" Background="White" SelectionBrush="#FFFFE000" Text=""/>
+        <Button x:Name="Btn_GetImage" Content="Change picture" HorizontalAlignment="Left" Margin="360,215,0,0" VerticalAlignment="Top" Width="139" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_GetImage_Click"/>
+        <Button x:Name="Btn_Cancel" Content="Cancel" HorizontalAlignment="Center" Margin="10,279,447,0" VerticalAlignment="Top" Width="83" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Cancel_Click"/>
+        <Button x:Name="Btn_Save" Content="Save" HorizontalAlignment="Center" Margin="447,279,10,0" VerticalAlignment="Top" Width="83" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Save_Click"/>
+    </Grid>
+</Window>
