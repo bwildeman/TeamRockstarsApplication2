@@ -23,7 +23,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     {
         //  References:
         ChatLogic _chatLogic = new ChatLogic();
-
+        ClientClass client = new ClientClass();
         //  Memory:
         private Frame _contentFrame;
         private Frame _channelFrame;
@@ -36,13 +36,15 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             _channelFrame = channelFrame;
             _selectedChat = selectedChat;
             InitializeComponent();
+            client.LoadIn();
             Loaded += PAGE_CHAT_Loaded;
         }
 
         private void PAGE_CHAT_Loaded(object sender, RoutedEventArgs e)
         {
-            ChatList = _chatLogic.GetAllMessages(_selectedChat.ChatId);
             Lb_Chat.Items.Clear();
+            client.LoadChat(_selectedChat.ChatId);
+            ChatList = client.LoadinChat();
             foreach (var item in ChatList)
             {
                 TextBlock txtBlock = new TextBlock();
@@ -50,6 +52,19 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
                 txtBlock.Text = $"{item.SendDate}: {item.Username}: {item.Text}";
                 Lb_Chat.Items.Add(txtBlock);
             }
+        }
+
+        private void Txt_Message_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                client.Msg(Txt_Message.Text, 1); 
+            }
+        }
+
+        private void Txt_Message_KeyUp(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamRockStarsIT", "..\TeamRockStarsIT\TeamRockStarsIT.csproj", "{88F60A21-1C8E-44F5-A1A4-2A47C1BD3957}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRS_DAL", "TRS_DAL\TRS_DAL.csproj", "{F97C6163-B55A-49EA-8CE3-BC2011C61AB4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRS_Domain", "TRS_Domain\TRS_Domain.csproj", "{D7A67C1A-33CD-4624-BC42-31209B5BDACA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "..\..\..\..\Desktop\ICT\Project1\Project1\Server\Server.csproj", "{DCF68EEE-D340-4530-ADC4-B2C2346EEA56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D7A67C1A-33CD-4624-BC42-31209B5BDACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7A67C1A-33CD-4624-BC42-31209B5BDACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7A67C1A-33CD-4624-BC42-31209B5BDACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCF68EEE-D340-4530-ADC4-B2C2346EEA56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF68EEE-D340-4530-ADC4-B2C2346EEA56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF68EEE-D340-4530-ADC4-B2C2346EEA56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF68EEE-D340-4530-ADC4-B2C2346EEA56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,10 +12,4 @@
     <ProjectReference Include="..\TRS_Domain\TRS_Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\bin\Debug\MySql.Data.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
