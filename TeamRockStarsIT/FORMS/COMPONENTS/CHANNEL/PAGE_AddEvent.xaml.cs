@@ -24,5 +24,25 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         {
             InitializeComponent();
         }
+
+        private void TB_Name_Copy_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9);
+        }
+
+        private void TB_Name_Copy1_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9);
+        }
+
+        private void TB_Name_Copy2_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9);
+        }
+
+        private void TB_Name_Copy3_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9);
+        }
     }
 }
