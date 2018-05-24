@@ -51,6 +51,12 @@ namespace TRS_Domain.USER
             Surname = surname;
         }
 
+        public Data(string name, string surname)
+        {
+            Name = name;
+            Surname = surname;
+        }
+
         public Data()
         {
 
