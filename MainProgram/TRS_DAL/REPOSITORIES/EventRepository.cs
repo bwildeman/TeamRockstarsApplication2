@@ -9,18 +9,32 @@ namespace TRS_DAL.REPOSITORIES
     public class EventRepository
     {
         //  Context reference:
-        readonly IEventContext _eventContext = new EventSqlContext();
+        private readonly IEventContext _eventContext = new EventSqlContext();
 
-        List<TRS_Domain.EVENT.Data> GetGroupEvents(int groupId)
+        public List<TRS_Domain.EVENT.Data> GetGroupEvents(int groupId)
         {
             return _eventContext.GetGroupEvents(groupId);
         }
 
-        void CreateGroupEvent(int groupId, string name, DateTime startDate, DateTime endDate, bool online,
+        public void CreateGroupEvent(int groupId, string name, DateTime startDate, DateTime endDate, bool online,
             string location, string description)
         {
             _eventContext.CreateGroupEvent(groupId, name, startDate, endDate, online, location, description);
         }
 
+        public void AssignUserToEvent(int eventId, int userId)
+        {
+            _eventContext.AssignUserToEvent(eventId, userId);
+        }
+
+        public void RemoveUserFromEvent(int eventId, int userId)
+        {
+            _eventContext.RemoveUserFromEvent(eventId, userId);
+        }
+
+        List<TRS_Domain.USER.Data> GetAllEventSignOns(int eventId)
+        {
+            return _eventContext.GetAllEventSignOns(eventId);
+        }
     }
 }

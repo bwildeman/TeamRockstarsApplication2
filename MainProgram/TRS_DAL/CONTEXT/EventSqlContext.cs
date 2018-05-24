@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using MySql.Data.MySqlClient;
 using TRS_DAL.INTERFACES;
 using TRS_Domain.EVENT;
@@ -95,6 +94,111 @@ namespace TRS_DAL.CONTEXT
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public void AssignUserToEvent(int eventId, int userId)
+        {
+            try
+            {
+                using (MySqlConnection conn = _connectDb.GetConnection())
+                {
+                    //  Open Connection:
+                    conn.Open();
+
+                    //incomplete query 
+                    _mainQuery = "INSERT INTO event_user (EventID, UserID) " +
+                                 "VALUES (@eventId, @userId)";
+
+                    //  build the command
+                    _mainCommand = new MySqlCommand(_mainQuery, conn);
+                    //defining parameters
+                    _mainCommand.Parameters.AddWithValue("@eventId", eventId);
+                    _mainCommand.Parameters.AddWithValue("@userId", userId);
+
+
+                    //  use the command
+                    _connectDb.ExecuteNonQuery(_mainCommand);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void RemoveUserFromEvent(int eventId, int userId)
+        {
+            try
+            {
+                using (MySqlConnection conn = _connectDb.GetConnection())
+                {
+                    //  Open Connection:
+                    conn.Open();
+
+                    //incomplete query 
+                    _mainQuery = "DELETE FROM event_user " +
+                                 "WHERE EventID = @eventId " +
+                                 "AND UserID = @userId";
+
+                    //  build the command
+                    _mainCommand = new MySqlCommand(_mainQuery, conn);
+                    //defining parameters
+                    _mainCommand.Parameters.AddWithValue("@eventId", eventId);
+                    _mainCommand.Parameters.AddWithValue("@userId", userId);
+
+
+                    //  use the command
+                    _connectDb.ExecuteNonQuery(_mainCommand);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+        }
+
+        public List<TRS_Domain.USER.Data> GetAllEventSignOns(int eventId)
+        {
+            List<TRS_Domain.USER.Data> output = new List<TRS_Domain.USER.Data>();
+            //  Try-Catch for Safety:
+            try
+            {
+                using (MySqlConnection conn = _connectDb.GetConnection())
+                {
+                    //  Open Connection:
+                    conn.Open();
+
+
+                    //  the incomplete query
+                    _mainQuery = "SELECT users.UserName, users.UserSurname " +
+                                 "FROM users " +
+                                 "INNER JOIN event_user ON users.UserID = event_user.UserID " +
+                                 "WHERE event_user.EventID = @eventId";
+
+                    //  build the command
+                    _mainCommand = new MySqlCommand(_mainQuery, conn);
+                    //defining parameters
+                    _mainCommand.Parameters.AddWithValue("@eventId", eventId);
+                    //  use the command
+                    using (MySqlDataReader reader = _mainCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var name = (string) reader["UserName"];
+                            var surName = (string) reader["UserSurename"];
+
+                            output.Add(new TRS_Domain.USER.Data(name, surName));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return output;
         }
     }
 }

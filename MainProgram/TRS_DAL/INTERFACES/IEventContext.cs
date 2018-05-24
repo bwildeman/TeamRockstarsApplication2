@@ -10,5 +10,11 @@ namespace TRS_DAL.INTERFACES
 
         void CreateGroupEvent(int groupId, string name, DateTime startDate, DateTime endDate, bool online,
             string location, string description);
+
+        void AssignUserToEvent(int eventId, int userId);
+
+        void RemoveUserFromEvent(int eventId, int userId);
+
+        List<TRS_Domain.USER.Data> GetAllEventSignOns(int eventId);
     }
 }
