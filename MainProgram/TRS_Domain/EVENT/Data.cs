@@ -8,7 +8,10 @@ namespace TRS_Domain.EVENT
     {
         public int EventId { get; private set; }
         public string Name { get; private set; }
+        public bool Online { get; private set; }
+        public string Location { get; private set; }
         public string Description { get; private set; }
+        public List<CATEGORY.Data> Interests { get; private set; }
 
         public Data(int eventId, string name, string description)
         {
