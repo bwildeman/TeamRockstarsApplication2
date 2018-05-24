@@ -377,10 +377,6 @@ namespace TRS_DAL.CONTEXT
                                 }
                             }
                         }
-                        else
-                        {
-                            output = -1;
-                        }
                     }
                 }
             }
