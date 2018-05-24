@@ -14,14 +14,16 @@ namespace TRS_Domain.GROUP
         public string Description { get; private set; }
         public List<CHAT.Data> Chats { get; private set; }
         public List<EVENT.Data> Events { get; private set; }
+        public byte[] Img { get; private set; }
 
         public Data() { }
 
-        public Data(int id, string name, string description)
+        public Data(int id, string name, string description, byte[] img)
         {
             GroupId = id;
             Name = name;
             Description = description;
+            Img = img;
         }
 
         public void FillChats(List<CHAT.Data> inputList)

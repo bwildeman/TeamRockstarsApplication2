@@ -59,6 +59,7 @@ namespace TRS_Logic
                         try
                         {
                             output = groupRepo.AddGroupWithPic(clientID, Name, Description, bitMap);
+                            output = true;
                         }
                         catch (Exception ex)
                         {
