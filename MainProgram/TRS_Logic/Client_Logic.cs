@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TRS_Domain.CHAT;
-using TRS_Domain.EVENT;
+﻿using System.Collections.Generic;
 using TRS_DAL.REPOSITORIES;
 
 namespace TRS_Logic

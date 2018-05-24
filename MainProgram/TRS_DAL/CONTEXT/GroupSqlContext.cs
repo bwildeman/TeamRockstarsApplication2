@@ -11,27 +11,25 @@ namespace TRS_DAL.CONTEXT
 {
     public class GroupSqlContext : IGroupContext
     {
-        ConnectionDB _connectDb = new ConnectionDB();
+        ConnectionDB ConnectDB = new ConnectionDB();
         public string MainQuery;
         public dynamic Procedure;
         public MySqlCommand MainCommand;
 
-        public void AddGroup(int clientID, string name, string description)
+        public void AddGroup(string name, string description)
         {
             //Try-Catch for safety:
             try
             {
-                using (MySqlConnection conn = _connectDb.GetConnection())
+                using (MySqlConnection Conn = ConnectDB.GetConnection())
                 {
                     //  Open Connection:
-                    conn.Open();
+                    Conn.Open();
 
                     //  the incomplete query
                     MainQuery =
-                        "INSERT INTO `groups`(`GroupName`, `GroupDescription`, `GroupLeader`, `GroupRegion`)" +
-                        "VALUES(@Name, @Description, @clientID, @region);" +
-                        "INSERT INTO `group_members` (`GroupID`, `UserID`)" +
-                        "VALUES((SELECT LAST_INSERT_ID()), @idclient)";
+                        "INSERT INTO `groups`(`GroupName`, `GroupDescription`) " +
+                        "VALUES(@Name, @Description)";
 
                     //  DEFINE the paramaters
                     MySqlParameter param1 = new MySqlParameter();
@@ -42,132 +40,21 @@ namespace TRS_DAL.CONTEXT
                     param2.ParameterName = "@Description";
                     param2.Value = description;
 
-                    MySqlParameter param3 = new MySqlParameter();
-                    param3.ParameterName = "@clientID";
-                    param3.Value = clientID;
-
-                    MySqlParameter param4 = new MySqlParameter();
-                    param4.ParameterName = "@region";
-                    param4.Value = "HardCoded";
-
-                    MySqlParameter param5 = new MySqlParameter();
-                    param5.ParameterName = "@idclient";
-                    param5.Value = clientID;
-
-                    //  build the command
-                    MainCommand = new MySqlCommand(MainQuery, conn);
-
-                    //  add the parameters to the command
-                    MainCommand.Parameters.Add(param1);
-                    MainCommand.Parameters.Add(param2);
-                    MainCommand.Parameters.Add(param3);
-                    MainCommand.Parameters.Add(param4);
-                    MainCommand.Parameters.Add(param5);
-
-                    //  use the command
-                    _connectDb.ExecuteNonQuery(MainCommand);
-                }
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        public bool AddGroupWithPic(int clientID, string name, string description, byte[] bitMap)
-        {
-            //  Define output:
-            bool output = false;
-
-            //Try-Catch for safety:
-            try
-            {
-                using (MySqlConnection Conn = _connectDb.GetConnection())
-                {
-                    //  Open Connection:
-                    Conn.Open();
-
-                    //  the incomplete query
-                    MainQuery =
-                        "INSERT INTO `groups`(`GroupName`, `GroupDescription`, `GroupImage`) " +
-                        "VALUES(@Name, @Description, @Image)";
-
-                    //  DEFINE the paramaters
-                    MySqlParameter param1 = new MySqlParameter();
-                    param1.ParameterName = "@Name";
-                    param1.Value = name;
-
-                    MySqlParameter param2 = new MySqlParameter();
-                    param2.ParameterName = "@Description";
-                    param2.Value = description;
-
-                    MySqlParameter param3 = new MySqlParameter();
-                    param3.ParameterName = "@Image";
-                    param3.Value = bitMap;
-
                     //  build the command
                     MainCommand = new MySqlCommand(MainQuery, Conn);
 
                     //  add the parameters to the command
                     MainCommand.Parameters.Add(param1);
                     MainCommand.Parameters.Add(param2);
-                    MainCommand.Parameters.Add(param3);
 
                     //  use the command
-                    output = _connectDb.ExecuteNonQuery(MainCommand);
+                    ConnectDB.ExecuteNonQuery(MainCommand);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
-            return output;
-        }
-
-        public List<Data> GetAllGroupsThatUserIsNotIn(int UserID)
-        {
-            //  Define output:
-            List<Data> output = new List<Data>();
-
-            try
-            {
-                using (MySqlConnection Conn = _connectDb.GetConnection())
-                {
-                    //query
-                    Conn.Open();
-                    MainQuery =
-                        "SELECT * FROM groups where GroupID NOT IN (SELECT GroupID FROM group_members WHERE USerID = @UserID)";
-
-                    // parameters
-                    MySqlParameter param1 = new MySqlParameter();
-                    param1.ParameterName = "@UserID";
-                    param1.Value = UserID;
-
-                    // build com
-                    MainCommand = new MySqlCommand(MainQuery, Conn);
-
-                    //  add the parameters to the command
-                    MainCommand.Parameters.Add(param1);
-                    // using comm
-                    using (MySqlDataReader reader = MainCommand.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int id = Convert.ToInt32(reader["GroupID"]);
-                            string Name = Convert.ToString(reader["GroupName"]);
-                            string Description =Convert.ToString(reader["GroupDescription"]);
-                            output.Add((new Data(id,Name,Description)));
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-
-            return output;
         }
 
         public List<TRS_Domain.GROUP.Data> GetAllGroupInfo()
@@ -178,16 +65,16 @@ namespace TRS_DAL.CONTEXT
             //Try-Catch for safety:
             try
             {
-                using (MySqlConnection conn = _connectDb.GetConnection())
+                using (MySqlConnection Conn = ConnectDB.GetConnection())
                 {
                     //  Open Connection:
-                    conn.Open();
+                    Conn.Open();
 
                     //  the incomplete query
                     MainQuery = "SELECT * FROM `groups`";
 
                     //  build the command
-                    MainCommand = new MySqlCommand(MainQuery, conn);
+                    MainCommand = new MySqlCommand(MainQuery, Conn);
 
                     //  use the command
                     using (MySqlDataReader reader = MainCommand.ExecuteReader())
@@ -201,8 +88,10 @@ namespace TRS_DAL.CONTEXT
                                 //Retrieve information from the database and put it into a class.
                                 output.Add(new TRS_Domain.GROUP.Data(
                                     Convert.ToInt32(reader["GroupID"]),
+                                    Convert.ToInt32(reader["GroupLeader"]),
                                     Convert.ToString(reader["GroupName"]),
-                                    Convert.ToString(reader["GroupDescription"])
+                                    Convert.ToString(reader["GroupDescription"]),
+                                    Convert.ToString(reader["GroupRegion"])
                                     ));
                             }
                         }
@@ -216,7 +105,7 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public TRS_Domain.GROUP.Data GetGroupInfo(int groupId)
+        public TRS_Domain.GROUP.Data GetGroupInfo(int groupID)
         {
             //Define output
             TRS_Domain.GROUP.Data output = new TRS_Domain.GROUP.Data();
@@ -224,21 +113,21 @@ namespace TRS_DAL.CONTEXT
             //Try-Catch for safety:
             try
             {
-                using (MySqlConnection conn = _connectDb.GetConnection())
+                using (MySqlConnection Conn = ConnectDB.GetConnection())
                 {
                     //  Open Connection:
-                    conn.Open();
+                    Conn.Open();
 
                     //  the incomplete query
-                    MainQuery = "SELECT * FROM `group` WHERE `GroupID` = @id";
+                    MainQuery = "SELECT * FROM groups WHERE groups.GroupID = @id";
 
                     //  DEFINE the paramaters
                     MySqlParameter param1 = new MySqlParameter();
                     param1.ParameterName = "@id";
-                    param1.Value = groupId;
+                    param1.Value = groupID;
 
                     //  build the command
-                    MainCommand = new MySqlCommand(MainQuery, conn);
+                    MainCommand = new MySqlCommand(MainQuery, Conn);
 
                     //  add the parameters to the command
                     MainCommand.Parameters.Add(param1);
@@ -255,8 +144,10 @@ namespace TRS_DAL.CONTEXT
                                 //Retrieve information from the database and put it into a class.
                                 output = new TRS_Domain.GROUP.Data(
                                     Convert.ToInt32(reader["GroupID"]),
+                                    Convert.ToInt32(reader["GroupLeader"]),
                                     Convert.ToString(reader["GroupName"]),
-                                    Convert.ToString(reader["GroupDescription"])
+                                    Convert.ToString(reader["GroupDescription"]),
+                                    Convert.ToString(reader["GroupRegion"])
                                     );
                             }
                         }
@@ -270,7 +161,7 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public List<TRS_Domain.GROUP.Data> GetGroups(int userId)
+        public List<TRS_Domain.GROUP.Data> GetGroups(int userID)
         {
             //Define output:
             List<TRS_Domain.GROUP.Data> output = new List<TRS_Domain.GROUP.Data>();
@@ -278,14 +169,14 @@ namespace TRS_DAL.CONTEXT
             //Try-Catch for safety:
             try
             {
-                using (MySqlConnection conn = _connectDb.GetConnection())
+                using (MySqlConnection Conn = ConnectDB.GetConnection())
                 {
                     //  Open Connection:
-                    conn.Open();
+                    Conn.Open();
 
                     //  the incomplete query
                     MainQuery =
-                        "SELECT groups.GroupID, GroupName, GroupDescription " +
+                        "SELECT * " +
                         "FROM groups " +
                         "INNER join group_members on groups.GroupID = group_members.GroupID " +
                         "wHERE group_members.UserID = @id";
@@ -293,10 +184,10 @@ namespace TRS_DAL.CONTEXT
                     //  DEFINE the paramaters
                     MySqlParameter param1 = new MySqlParameter();
                     param1.ParameterName = "@id";
-                    param1.Value = userId;
+                    param1.Value = userID;
 
                     //  build the command
-                    MainCommand = new MySqlCommand(MainQuery, conn);
+                    MainCommand = new MySqlCommand(MainQuery, Conn);
 
                     //  add the parameters to the command
                     MainCommand.Parameters.Add(param1);
@@ -306,10 +197,14 @@ namespace TRS_DAL.CONTEXT
                     {
                         while (reader.Read())
                         {
-                            int groupId = Convert.ToInt32(reader["GroupID"]);
-                            string groupName = Convert.ToString(reader["GroupName"]);
-                            string groupDescription = Convert.ToString(reader["GroupDescription"]);
-                            output.Add(new TRS_Domain.GROUP.Data(groupId, groupName, groupDescription));
+                            output.Add(new TRS_Domain.GROUP.Data(
+                                    Convert.ToInt32(reader["GroupID"]),
+                                    Convert.ToInt32(reader["GroupLeader"]),
+                                    Convert.ToString(reader["GroupName"]),
+                                    Convert.ToString(reader["GroupDescription"]),
+                                    Convert.ToString(reader["GroupRegion"])
+                                    )
+                            );
                         }
                     }
                 }
@@ -321,15 +216,12 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public bool JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup)
+        public void JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup)
         {
-            //  Define output:
-            bool output = false;
-
             //Try-Catch for safety:
             try
             {
-                using (MySqlConnection Conn = _connectDb.GetConnection())
+                using (MySqlConnection Conn = ConnectDB.GetConnection())
                 {
                     //  Open Connection:
                     Conn.Open();
@@ -350,22 +242,126 @@ namespace TRS_DAL.CONTEXT
                     param2.Value = myGroup.GroupId;
 
                     //  build the command
-                    MainCommand = new MySqlCommand(MainQuery, Conn);
+                    MySqlCommand command = new MySqlCommand(MainQuery, Conn);
 
                     //  add the parameters to the command
                     MainCommand.Parameters.Add(param1);
                     MainCommand.Parameters.Add(param2);
 
                     //  use the command
-                    output = _connectDb.ExecuteNonQuery(MainCommand);
+                    ConnectDB.ExecuteNonQuery(MainCommand);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+        }
 
-            return output;
+        public void UpdateName(int id, string name)
+        {
+            try
+            {
+                using (MySqlConnection Conn = ConnectDB.GetConnection())
+                {
+                    Conn.Open();
+
+                    string Query = "UPDATE `groups` SET `GroupName`= @name WHERE `GroupID` = @id";
+
+                    MySqlParameter param1 = new MySqlParameter();
+                    param1.ParameterName = "@name";
+                    param1.Value = name;
+
+                    MySqlParameter param2 = new MySqlParameter();
+                    param2.ParameterName = "@id";
+                    param2.Value = id;
+
+                    MySqlCommand command = new MySqlCommand(Query, Conn);
+
+                    command.Parameters.Add(param1);
+                    command.Parameters.Add(param2);
+
+                    ConnectDB.ExecuteNonQuery(command);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void UpdateImage(int id, byte[] newImage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateRegion(int id, string newRegion)
+        {
+            try
+            {
+                using (MySqlConnection Conn = ConnectDB.GetConnection())
+                {
+                    Conn.Open();
+
+                    string Query = "UPDATE `groups` SET `GroupRegion`= @region WHERE `GroupID` = @id";
+
+                    MySqlParameter param1 = new MySqlParameter();
+                    param1.ParameterName = "@region";
+                    param1.Value = newRegion;
+
+                    MySqlParameter param2 = new MySqlParameter();
+                    param2.ParameterName = "@id";
+                    param2.Value = id;
+
+                    MySqlCommand command = new MySqlCommand(Query, Conn);
+
+                    command.Parameters.Add(param1);
+                    command.Parameters.Add(param2);
+
+                    ConnectDB.ExecuteNonQuery(command);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void UpdateDescription(int id, string newDescription)
+        {
+            try
+            {
+                using (MySqlConnection Conn = ConnectDB.GetConnection())
+                {
+                    Conn.Open();
+
+                    string Query = "UPDATE `groups` SET `GroupDescription`= @description WHERE GroupID = @id";
+
+                    MySqlParameter param1 = new MySqlParameter();
+                    param1.ParameterName = "@description";
+                    param1.Value = newDescription;
+
+                    MySqlParameter param2 = new MySqlParameter();
+                    param2.ParameterName = "@id";
+                    param2.Value = id;
+
+                    MySqlCommand command = new MySqlCommand(Query, Conn);
+
+                    command.Parameters.Add(param1);
+                    command.Parameters.Add(param2);
+
+                    ConnectDB.ExecuteNonQuery(command);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void UpdateStartUpChannel(string selectedChannel)
+        {
+            throw new NotImplementedException();
         }
     }
 }

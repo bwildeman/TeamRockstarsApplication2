@@ -69,6 +69,12 @@
     <Compile Include="FORMS\COMPONENTS\CHANNEL\PAGE_CHAT.xaml.cs">
       <DependentUpon>PAGE_CHAT.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAIN\PAGE_GroupControl.xaml.cs">
+      <DependentUpon>PAGE_GroupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\Page_Banner.xaml.cs">
+      <DependentUpon>Page_Banner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FORMS\COMPONENTS\MAIN\PAGE_CreateGroup.xaml.cs">
       <DependentUpon>PAGE_CreateGroup.xaml</DependentUpon>
     </Compile>
@@ -84,6 +90,9 @@
     <Compile Include="FORMS\COMPONENTS\MAIN\PAGE_ShowProfile.xaml.cs">
       <DependentUpon>PAGE_ShowProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\WINDOW_AddChannel.xaml.cs">
+      <DependentUpon>WINDOW_AddChannel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FORMS\COMPONENTS\OTHERS\FORM_CreateGroup.xaml.cs">
       <DependentUpon>FORM_CreateGroup.xaml</DependentUpon>
     </Compile>
@@ -93,6 +102,9 @@
     <Compile Include="FORMS\COMPONENTS\OTHERS\FROM_JoinOrCreateNewGroup.xaml.cs">
       <DependentUpon>FROM_JoinOrCreateNewGroup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\MENU\Channels.xaml.cs" />
+    <Compile Include="FORMS\COMPONENTS\OTHERS\MENU\General.xaml.cs" />
+    <Compile Include="FORMS\COMPONENTS\OTHERS\MENU\Members.xaml.cs" />
     <Compile Include="FORMS\COMPONENTS\OTHERS\PAGE_GroupInformation.xaml.cs">
       <DependentUpon>PAGE_GroupInformation.xaml</DependentUpon>
     </Compile>
@@ -138,6 +150,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FORMS\COMPONENTS\MAIN\PAGE_GroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\Page_Banner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FORMS\COMPONENTS\MAIN\PAGE_CreateGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +178,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\WINDOW_AddChannel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FORMS\COMPONENTS\OTHERS\FORM_CreateGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +191,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FORMS\COMPONENTS\OTHERS\FROM_JoinOrCreateNewGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\MENU\Channels.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\MENU\General.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\MENU\Members.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

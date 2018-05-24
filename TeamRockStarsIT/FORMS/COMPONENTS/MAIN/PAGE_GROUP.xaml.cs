@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using TRS_Domain.CHANNEL.CHAT;
 using TRS_Logic;
 
 namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
@@ -92,7 +84,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         {
             if (Lb_Channel.SelectedItem != null)
             {
-                Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem);
+                Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (Chat)Lb_Channel.SelectedItem);
             }
         }
 

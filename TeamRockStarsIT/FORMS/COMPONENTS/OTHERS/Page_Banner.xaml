@@ -1,0 +1,14 @@
+﻿<Page x:Class="TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.Page_Banner"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS"
+      mc:Ignorable="d" 
+      d:DesignHeight="195" d:DesignWidth="967"
+      Title="Page_Banner">
+
+    <Grid>
+        <Button Content="Settings" HorizontalAlignment="Left" Margin="917,0,0,0" VerticalAlignment="Top" Width="50" Height="50" Click="BTN_Settings_Click"/>
+    </Grid>
+</Page>

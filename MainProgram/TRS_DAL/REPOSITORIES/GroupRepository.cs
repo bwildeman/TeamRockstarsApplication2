@@ -6,44 +6,59 @@ using TRS_DAL.INTERFACES;
 
 namespace TRS_DAL.REPOSITORIES
 {
-    public class GroupRepository
+    public class GroupRepository : IGroupContext
     {
         //  Add Context reference:
-        IGroupContext _groupContext = new GroupSqlContext();
+        IGroupContext groupContext = new GroupSqlContext();
 
-        public void AddGroup(int clientID, string name, string description)
+        public void AddGroup(string name, string description)
         {
-            _groupContext.AddGroup(clientID, name, description);
+            groupContext.AddGroup(name, description);
         }
 
         public List<TRS_Domain.GROUP.Data> GetAllGroupInfo()
         {
-            return _groupContext.GetAllGroupInfo();
+            return groupContext.GetAllGroupInfo();
         }
 
-        public TRS_Domain.GROUP.Data GetGroupInfo(int groupId)
+        public TRS_Domain.GROUP.Data GetGroupInfo(int groupID)
         {
-            return _groupContext.GetGroupInfo(groupId);
+            return groupContext.GetGroupInfo(groupID);
         }
 
-        public List<TRS_Domain.GROUP.Data> GetGroups(int userId)
+        public List<TRS_Domain.GROUP.Data> GetGroups(int userID)
         {
-            return _groupContext.GetGroups(userId);
+            return groupContext.GetGroups(userID);
         }
 
-        public bool JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup)
+        public void JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup)
         {
-            return _groupContext.JoinGroup(client, myGroup);
+            groupContext.JoinGroup(client, myGroup);
         }
 
-        public List<TRS_Domain.GROUP.Data> GetAllGroupsThatUserIsNotIn(int UserID)
+        public void UpdateDescription(int id, string newDescription)
         {
-            return _groupContext.GetAllGroupsThatUserIsNotIn(UserID);
+            groupContext.UpdateDescription(id, newDescription);
         }
 
-        public bool AddGroupWithPic(int clientID, string name, string description, byte[] bitMap)
+        public void UpdateImage(int id, byte[] newImage)
         {
-            return _groupContext.AddGroupWithPic(clientID, name, description, bitMap);
+            groupContext.UpdateImage(id, newImage);
+        }
+
+        public void UpdateName(int id, string name)
+        {
+            groupContext.UpdateName(id, name);
+        }
+
+        public void UpdateRegion(int id, string newName)
+        {
+            groupContext.UpdateRegion(id, newName);
+        }
+
+        public void UpdateStartUpChannel(string selectedChannel)
+        {
+            groupContext.UpdateStartUpChannel(selectedChannel);
         }
     }
 }

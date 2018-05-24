@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TRS_Domain.CHANNEL.CHAT;
 
 namespace TRS_DAL.INTERFACES
 {
@@ -10,9 +11,9 @@ namespace TRS_DAL.INTERFACES
 
         void AddChat(int groupId, string name, string description);
 
-        List<TRS_Domain.CHAT.Data> GetAllChats(int groupId);
+        List<Chat> GetAllChats(int groupId);
 
-        List<TRS_Domain.CHAT.Message> GetMessages(int chatId);
+        List<Message> GetMessages(int chatId);
 
         bool MessageAdded(string message, DateTime time);
     }

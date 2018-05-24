@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU.Channels"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU"
+             mc:Ignorable="d" d:DesignWidth="750" Height="803.284">
+    <Grid Margin="0,0,0,46">
+        <Separator HorizontalAlignment="Left" Height="100" Margin="10,-50,0,0" VerticalAlignment="Top" Width="720"/>
+
+        <TextBlock HorizontalAlignment="Left" FontSize="16" Foreground="White" Margin="10,18,0,0" TextWrapping="Wrap" Text="Channel Information" VerticalAlignment="Top" Width="155" Height="32"/>
+        <DataGrid x:Name="DG_Channels" HorizontalAlignment="Left" Height="200" Margin="10,50,0,0" VerticalAlignment="Top" Width="720"/>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="10,250,0,0" VerticalAlignment="Top" Width="720"/>
+
+        <TextBlock HorizontalAlignment="Left" FontSize="16" Foreground="White" Margin="10,318,0,0" TextWrapping="Wrap" Text="Channel Setup" VerticalAlignment="Top" Width="155" Height="32"/>
+        <ListBox x:Name="LB_Channels" HorizontalAlignment="Left" Height="220" Margin="10,350,0,0" VerticalAlignment="Top" Width="155"/>
+        <Button Content="Add Channel" HorizontalAlignment="Left" Margin="200,350,0,0" VerticalAlignment="Top" Width="185" Height="50" Click="BTN_AddChannel_Click"/>
+        <Button Content="Edit Channel" HorizontalAlignment="Left" Margin="200,440,0,0" VerticalAlignment="Top" Width="185" Height="50"/>
+        <Button Content="Remove Channel" HorizontalAlignment="Left" Margin="200,520,0,0" VerticalAlignment="Top" Width="185" Height="50"/>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="10,550,0,0" VerticalAlignment="Top" Width="720"/>
+
+        <TextBlock HorizontalAlignment="Left" FontSize="16" Foreground="White" Margin="10,618,0,0" TextWrapping="Wrap" Text="Opening Channel" VerticalAlignment="Top" Width="155" Height="32" RenderTransformOrigin="0.754,0.609"/>
+        <Separator HorizontalAlignment="Left" Height="57" Margin="10,700,0,0" VerticalAlignment="Top" Width="720"/>
+        <ComboBox Height="58" HorizontalAlignment="Left" FontSize="24"  Margin="10,655,0,0" x:Name="CB_ChannelName" VerticalAlignment="Top" Width="255"/>
+        <Button Content="Select as Opening Channel" HorizontalAlignment="Left" Margin="300,655,0,0" VerticalAlignment="Top" Width="135" Height="58"/>
+    </Grid>
+</UserControl>

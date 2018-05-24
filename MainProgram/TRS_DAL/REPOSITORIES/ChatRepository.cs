@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.CONTEXT;
 using TRS_DAL.INTERFACES;
+using TRS_Domain.CHANNEL.CHAT;
 
 namespace TRS_DAL.REPOSITORIES
 {
@@ -21,12 +22,12 @@ namespace TRS_DAL.REPOSITORIES
             _chatContext.AddChat(groupId, name, description);
         }
 
-        public List<TRS_Domain.CHAT.Data> GetAllChats(int groupId)
+        public List<Chat> GetAllChats(int groupId)
         {
             return _chatContext.GetAllChats(groupId);
         }
 
-        public List<TRS_Domain.CHAT.Message> GetMessages(int chatId)
+        public List<Message> GetMessages(int chatId)
         {
             return _chatContext.GetMessages(chatId);
         }

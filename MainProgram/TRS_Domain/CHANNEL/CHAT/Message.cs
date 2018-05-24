@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TRS_Domain.CHAT
+namespace TRS_Domain.CHANNEL.CHAT
 {
     public class Message
     {

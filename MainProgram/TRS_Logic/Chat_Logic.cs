@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.REPOSITORIES;
-using TRS_Domain.CHAT;
+using TRS_Domain.CHANNEL.CHAT;
 
 namespace TRS_Logic
 {
@@ -10,7 +10,7 @@ namespace TRS_Logic
     {
         //  Add DAL reference
         ChatRepository _chatRepo = new ChatRepository();
-        public List<TRS_Domain.CHAT.Data> GetAllChats(int groupId)
+        public List<Chat> GetAllChats(int groupId)
         {
             return _chatRepo.GetAllChats(groupId);
         }

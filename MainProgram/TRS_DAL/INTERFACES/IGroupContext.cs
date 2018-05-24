@@ -6,16 +6,20 @@ namespace TRS_DAL.INTERFACES
 {
     interface IGroupContext
     {
-        TRS_Domain.GROUP.Data GetGroupInfo(int groupId);
+        TRS_Domain.GROUP.Data GetGroupInfo(int groupID);
 
         List<TRS_Domain.GROUP.Data> GetAllGroupInfo();
 
-        List<TRS_Domain.GROUP.Data> GetGroups(int userId);
+        List<TRS_Domain.GROUP.Data> GetGroups(int userID);
 
-        bool JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup);
+        void JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup);
 
-        void AddGroup(int clientID, string name, string description);
-        bool AddGroupWithPic(int clientID, string name, string description, byte[] bitMap);
-        List<TRS_Domain.GROUP.Data> GetAllGroupsThatUserIsNotIn(int UserID);
+        void AddGroup(string name, string description);
+
+        void UpdateName(int id, string name);
+        void UpdateImage(int id, byte[] newImage);
+        void UpdateRegion(int id, string newRegion);
+        void UpdateDescription(int id, string newDescription);
+        void UpdateStartUpChannel(string selectedChannel);
     }
 }
