@@ -92,7 +92,17 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         {
             if (Lb_Channel.SelectedItem != null)
             {
-                Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem);
+                switch (_selectedChannel)
+                {
+                    case Channel.Chat:
+                        Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem);
+                        break;
+                    case Channel.Event:
+                        
+                        break;
+                    case Channel.Forum:
+                        break;
+                }
             }
         }
 
@@ -111,6 +121,22 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             Chat = 1,
             Event = 2,
             Forum = 3
+        }
+
+        private void Btn_AddChannel_Click(object sender, RoutedEventArgs e)
+        {
+            switch (_selectedChannel)
+            {
+                case Channel.Chat:
+
+                    break;
+                case Channel.Event:
+                    Fr_Channel.Content = new CHANNEL.PAGE_AddEvent();
+                    break;
+                case Channel.Forum:
+
+                    break;
+            }
         }
     }
 }

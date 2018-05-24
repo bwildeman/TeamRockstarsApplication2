@@ -75,6 +75,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FORMS\COMPONENTS\CHANNEL\PAGE_AddEvent.xaml.cs">
+      <DependentUpon>PAGE_AddEvent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FORMS\COMPONENTS\CHANNEL\PAGE_CHAT.xaml.cs">
       <DependentUpon>PAGE_CHAT.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="FORMS\COMPONENTS\CHANNEL\PAGE_AddEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FORMS\COMPONENTS\CHANNEL\PAGE_CHAT.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

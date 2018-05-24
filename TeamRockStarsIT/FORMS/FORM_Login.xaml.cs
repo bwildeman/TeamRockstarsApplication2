@@ -57,7 +57,7 @@ namespace TeamRockStarsIT.FORMS
                 this.Hide();
                 // open new form
                 FormMain form = new FormMain(userId);
-                form.ShowDialog();
+                 form.ShowDialog();
                 // close current form
                 this.Close();
             }
