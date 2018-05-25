@@ -44,5 +44,27 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         {
             e.Handled = (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9);
         }
+
+        private void RBtn_Online_Checked(object sender, RoutedEventArgs e)
+        {
+            TB_Adres.IsHitTestVisible = false;
+            TB_Adres.Opacity = 0.5;
+            Lbl_Adres.Opacity = 0.5;
+
+            TB_Url.IsHitTestVisible = true;
+            TB_Url.Opacity = 1;
+            Lbl_Url.Opacity = 1;
+        }
+
+        private void RBtn_IRL_Checked(object sender, RoutedEventArgs e)
+        {
+            TB_Adres.IsHitTestVisible = true;
+            TB_Adres.Opacity = 1;
+            Lbl_Adres.Opacity = 1;
+
+            TB_Url.IsHitTestVisible = false;
+            TB_Url.Opacity = 0.5;
+            Lbl_Url.Opacity = 0.5;
+        }
     }
 }
