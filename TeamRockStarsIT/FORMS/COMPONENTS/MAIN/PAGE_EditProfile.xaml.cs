@@ -78,7 +78,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         private void RemoveUserInterestFromList()
         {
             if (LB_UserInterests.SelectedItem != null)
-            {         
+            {
                 // remove selected interest
                 LB_UserInterests.Items.Remove(LB_UserInterests.SelectedItem);
             }
@@ -87,7 +87,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         private void RemoveInterestFromCategoryList()
         {
             if (LB_Interests.SelectedItem != null)
-            {              
+            {
                 // remove selected interest
                 LB_Interests.Items.Remove(LB_Interests.SelectedItem);
             }
@@ -119,6 +119,21 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
 
         }
+
+        private void RequiredFieldCheck(System.Windows.Controls.TextBox Field)
+        {
+            if (!string.IsNullOrEmpty(Field.Text))
+            {
+                Field.BorderBrush = new SolidColorBrush(Color.FromRgb(179, 171, 171));
+                Field.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            }
+            else
+            {
+                Field.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Field.Background = new SolidColorBrush(Color.FromRgb(255, 167, 167));
+            }
+        }
+
         public PageEditProfile(TRS_Domain.USER.Data client, TRS_Domain.USER.Data selectedUser, Frame contentFrame, Frame clientInfo)
         {
             _client = client;
@@ -211,6 +226,31 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
             }
 
+        }
+
+        private void TB_Name_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Name);
+        }
+
+        private void TB_Surname_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Surname);
+        }
+
+        private void TB_Email_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Email);
+        }
+
+        private void TB_PhoneNumber_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_PhoneNumber);
+        }
+
+        private void TB_PhoneNumber_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            e.Handled = (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9);
         }
     }
 }
