@@ -38,8 +38,9 @@
         <Label x:Name="Lbl_Portfolio" Content="Portfolio" HorizontalAlignment="Left" Margin="440,233,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18" FontWeight="Bold"/>
         <Label x:Name="Lbl_Gender" Content="Gender:" HorizontalAlignment="Left" Margin="30,253,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18" FontWeight="Bold"/>
         <ComboBox x:Name="CBox_Gender" HorizontalAlignment="Left" Margin="169,253,0,0" VerticalAlignment="Top" Width="221" FontSize="16" FontFamily="Segoe UI Semibold" RenderTransformOrigin="-1.197,3.308"/>
-        <TextBox x:Name="TB_Portfolio" MaxLength="60000" MaxLines="100" HorizontalAlignment="Left" Height="242" Margin="441,267,0,0" TextWrapping="Wrap" Text="Portfolio" VerticalAlignment="Top" Width="516" SelectionBrush="#FFFFE000" FontFamily="Segoe UI Semibold" FontSize="16"/>
+        <TextBox x:Name="TB_Portfolio" MaxLength="60000" MaxLines="100" HorizontalAlignment="Left" Height="228" Margin="441,267,0,0" TextWrapping="Wrap" Text="Portfolio" VerticalAlignment="Top" Width="516" SelectionBrush="#FFFFE000" FontFamily="Segoe UI Semibold" FontSize="16"/>
         <Button x:Name="Btn_AddInterest" Content="Add interest" HorizontalAlignment="Left" Margin="798,50,0,0" VerticalAlignment="Top" Width="108" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" IsCancel="True" Click="Btn_AddInterest_Click"/>
+        <Label x:Name="Lbl_Warning" Content="[Warning]" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="90,509,0,0" VerticalAlignment="Top" Foreground="#FFCF3F3F" FontFamily="Segoe UI Semibold" FontSize="18" FontWeight="Bold" RenderTransformOrigin="0.091,1.967" Width="787" Visibility="Hidden"/>
 
     </Grid>
 </Page>

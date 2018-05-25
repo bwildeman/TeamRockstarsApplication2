@@ -468,6 +468,9 @@ namespace TRS_DAL.CONTEXT
             {
                 using (MySqlConnection conn = _connectDb.GetConnection())
                 {
+                    //  Open Connection:
+                    conn.Open();
+
                     //incomplete query 
                     MainQuery = "UPDATE users SET UserName= @username,UserSurname = @userSurname, UserEmail = @userEmail, UserRegion = @userRegion, UserDepartment = @userDepartment, UserPhoneNumber = @userPhoneNumber, UserQuote = @userQuote, UserPortfolio = @userPortfolio, UserAdres = @userAdres, UserProfilePicture = @UserProfilePicture WHERE  UserID = @UserId";
 

@@ -180,7 +180,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Lbl_Warning.Visibility = Visibility.Visible;
+                Lbl_Warning.Content = ex.Message;
             }
         }
 
@@ -196,7 +197,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
         }
 
-        private void CB_InterestCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void CB_InterestCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FillCategoryInterestsListbox();
         }
