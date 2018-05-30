@@ -98,5 +98,10 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                 Lbl_Warning.Content = ex.Message;
             }
         }
+
+        private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            _contentFrame.Content = new PageShowProfile(_client, _client, _clientInfoFrame, _contentFrame);
+        }
     }
 }
