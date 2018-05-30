@@ -44,7 +44,7 @@ namespace TRS_DAL.CONTEXT
                             var startDate = (DateTime)reader["StartDate"];
                             var endDate = (DateTime)reader["EndDate"];
                             var online = (bool)reader["Online"];
-                            var location = (string)reader["Location"];
+                            var location = (string)reader["Location_Url"];
                             var description = (string)reader["Description"];
 
                             output.Add(new TRS_Domain.EVENT.Data(eventId, groupID, name, startDate, endDate, online, location, description));
@@ -72,7 +72,7 @@ namespace TRS_DAL.CONTEXT
 
                     //incomplete query 
                     _mainQuery = "INSERT INTO event " +
-                                 "(GroupId, Name, StartDate, EndDate, Online, Location, Description) " +
+                                 "(GroupId, Name, StartDate, EndDate, Online, Location_Url, Description) " +
                                  "VALUES (@groupId, @name, @startDate, @endDate, @online, @location, @description)";
 
                     //  build the command

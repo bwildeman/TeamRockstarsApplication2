@@ -15,5 +15,10 @@ namespace TRS_Logic
         {
             eventRepo.CreateGroupEvent(newEvent.GroupId, newEvent.Name, newEvent.StartDate, newEvent.EndDate, newEvent.Online, newEvent.Location,newEvent.Description);
         }
+
+        public List<Data> GetGroupEvents(int groupId)
+        {
+            return eventRepo.GetGroupEvents(groupId);
+        }
     }
 }

@@ -26,11 +26,5 @@ namespace TRS_Logic
             return output;
         }
 
-        public List<TRS_Domain.EVENT.Data> GetAllEvents(int groupId)
-        {
-            List<TRS_Domain.EVENT.Data> output = new List<TRS_Domain.EVENT.Data>();
-            return output;
-            //throw new NotImplementedException();
-        }
     }
 }
