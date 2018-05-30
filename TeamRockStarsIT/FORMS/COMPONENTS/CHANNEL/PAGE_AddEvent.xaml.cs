@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TRS_Logic;
 
 namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 {
@@ -20,9 +21,15 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     /// </summary>
     public partial class PAGE_AddEvent : Page
     {
-        public PAGE_AddEvent()
+        // reference event logic
+        Event_Logic eventLogic = new Event_Logic();
+
+        private int _currentGroupId;
+
+        public PAGE_AddEvent(int groupId)
         {
             InitializeComponent();
+            _currentGroupId = groupId;
         }
 
         private void TB_Name_Copy_KeyDown(object sender, KeyEventArgs e)
@@ -65,6 +72,16 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             TB_Url.IsHitTestVisible = false;
             TB_Url.Opacity = 0.5;
             Lbl_Url.Opacity = 0.5;
+        }
+
+        private void Btn_CreateEvent_Click(object sender, RoutedEventArgs e)
+        {
+            var groupId = _currentGroupId;
+            // get event data from form
+            var name = TB_Name.Text;
+            var startDate = DateP_Start;
+            var endDate = DateP_End;
+            var online = RBtn_Online; 
         }
     }
 }

@@ -131,7 +131,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
                     break;
                 case Channel.Event:
-                    Fr_Channel.Content = new CHANNEL.PAGE_AddEvent();
+                    Fr_Channel.Content = new CHANNEL.PAGE_AddEvent(_selectedGroup.GroupId);
                     break;
                 case Channel.Forum:
 
