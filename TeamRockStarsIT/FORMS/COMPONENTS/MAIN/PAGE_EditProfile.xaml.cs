@@ -56,34 +56,31 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
         private void FillUserInterestListbox(int userId)
         {
-            LB_UserInterests.ItemsSource = _interestLogic.GetAllUsertInterests(userId);
-            LB_UserInterests.DisplayMemberPath = "Name";
-            LB_UserInterests.SelectedValuePath = "InterestId";
+            LB_UserInterests.Items.Clear();
+            List<TRS_Domain.INTEREST.Data> usetInterests = _interestLogic.GetAllUsertInterests(userId);
+            foreach (var item in usetInterests)
+            {
+                LB_UserInterests.Items.Add(item);
+            }
         }
 
         private void FillCategoryInterestsListbox()
         {
-            LB_Interests.ItemsSource = _interestLogic.GetUserCategoryInterests((int)CB_InterestCategory.SelectedValue, _selectedUser.UserId);
-            LB_Interests.DisplayMemberPath = "Name";
-            LB_Interests.SelectedValuePath = "InterestId";
+            LB_Interests.Items.Clear();
+            List<TRS_Domain.INTEREST.Data> categoryInterest =
+                _interestLogic.GetUserCategoryInterests((int)CB_InterestCategory.SelectedValue, _selectedUser.UserId);
+            foreach (var item in categoryInterest)
+            {
+                LB_Interests.Items.Add(item);
+            }
         }
 
         private void RemoveUserInterestFromList()
         {
             if (LB_UserInterests.SelectedItem != null)
             {
-                // get user interests
-                List<TRS_Domain.INTEREST.Data> userInterestList = new List<Data>(_interestLogic.GetAllUsertInterests(_selectedUser.UserId));
-                // get selected object
-                TRS_Domain.INTEREST.Data selectedItem = new Data((TRS_Domain.INTEREST.Data)LB_UserInterests.SelectedItem);
                 // remove selected interest
-                userInterestList.Remove(userInterestList.Find(item => item.InterestId == selectedItem.InterestId));
-                // clear listbox items
-                LB_UserInterests.ItemsSource = null;
-                // set itemsource
-                LB_UserInterests.ItemsSource = userInterestList;
-                LB_UserInterests.DisplayMemberPath = "Name";
-                LB_UserInterests.SelectedValuePath = "InterestId";
+                LB_UserInterests.Items.Remove(LB_UserInterests.SelectedItem);
             }
         }
 
@@ -91,19 +88,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         {
             if (LB_Interests.SelectedItem != null)
             {
-                // get 
-                List<TRS_Domain.INTEREST.Data> categoryList = new List<TRS_Domain.INTEREST.Data>();
-                categoryList.AddRange(_interestLogic.GetUserCategoryInterests((int)CB_InterestCategory.SelectedValue, _selectedUser.UserId));
-                // get selected object
-                TRS_Domain.INTEREST.Data selectedItem = new TRS_Domain.INTEREST.Data((TRS_Domain.INTEREST.Data)LB_Interests.SelectedItem);
                 // remove selected interest
-                categoryList.Remove(categoryList.Find(item => item.InterestId == selectedItem.InterestId));
-                // clear listbox items
-                LB_Interests.ItemsSource = null;
-                // set itemsSource
-                LB_Interests.ItemsSource = categoryList;
-                LB_Interests.DisplayMemberPath = "Name";
-                LB_Interests.SelectedValuePath = "InterestId";
+                LB_Interests.Items.Remove(LB_Interests.SelectedItem);
             }
         }
 
@@ -133,6 +119,21 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
 
         }
+
+        private void RequiredFieldCheck(System.Windows.Controls.TextBox Field)
+        {
+            if (!string.IsNullOrEmpty(Field.Text))
+            {
+                Field.BorderBrush = new SolidColorBrush(Color.FromRgb(179, 171, 171));
+                Field.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            }
+            else
+            {
+                Field.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Field.Background = new SolidColorBrush(Color.FromRgb(255, 167, 167));
+            }
+        }
+
         public PageEditProfile(TRS_Domain.USER.Data client, TRS_Domain.USER.Data selectedUser, Frame contentFrame, Frame clientInfo)
         {
             _client = client;
@@ -179,7 +180,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Lbl_Warning.Visibility = Visibility.Visible;
+                Lbl_Warning.Content = ex.Message;
             }
         }
 
@@ -195,7 +197,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
         }
 
-        private void CB_InterestCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void CB_InterestCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FillCategoryInterestsListbox();
         }
@@ -206,6 +208,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             RemoveUserInterestFromList();
             SaveUserInterests(_selectedUser.UserId);
             FillUserInterestListbox(_selectedUser.UserId);
+            FillCategoryInterestsListbox();
         }
 
         private void LB_Interests_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -224,6 +227,31 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
             }
 
+        }
+
+        private void TB_Name_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Name);
+        }
+
+        private void TB_Surname_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Surname);
+        }
+
+        private void TB_Email_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Email);
+        }
+
+        private void TB_PhoneNumber_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_PhoneNumber);
+        }
+
+        private void TB_PhoneNumber_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            e.Handled = (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9);
         }
     }
 }

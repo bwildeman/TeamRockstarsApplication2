@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using TRS_DAL.REPOSITORIES;
+using TRS_Domain.EXCEPTIONS;
 
 namespace TRS_Logic
 {
@@ -10,7 +11,9 @@ namespace TRS_Logic
         // DAL reference:
         UserRepository _userRepo = new UserRepository();
         GroupRepository _groupRepo = new GroupRepository();
-        
+
+        //  Logic reference:
+        ExceptionHandler exHanlder = new ExceptionHandler();
         //  Private memory:
         private byte[] _profilepicture;
 
@@ -39,43 +42,65 @@ namespace TRS_Logic
             //  Try-Catch for safety:
             try
             {
-                //define output 
-                int genderint = 0;
-                //  Ex handling doen TODO:
-
-                //  Change input:
-
-                //  Database
-
-                switch (gender)
+                //  Ex handling
+                if (exHanlder.SaveProfile(name, surName, region, residence, email, phoneNumber, profilePic, gender, function, qoute, portfolio))
                 {
-                    case "Female":
-                        genderint = 0;
-                        break;
-                    case "Male":
-                        genderint = 1;
-                        break;
-                    case "Unassigned":
-                        genderint = 2;
-                        break;
-                }
-                if (!string.IsNullOrEmpty(profilePic))
-                {
-                    Savepicture(profilePic);
+                    //define input:
+                    int genderint = 0;
 
-                    _userRepo.UpdateUserInformation(name, surName, email, region, function, phoneNumber, qoute, portfolio, residence, userId, _profilepicture, genderint);
-                    output = true;
-                }
-                else
-                {
-                    _userRepo.UpdateUserInformation(name, surName, email, region, function, phoneNumber, qoute, portfolio, residence, userId, genderint);
-                    output = true;
+                    //  Change input:
+                    switch (gender)
+                    {
+                        case "Female":
+                            genderint = 0;
+                            break;
+                        case "Male":
+                            genderint = 1;
+                            break;
+                        case "Unassigned":
+                            genderint = 2;
+                            break;
+                    }
+                    //  Database
+                    if (!string.IsNullOrEmpty(profilePic))
+                    {
+                        Savepicture(profilePic);
+
+                        _userRepo.UpdateUserInformation(name, surName, email, region, function, phoneNumber, qoute, portfolio, residence, userId, _profilepicture, genderint);
+                        output = true;
+                    }
+                    else
+                    {
+                        _userRepo.UpdateUserInformation(name, surName, email, region, function, phoneNumber, qoute, portfolio, residence, userId, genderint);
+                        output = true;
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (MaxPhotoSizeReached ex)
             {
-                Console.WriteLine(ex.Message);
+                throw ex;
             }
+            catch(EmptyField ex)
+            {
+                throw ex;
+            }
+            catch(InvalidEmail ex)
+            {
+                throw ex;
+            }
+            catch(StringContainsDigit ex)
+            {
+                throw ex;
+            }
+            catch(StringContainsLeter ex)
+            {
+                throw ex;
+            }
+            catch(PhotoNotFound ex)
+            {
+                throw ex;
+            }
+
             return output;
         }
 
@@ -83,6 +108,5 @@ namespace TRS_Logic
         {
             return _userRepo.GetUser(userId);
         }
-
     }
 }
