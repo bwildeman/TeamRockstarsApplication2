@@ -12,7 +12,7 @@ namespace TRS_DAL.INTERFACES
 
         List<TRS_Domain.USER.Data> GetAllUsersName();
 
-        void CreateUser(string username, string usersurname, string region, string department, string email, string phonenumber, int gender, DateTime dateOb, string oldpassword, int usertype);
+        bool CreateUser(string name, string surName, string email, string region, string phonenumber, string adres, int gender, int userType, DateTime dob, string password);
 
         TRS_Domain.USER.Data GetUser(int id);
 

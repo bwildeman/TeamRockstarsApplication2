@@ -197,11 +197,10 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
         }
 
-    private void CB_InterestCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CB_InterestCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FillCategoryInterestsListbox();
         }
-
 
         private void LB_UserInterests_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
