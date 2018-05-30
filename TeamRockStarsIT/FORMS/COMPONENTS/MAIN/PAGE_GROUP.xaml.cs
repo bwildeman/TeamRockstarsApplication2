@@ -25,11 +25,12 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         ClientLogic _clientLogic = new ClientLogic();
         Group_Logic _groupLogic = new Group_Logic();
         ChatLogic _chatLogic = new ChatLogic();
-
+        
         //  Memory:
         private Frame _contentFrame;
         private TRS_Domain.GROUP.Data _selectedGroup;
         private Channel _selectedChannel = Channel.Chat;
+        private TRS_Domain.USER.Data _client;
 
         //  Private methodes:
         private void LoadChannelList()
@@ -74,10 +75,11 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             _selectedChannel = (Channel)newChannelIndex;
             LoadChannelList();
         }
-        public PageGroup(Frame contentFrame, TRS_Domain.GROUP.Data selectedGroup)
+        public PageGroup(Frame contentFrame, TRS_Domain.GROUP.Data selectedGroup, TRS_Domain.USER.Data _client)
         {
             _contentFrame = contentFrame;
             _selectedGroup = selectedGroup;
+            this._client = _client;
             _contentFrame.NavigationService.RemoveBackEntry();
             InitializeComponent();
             Loaded += PAGE_GROUP_Loaded;
@@ -92,7 +94,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         {
             if (Lb_Channel.SelectedItem != null)
             {
-                Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem);
+                Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem,_client);
             }
         }
 
