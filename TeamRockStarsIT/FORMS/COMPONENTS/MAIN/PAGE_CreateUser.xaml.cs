@@ -79,6 +79,11 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             RequiredFieldCheck(TB_PhoneNumber);
         }
 
+        private void TB_Adres_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Adres);
+        }
+
         private void Btn_Create_Click(object sender, RoutedEventArgs e)
         {
             try

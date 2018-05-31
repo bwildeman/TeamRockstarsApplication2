@@ -22,7 +22,7 @@
         <TextBox x:Name="TB_Surname" HorizontalAlignment="Left" Height="25" Margin="167,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" SelectionBrush="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" LostFocus="TB_Surname_LostFocus"/>
         <TextBox x:Name="TB_Email" HorizontalAlignment="Left" Height="25" Margin="167,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" SelectionBrush="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" LostFocus="TB_Email_LostFocus"/>
         <TextBox x:Name="TB_PhoneNumber" HorizontalAlignment="Left" Height="25" Margin="168,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" SelectionBrush="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" LostFocus="TB_PhoneNumber_LostFocus"/>
-        <TextBox x:Name="TB_Adres" HorizontalAlignment="Left" Height="25" Margin="167,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="373" SelectionBrush="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold"/>
+        <TextBox x:Name="TB_Adres" HorizontalAlignment="Left" Height="25" Margin="167,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="373" SelectionBrush="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" LostFocus="TB_Adres_LostFocus"/>
         <ComboBox x:Name="CBox_Region" HorizontalAlignment="Left" Margin="167,199,0,0" VerticalAlignment="Top" Width="230" Height="25" FontSize="16" FontFamily="Segoe UI Semibold" Background="Black" IsReadOnly="True">
             <ListBoxItem Content="Groningen"/>
             <ListBoxItem Content="Friesland"/>
@@ -37,7 +37,7 @@
             <ListBoxItem Content="Noord-Brabant"/>
             <ListBoxItem Content="Brabant"/>
         </ComboBox>
-        <ComboBox x:Name="CBox_Gender" HorizontalAlignment="Left" Margin="167,316,0,0" VerticalAlignment="Top" Width="373" Height="25" FontSize="16" FontFamily="Segoe UI Semibold" Background="Black" IsReadOnly="True">
+        <ComboBox x:Name="CBox_Gender" HorizontalAlignment="Left" Margin="167,316,0,0" VerticalAlignment="Top" Width="231" Height="25" FontSize="16" FontFamily="Segoe UI Semibold" Background="Black" IsReadOnly="True">
             <ListBoxItem Content="Female"/>
             <ListBoxItem Content="Male"/>
         </ComboBox>
