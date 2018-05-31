@@ -23,15 +23,15 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     public partial class PAGE_EventOverview : Page
     {
         private Data _currentEvent;
-        private int _currentUser;
+        private TRS_Domain.USER.Data _currentUser;
 
         Event_Logic eventLogic = new Event_Logic();
 
-        public PAGE_EventOverview(Data selectedEvent, int userId)
+        public PAGE_EventOverview(Data selectedEvent, TRS_Domain.USER.Data user)
         {
             InitializeComponent();
             _currentEvent = selectedEvent;
-            _currentUser = userId;
+            _currentUser = user;
         }
 
         private void SetOnlineEvent()
@@ -96,12 +96,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void Btn_Join_Click(object sender, RoutedEventArgs e)
         {
-            eventLogic.AddUserToEvent(_currentEvent.Id, _currentUser);
+            eventLogic.AddUserToEvent(_currentEvent.Id, _currentUser.UserId);
+            LB_Users.Items.Add(_currentUser);
         }
 
         private void Btn_Leave_Click(object sender, RoutedEventArgs e)
         {
-            eventLogic.RemoveUserFromEvent(_currentEvent.Id, _currentUser);
+            eventLogic.RemoveUserFromEvent(_currentEvent.Id, _currentUser.UserId);
             LB_Users.Items.Remove(_currentUser);
         }
     }
