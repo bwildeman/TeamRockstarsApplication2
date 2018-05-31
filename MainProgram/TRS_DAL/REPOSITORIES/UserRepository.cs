@@ -27,9 +27,9 @@ namespace TRS_DAL.REPOSITORIES
         }
 
 
-        public void CreateUser(string username, string usersurname, string region, string department, string email, string phonenumber, int gender, DateTime dateOb, string oldpassword, int usertype)
+        public bool CreateUser(string name, string surName, string email, string region, string phonenumber, string adres, int gender, int userType, DateTime dob, string password)
         {
-            _userContext.CreateUser(username, usersurname, region, department, email, phonenumber, gender, dateOb, oldpassword, usertype);
+            return _userContext.CreateUser(name, surName, email, region, phonenumber, adres, gender, userType, dob, password);
         }
 
         public TRS_Domain.USER.Data GetUser(int id)

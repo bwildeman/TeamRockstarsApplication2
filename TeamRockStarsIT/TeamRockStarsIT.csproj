@@ -107,6 +107,9 @@
     <Compile Include="FORMS\COMPONENTS\MAIN\PAGE_CreateGroup.xaml.cs">
       <DependentUpon>PAGE_CreateGroup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FORMS\COMPONENTS\MAIN\PAGE_CreateUser.xaml.cs">
+      <DependentUpon>PAGE_CreateUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FORMS\COMPONENTS\MAIN\PAGE_EditProfile.xaml.cs">
       <DependentUpon>PAGE_EditProfile.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FORMS\COMPONENTS\MAIN\PAGE_CreateGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\MAIN\PAGE_CreateUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -186,7 +186,6 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             FillCategoryInterestsListbox();
         }
 
-
         private void LB_UserInterests_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             RemoveUserInterestFromList();
