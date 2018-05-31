@@ -17,7 +17,6 @@ namespace TRS_Logic
         public string id;
         public int SenderId;
         public int chatindex;
-        public int selectedindex;
         public List<TRS_Domain.CHAT.Message> ChatList = new List<TRS_Domain.CHAT.Message>();
         public List<TRS_Domain.CHAT.Message> NewMsg = new List<TRS_Domain.CHAT.Message>();
         public bool IsDone = false;
@@ -25,10 +24,10 @@ namespace TRS_Logic
         public bool NewMsgLoad = false;
         ChatLogic chatLogic = new ChatLogic();
         TRS_Domain.USER.Data _client;
-        public void LoadIn(TRS_Domain.USER.Data data)
+        public void LoadIn()//TRS_Domain.USER.Data data
         {
-            _client = data;
-            string ip = "127.0.0.1";
+            //_client = data;
+            string ip = "145.93.44.131";
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
@@ -47,6 +46,11 @@ namespace TRS_Logic
                 Console.WriteLine("Could not connect");
                 Thread.Sleep(1000);
             }        
+        }
+
+        public void GetPersonInfo(TRS_Domain.USER.Data data)
+        {
+            _client = data;
         }
 
 

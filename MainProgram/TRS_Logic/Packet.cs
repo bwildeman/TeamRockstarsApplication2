@@ -91,6 +91,7 @@ namespace TRS_Logic
     {
         Registration,
         Chat,
-        GetAllChat
+        GetAllChat,
+        Login
     }
 }

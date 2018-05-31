@@ -23,7 +23,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     {
         //  References:
         ChatLogic _chatLogic = new ChatLogic();
-        ClientClass client = new ClientClass();
+        ClientClass client;
         //  Memory:
         private Frame _contentFrame;
         private Frame _channelFrame;
@@ -33,14 +33,16 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         private List<TRS_Domain.CHAT.Message> NewMsg { get; set; }
 
 
-        public PageChat(Frame contentFrame, Frame channelFrame, TRS_Domain.CHAT.Data selectedChat, TRS_Domain.USER.Data _client)
+        public PageChat(Frame contentFrame, Frame channelFrame, TRS_Domain.CHAT.Data selectedChat, TRS_Domain.USER.Data _client,ClientClass client)
         {
             _contentFrame = contentFrame;
             _channelFrame = channelFrame;
             _selectedChat = selectedChat;
             this._client = _client;
+            this.client = client;
+            client.GetPersonInfo(_client);
             InitializeComponent();
-            client.LoadIn(_client);
+            Lb_Chat.Items.Clear();
             Loaded += PAGE_CHAT_Loaded;
         }
 
