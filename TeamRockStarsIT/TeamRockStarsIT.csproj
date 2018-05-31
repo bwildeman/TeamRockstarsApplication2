@@ -96,6 +96,9 @@
     <Compile Include="FORMS\COMPONENTS\MAIN\PAGE_ShowProfile.xaml.cs">
       <DependentUpon>PAGE_ShowProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\FORM_ChangePassword.xaml.cs">
+      <DependentUpon>FORM_ChangePassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FORMS\COMPONENTS\OTHERS\FORM_CreateGroup.xaml.cs">
       <DependentUpon>FORM_CreateGroup.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FORMS\COMPONENTS\MAIN\PAGE_ShowProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\FORM_ChangePassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
