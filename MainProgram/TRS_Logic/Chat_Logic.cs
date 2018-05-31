@@ -19,6 +19,5 @@ namespace TRS_Logic
         {
             return _chatRepo.GetMessages(chatId);
         }
-
     }
 }
