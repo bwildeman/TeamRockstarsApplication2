@@ -67,6 +67,21 @@ namespace TRS_Logic
                 throw new PhotoNotFound();
             }
         }
+        private void ValidateAdminRights(bool noRights, bool yesRights)
+        {
+            if (noRights == yesRights)
+            {
+                throw new InvalidAdminRightsSelection();
+            }
+        }
+
+        private void ValidateDOB(DateTime dob)
+        {
+            if (dob > DateTime.Now)
+            {
+                throw new InvalidDOB();
+            }
+        }
 
         //  Public methodes:
         public bool Login(string email, string password)
@@ -117,5 +132,36 @@ namespace TRS_Logic
             return true;
         }
 
+        public bool NewUser(string name, string surName, string email, string region, string phonenumber, string adres, string gender, bool noRights, bool yesRights, DateTime dob)
+        {
+            // Check if all required fields are filled:
+            FieldEmpty(name, "name");
+            FieldEmpty(surName, "surname");
+            FieldEmpty(email, "email");
+            FieldEmpty(region, "region");
+            FieldEmpty(adres, "adres");
+            // Missing function, because that is a personal field to be filled in.
+            FieldEmpty(phonenumber, "phonenumber");
+            FieldEmpty(gender, "gender");
+
+            //  Check for digits:
+            ContainsDigit(name, "name");
+            ContainsDigit(surName, "surname");
+            ContainsDigit(region, "region");
+
+            //  Check if letters:
+            ContainsLeter(phonenumber, "phonenumber");
+
+            //  Check if email is valid:
+            ValidateEmail(email);
+
+            //  Check for admin rights selection:
+            ValidateAdminRights(noRights, yesRights);
+
+            // Validate date of birth:
+            ValidateDOB(dob);
+
+            return true;
+        }
     }
 }
