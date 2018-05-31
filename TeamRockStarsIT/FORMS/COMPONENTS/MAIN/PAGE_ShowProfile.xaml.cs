@@ -110,6 +110,10 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             {
                 Btn_Edit.Visibility = Visibility.Visible;
             }
+            if (_client.Type == 1)
+            {
+                Btn_AddUser.Visibility = Visibility.Visible;
+            }
         }
 
         private void LoadUserInterestsListBox(int userId)
