@@ -19,8 +19,6 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
     /// </summary>
     public partial class WINDOW_AddChannel : Window
     {
-        public string CreatedChannel => "it works";
-
         public WINDOW_AddChannel()
         {
             InitializeComponent();
@@ -28,7 +26,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
 
         private void BTN_Create_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            //  To-Do
+            //  Add Channel
         }
 
     }

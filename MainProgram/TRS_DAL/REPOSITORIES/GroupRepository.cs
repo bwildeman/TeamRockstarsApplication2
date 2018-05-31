@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.CONTEXT;
 using TRS_DAL.INTERFACES;
+using TRS_Domain.CHANNEL;
 
 namespace TRS_DAL.REPOSITORIES
 {
@@ -19,6 +20,16 @@ namespace TRS_DAL.REPOSITORIES
         public List<TRS_Domain.GROUP.Data> GetAllGroupInfo()
         {
             return groupContext.GetAllGroupInfo();
+        }
+
+        public Channel GetChannel(int GroupId, int Id)
+        {
+            return groupContext.GetChannel(GroupId, Id);
+        }
+
+        public Channel[] GetChannels(int GroupId)
+        {
+            return groupContext.GetChannels(GroupId);
         }
 
         public TRS_Domain.GROUP.Data GetGroupInfo(int groupID)

@@ -35,6 +35,11 @@ namespace TRS_Logic
             GP.UpdateStartUpChannel(selectedValue);
         }
 
+        public static TRS_Domain.CHANNEL.Channel[] GetChannels(int groupId)
+        {
+            return GP.GetChannels();
+        }
+
         public enum Regions
         {
             North,

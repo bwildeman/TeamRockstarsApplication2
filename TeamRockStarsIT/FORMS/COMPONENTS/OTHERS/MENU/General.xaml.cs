@@ -39,7 +39,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU
 
         private void BTN_UploudImage_Click(object sender, RoutedEventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private void BTN_SaveGroupName_Click(object sender, RoutedEventArgs e)

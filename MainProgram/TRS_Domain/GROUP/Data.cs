@@ -15,7 +15,7 @@ namespace TRS_Domain.GROUP
         public string Name { get; private set; }
         public string Description { get; private set; }
         public string Region { get; private set; }
-        public List<CHANNEL.CHAT.Chat> Chats { get; private set; }
+        public List<Chat> Chats { get; private set; }
         public List<EVENT.Data> Events { get; private set; }
         public byte[] Img { get; private set; }
 

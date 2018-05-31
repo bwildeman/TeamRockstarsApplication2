@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.INTERFACES;
+using TRS_Domain.CHANNEL;
 using TRS_Domain.GROUP;
 using TRS_Domain.USER;
 using Data = TRS_Domain.GROUP.Data;
@@ -13,7 +14,6 @@ namespace TRS_DAL.CONTEXT
     {
         ConnectionDB ConnectDB = new ConnectionDB();
         public string MainQuery;
-        public dynamic Procedure;
         public MySqlCommand MainCommand;
 
         public void AddGroup(string name, string description)
@@ -57,7 +57,7 @@ namespace TRS_DAL.CONTEXT
             }
         }
 
-        public List<TRS_Domain.GROUP.Data> GetAllGroupInfo()
+        public List<Data> GetAllGroupInfo()
         {
             //Define output
             List<TRS_Domain.GROUP.Data> output = new List<TRS_Domain.GROUP.Data>();
@@ -105,7 +105,7 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public TRS_Domain.GROUP.Data GetGroupInfo(int groupID)
+        public Data GetGroupInfo(int groupID)
         {
             //Define output
             TRS_Domain.GROUP.Data output = new TRS_Domain.GROUP.Data();
@@ -161,10 +161,10 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public List<TRS_Domain.GROUP.Data> GetGroups(int userID)
+        public List<Data> GetGroups(int userID)
         {
             //Define output:
-            List<TRS_Domain.GROUP.Data> output = new List<TRS_Domain.GROUP.Data>();
+            List<Data> output = new List<Data>();
 
             //Try-Catch for safety:
             try
@@ -216,7 +216,7 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public void JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup)
+        public void JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data group)
         {
             //Try-Catch for safety:
             try
@@ -239,7 +239,7 @@ namespace TRS_DAL.CONTEXT
 
                     MySqlParameter param2 = new MySqlParameter();
                     param2.ParameterName = "@GroupId";
-                    param2.Value = myGroup.GroupId;
+                    param2.Value = group.GroupID;
 
                     //  build the command
                     MySqlCommand command = new MySqlCommand(MainQuery, Conn);
@@ -360,6 +360,16 @@ namespace TRS_DAL.CONTEXT
         }
 
         public void UpdateStartUpChannel(string selectedChannel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Channel GetChannel(int GroupId, int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Channel[] GetChannels(int GroupId)
         {
             throw new NotImplementedException();
         }
