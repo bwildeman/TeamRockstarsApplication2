@@ -4,6 +4,7 @@ using System.Text;
 
 namespace TRS_Domain.CHAT
 {
+    [Serializable]
     public class Data
     {
         public int ChatId { get; private set; }
