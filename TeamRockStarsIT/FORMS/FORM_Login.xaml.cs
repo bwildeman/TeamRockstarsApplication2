@@ -23,6 +23,7 @@ namespace TeamRockStarsIT.FORMS
     {
         //  Logic reference:
         ControllerLogin _loginLogic = new ControllerLogin();
+        ClientClass Client = new ClientClass();
         //  Private methodes:
         private void LoginValid(bool input)
         {
@@ -54,6 +55,7 @@ namespace TeamRockStarsIT.FORMS
         public FormLogin()
         {
             InitializeComponent();
+            Client.LoadIn();
         }
 
         //  Others:
@@ -67,13 +69,19 @@ namespace TeamRockStarsIT.FORMS
         {
             try
             {
-                int userId = _loginLogic.Login(Txt_Email.Text, Txt_Password.Password.ToString());
+                Client.Login(Txt_Email.Text, Txt_Password.Password.ToString());
+                while (Client.loginstate == false)
+                {
+
+                }
+                
+                int userId = Client.GetLoginId();
                 if (userId != -1)
                 {
                     // hide current form
                     this.Hide();
                     // open new form
-                    FormMain form = new FormMain(userId);
+                    FormMain form = new FormMain(userId,Client);
                     form.ShowDialog();
                     // close current form
                     this.Close();

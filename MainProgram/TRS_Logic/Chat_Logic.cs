@@ -20,5 +20,10 @@ namespace TRS_Logic
             return _chatRepo.GetMessages(chatId);
         }
 
+        public void AddMessage(int id, int chat, string msg, DateTime dateTime)
+        {
+            _chatRepo.AddMessage(id,chat,msg,dateTime);
+        }
+
     }
 }
