@@ -25,6 +25,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         ClientLogic _clientLogic = new ClientLogic();
         Group_Logic _groupLogic = new Group_Logic();
         ChatLogic _chatLogic = new ChatLogic();
+        Event_Logic eventLogic = new Event_Logic();
 
         //  Memory:
         private Frame _contentFrame;
@@ -49,7 +50,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                 case Channel.Event:
                     Lbl_SelectedChannel.Content = "Event";
                     Btn_AddChannel.Content = "Add event";
-                    _selectedGroup.SetEvents(_clientLogic.GetAllEvents(_selectedGroup.GroupId));
+                    _selectedGroup.SetEvents(eventLogic.GetGroupEvents(_selectedGroup.GroupId));
                     foreach (var item in _selectedGroup.Events)
                     {
                         Lb_Channel.Items.Add(item);
@@ -102,8 +103,6 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                         break;
                     case Channel.Forum:
                         break;
-                    default:
-                        break;
                 }
             }
         }
@@ -123,6 +122,22 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             Chat = 1,
             Event = 2,
             Forum = 3
+        }
+
+        private void Btn_AddChannel_Click(object sender, RoutedEventArgs e)
+        {
+            switch (_selectedChannel)
+            {
+                case Channel.Chat:
+
+                    break;
+                case Channel.Event:
+                    Fr_Channel.Content = new CHANNEL.PAGE_AddEvent(_selectedGroup.GroupId);
+                    break;
+                case Channel.Forum:
+
+                    break;
+            }
         }
     }
 }
