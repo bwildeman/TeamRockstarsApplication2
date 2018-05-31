@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,6 +32,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         TRS_Domain.CHAT.Data _selectedChat;
         private List<TRS_Domain.CHAT.Message> ChatList { get; set; }
         private List<TRS_Domain.CHAT.Message> NewMsg { get; set; }
+        bool state = true;
+        bool state2 = false;
 
 
         public PageChat(Frame contentFrame, Frame channelFrame, TRS_Domain.CHAT.Data selectedChat, TRS_Domain.USER.Data _client,ClientClass client)
@@ -49,29 +52,33 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         private void PAGE_CHAT_Loaded(object sender, RoutedEventArgs e)
         {
             Lb_Chat.Items.Clear();
-            while (true)
+            while (state == true)
             {
-                while (client.IsLoading == true)
-                {
                     client.LoadChat(_selectedChat.ChatId);
-                    B:
-                    while (client.IsDone == true)
+                    state2 = true;
+                    while (state2 == true)
                     {
-                        ChatList = client.LoadinChat();
-                        foreach (var item in ChatList)
+                        while (client.IsDone == true)
                         {
-                            TextBlock txtBlock = new TextBlock();
-                            txtBlock.TextWrapping = TextWrapping.Wrap;
-                            txtBlock.Text = $"{item.SendDate}: {item.Username}: {item.Text}";
-                            Lb_Chat.Items.Add(txtBlock);
+                            ChatList = client.LoadinChat();
+                            foreach (var item in ChatList)
+                            {
+                                TextBlock txtBlock = new TextBlock();
+                                txtBlock.TextWrapping = TextWrapping.Wrap;
+                                txtBlock.Text = $"{item.SendDate}: {item.Username}: {item.Text}";
+                                Lb_Chat.Items.Add(txtBlock);
+                            }
+                            ChatList.Clear();
+                            client.ClearList();
+                            state2 = false;
+                            state = false;
+                            client.IsDone = false;
+                            
                         }
-                        goto A;
-                    }
-                    goto B;
-                }
-                
+                    } 
             }
-            A:;
+            //Thread Update = new Thread(new ThreadStart(CheckForUpdate));
+            //Update.Start();
         }
 
         private void Txt_Message_KeyDown(object sender, KeyEventArgs e)
@@ -80,24 +87,28 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             { 
                 client.Msg(Txt_Message.Text, _selectedChat.ChatId);
                 Txt_Message.Clear();
-                while (true)
-                {
-                    if (client.NewMsgLoad == true)
-                    {
-                        NewMsg = client.AddNewMsg();
-                        foreach (var item in NewMsg)
-                        {
-                            TextBlock txtBlock = new TextBlock();
-                            txtBlock.TextWrapping = TextWrapping.Wrap;
-                            txtBlock.Text = $"{item.SendDate}: {item.Username}: {item.Text}";
-                            Lb_Chat.Items.Add(txtBlock);
-                        }
-                        goto A;
-                    }
-                }
-                A:;
             }
             
+        }
+
+        //
+        public void CheckForUpdate()
+        {
+            while (client.NewMsgLoad == true)
+            {
+                if (client.NewMsgLoad == true)
+                {
+                    NewMsg = client.AddNewMsg();
+                    foreach (var item in NewMsg)
+                    {
+                        TextBlock txtBlock = new TextBlock();
+                        txtBlock.TextWrapping = TextWrapping.Wrap;
+                        txtBlock.Text = $"{item.SendDate}: {item.Username}: {item.Text}";
+                    }
+                    client.ClearMsgList();
+                }
+                client.NewMsgLoad = false;
+            }
         }
 
         private void Txt_Message_KeyUp(object sender, KeyEventArgs e)

@@ -18,6 +18,7 @@ namespace TRS_Logic
         public bool packetBool;
         public string senderID;
         public int groupid;
+        public int loginid;
         public PacketType packetType;
         public List<Message> listmessage = new List<Message>();
         public Packet(PacketType type, string senderID)
@@ -45,6 +46,7 @@ namespace TRS_Logic
             Packet p = (Packet)bf.Deserialize(ms);
             ms.Close();
             this.Gdata = p.Gdata;
+            this.loginid = p.loginid;
             this.packetInt = p.packetInt;
             this.packetBool = p.packetBool;
             this.senderID = p.senderID;

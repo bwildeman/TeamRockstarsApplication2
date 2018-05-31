@@ -69,7 +69,13 @@ namespace TeamRockStarsIT.FORMS
         {
             try
             {
-                int userId = _loginLogic.Login(Txt_Email.Text, Txt_Password.Password.ToString());
+                Client.Login(Txt_Email.Text, Txt_Password.Password.ToString());
+                while (Client.loginstate == false)
+                {
+
+                }
+                
+                int userId = Client.GetLoginId();
                 if (userId != -1)
                 {
                     // hide current form

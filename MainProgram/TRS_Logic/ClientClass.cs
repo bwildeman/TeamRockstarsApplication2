@@ -17,16 +17,18 @@ namespace TRS_Logic
         public string id;
         public int SenderId;
         public int chatindex;
+        public int loginid;
         public List<TRS_Domain.CHAT.Message> ChatList = new List<TRS_Domain.CHAT.Message>();
         public List<TRS_Domain.CHAT.Message> NewMsg = new List<TRS_Domain.CHAT.Message>();
         public bool IsDone = false;
         public bool IsLoading = false;
         public bool NewMsgLoad = false;
+        public bool loginstate = false;
         ChatLogic chatLogic = new ChatLogic();
         TRS_Domain.USER.Data _client;
-        public void LoadIn()//TRS_Domain.USER.Data data
+        ControllerLogin _loginlogic = new ControllerLogin();
+        public void LoadIn()
         {
-            //_client = data;
             string ip = "145.93.44.131";
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -56,9 +58,9 @@ namespace TRS_Logic
 
         public void LoadChat(int Chatid)
         {
-            while (true)
+            bool state = true;
+            while (state == true)
             {
-                
                 if (id != null)
                 {
                     Console.WriteLine("Loading Chat");
@@ -68,17 +70,35 @@ namespace TRS_Logic
                     p.Gdata.Add(Convert.ToString(Chatid));
                     p.groupid = Chatid;
                     master.Send(p.ToBytes());
-                    goto B;
+                    state = false;
                 }
-                
-               
             }
-            B:;
+        }
+
+        public void GetForm(Form form)
+        {
+            
         }
 
         public List<TRS_Domain.CHAT.Message> LoadinChat()
         {
             return ChatList;
+        }
+
+        public int GetLoginId()
+        {
+            return loginid;
+        }
+
+        public void ClearList()
+        {
+            ChatList.Clear();
+            IsDone = false;
+        }
+
+        public void ClearMsgList()
+        {
+            NewMsg.Clear();
         }
 
         public List<TRS_Domain.CHAT.Message> AddNewMsg()
@@ -98,6 +118,14 @@ namespace TRS_Logic
                 p.Gdata.Add(Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy")));
                 master.Send(p.ToBytes());
             
+        }
+
+        public void Login(string email, string password)
+        {
+            Packet p = new Packet(PacketType.Login,id);
+            p.Gdata.Add(email);
+            p.Gdata.Add(password);
+            master.Send(p.ToBytes());
         }
 
         public void Data_IN()
@@ -133,6 +161,7 @@ namespace TRS_Logic
                                 NewMsg.Add(new TRS_Domain.CHAT.Message(p.Gdata[0],p.Gdata[1],p.Gdata[3]));
                                 chatLogic.AddMessage(_client.UserId,Convert.ToInt32(p.Gdata[2]),p.Gdata[1],Convert.ToDateTime(p.Gdata[3]));
                                 NewMsgLoad = true;
+                                
                             }
                     break;
                 case PacketType.GetAllChat:
@@ -142,6 +171,10 @@ namespace TRS_Logic
                         ChatList.Add(new TRS_Domain.CHAT.Message(message.Username,message.Text,message.SendDate));
                     }
                     IsDone = true;
+                    break;
+                case PacketType.Login:
+                    loginid = p.loginid;
+                    loginstate = true;
                     break;
             }
         }
