@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.INTERFACES;
 using TRS_Domain;
+using TRS_Domain.USER;
 
 namespace TRS_DAL.CONTEXT
 {
@@ -538,6 +539,49 @@ namespace TRS_DAL.CONTEXT
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public bool UpdatePassword(string password, Data user)
+        {
+            //  Define output:
+            bool output = false;
+
+            try
+            {
+                using (MySqlConnection Conn = _connectDb.GetConnection())
+                {
+                    //  Open Connection:
+                    Conn.Open();
+
+
+                    //incomplete query 
+                    MainQuery = "UPDATE users SET `UserPassword`= @password WHERE  UserID = @UserId";
+
+                    //defining parameters
+                    MySqlParameter param1 = new MySqlParameter();
+                    param1.ParameterName = "@password";
+                    param1.Value = password;
+                    MySqlParameter param2 = new MySqlParameter();
+                    param2.ParameterName = "@UserId";
+                    param2.Value = user.UserId;
+
+                    //  build the command
+                    MainCommand = new MySqlCommand(MainQuery, Conn);
+
+                    //  add the parameters to the command
+                    MainCommand.Parameters.Add(param1);
+                    MainCommand.Parameters.Add(param2);
+
+                    //  use the command
+                    output = _connectDb.ExecuteNonQuery(MainCommand);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+            return output;
         }
     }
 }

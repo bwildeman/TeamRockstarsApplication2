@@ -32,7 +32,7 @@ namespace TRS_DAL.REPOSITORIES
             _eventContext.RemoveUserFromEvent(eventId, userId);
         }
 
-        List<TRS_Domain.USER.Data> GetAllEventSignOns(int eventId)
+        public List<TRS_Domain.USER.Data> GetAllEventSignOns(int eventId)
         {
             return _eventContext.GetAllEventSignOns(eventId);
         }

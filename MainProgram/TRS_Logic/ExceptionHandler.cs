@@ -74,12 +74,26 @@ namespace TRS_Logic
                 throw new InvalidAdminRightsSelection();
             }
         }
-
         private void ValidateDOB(DateTime dob)
         {
             if (dob > DateTime.Now)
             {
                 throw new InvalidDOB();
+            }
+        }
+        private void NewPasswordValidation(string newPass1)
+        {
+            if (!newPass1.Any(char.IsDigit))
+            {
+                throw new RequiresDigit("Password");
+            }
+            if (!newPass1.Any(char.IsUpper))
+            {
+                throw new RequiresUpperCase("Password");
+            }
+            if (!newPass1.Any(char.IsLetter))
+            {
+                throw new RequiresLetter("Password");
             }
         }
 
@@ -160,6 +174,24 @@ namespace TRS_Logic
 
             // Validate date of birth:
             ValidateDOB(dob);
+
+            return true;
+        }
+
+        public bool NewPassword(string newPass1, string newPass2)
+        {
+            // Check if all required fields are filled:
+            FieldEmpty(newPass1, "first password");
+            FieldEmpty(newPass2, "second password");
+
+            //  Check if passwords are equal:
+            if (newPass1 != newPass2)
+            {
+                throw new PasswordNotEqual();
+            }
+
+            //  Check if the password meets the requirements:
+            NewPasswordValidation(newPass1);
 
             return true;
         }

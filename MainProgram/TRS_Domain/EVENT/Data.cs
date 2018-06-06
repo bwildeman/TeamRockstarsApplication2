@@ -12,7 +12,7 @@ namespace TRS_Domain.EVENT
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
         public bool Online { get; private set; }
-        public string Location { get; private set; }
+        public string LocationUrl { get; private set; }
         public string Description { get; private set; }
 
         /// <summary>
@@ -25,14 +25,14 @@ namespace TRS_Domain.EVENT
         /// <param name="online"></param>
         /// <param name="location"></param>
         /// <param name="description"></param>
-        public Data(int groupId, string name, DateTime startDate, DateTime endDate, bool online, string location, string description)
+        public Data(int groupId, string name, DateTime startDate, DateTime endDate, bool online, string locationUrl, string description)
         {
             GroupId = groupId;
             Name = name;
             StartDate = startDate;
             EndDate = endDate;
             Online = online;
-            Location = location;
+            LocationUrl = locationUrl;
             Description = description;
         }
 
@@ -47,7 +47,7 @@ namespace TRS_Domain.EVENT
         /// <param name="online"></param>
         /// <param name="location"></param>
         /// <param name="description"></param>
-        public Data(int id, int groupId, string name, DateTime startDate, DateTime endDate, bool online, string location, string description)
+        public Data(int id, int groupId, string name, DateTime startDate, DateTime endDate, bool online, string locationUrl, string description)
         {
             Id = id;
             GroupId = groupId;
@@ -55,7 +55,7 @@ namespace TRS_Domain.EVENT
             StartDate = startDate;
             EndDate = endDate;
             Online = online;
-            Location = location;
+            LocationUrl = locationUrl;
             Description = description;
         }
 

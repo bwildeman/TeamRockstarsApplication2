@@ -103,6 +103,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                         Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem,_client, client);
                         break;
                     case Channel.Event:
+                        Fr_Channel.Content = new CHANNEL.PAGE_EventOverview((TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client);
                         
                         break;
                     case Channel.Forum:
