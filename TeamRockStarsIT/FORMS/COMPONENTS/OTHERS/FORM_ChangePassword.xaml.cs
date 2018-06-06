@@ -27,6 +27,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
 
         //  Memory:
         TRS_Domain.USER.Data _selectedUser;
+        TRS_Domain.USER.Data _client;
         private string PresetPassword = "RockStars123";
 
 
@@ -58,10 +59,20 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
             TB_NewPTwo.IsEnabled = !locked;
         }
 
-        public FORM_ChangePassword(TRS_Domain.USER.Data selectedUser)
+        public FORM_ChangePassword(TRS_Domain.USER.Data selectedUser, TRS_Domain.USER.Data client)
         {
             _selectedUser = selectedUser;
+            _client = client;
             InitializeComponent();
+            Loaded += FORM_ChangePassword_Loaded;
+        }
+
+        private void FORM_ChangePassword_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_client.Type == 1)
+            {
+                ChBox_Reset.Visibility = Visibility.Visible;
+            }
         }
 
         private void Btn_Save_Click(object sender, RoutedEventArgs e)

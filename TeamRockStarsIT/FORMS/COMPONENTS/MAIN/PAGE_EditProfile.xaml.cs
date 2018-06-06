@@ -121,6 +121,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
 
         }
+
         private void SetTimer()
         {
             timer = new DispatcherTimer();
@@ -149,6 +150,14 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
         }
 
+        private void ChangePasswordValidation()
+        {
+            if (_client.UserId == _selectedUser.UserId || _client.Type == 1)
+            {
+                Btn_ChangePassword.Visibility = Visibility.Visible;
+            }
+        }
+
         public PageEditProfile(TRS_Domain.USER.Data client, TRS_Domain.USER.Data selectedUser, Frame contentFrame, Frame clientInfo)
         {
             _client = client;
@@ -172,6 +181,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             //Fill in selected user information
             FillUserInformation();
 
+            //  Check if the password can be changed:
+            ChangePasswordValidation();
         }
 
         private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
@@ -270,7 +281,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
         private void Btn_ChangePassword_Click(object sender, RoutedEventArgs e)
         {
-            FORM_ChangePassword Dialog = new FORM_ChangePassword(_selectedUser);
+            FORM_ChangePassword Dialog = new FORM_ChangePassword(_selectedUser, _client);
             bool? DialogResult = Dialog.ShowDialog();
             switch (DialogResult)
             {
