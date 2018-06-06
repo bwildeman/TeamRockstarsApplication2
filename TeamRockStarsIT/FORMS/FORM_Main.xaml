@@ -11,7 +11,7 @@
     </Window.Background>
     <Grid>
         <Frame x:Name="Fr_UserInformation" MouseDoubleClick="Fr_UserInformation_MouseDoubleClick" Content="Here comes user info" HorizontalAlignment="Left" Height="200" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Foreground="White" FontSize="18" FontFamily="Segoe UI Semibold" NavigationUIVisibility="Hidden"/>
-        <ListBox x:Name="LB_Groups" HorizontalAlignment="Left" Height="516" Margin="10,243,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="#FFFFE000" FontSize="18" Foreground="White" FontFamily="Segoe UI Semibold" SelectionChanged="LB_Groups_SelectionChanged"/>
+        <ListBox x:Name="LB_Groups" HorizontalAlignment="Left" Height="516" Margin="10,243,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="#FFFFE000" FontSize="18" Foreground="White" FontFamily="Segoe UI Semibold" SelectionChanged="LB_Groups_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
         <Frame x:Name="Fr_Main" Content="Here comes the main frame" HorizontalAlignment="Left" Height="549" Margin="215,210,0,0" VerticalAlignment="Top" Width="967" FontSize="16" Foreground="White" NavigationUIVisibility="Hidden"/>
         <Button x:Name="Btn_CreateGroup" Content="Add Group" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" Width="200" Background="#FFFFE000" BorderBrush="#FFFFE000" FontSize="18" FontFamily="Segoe UI Semibold" Click="Btn_CreateGroup_Click"/>
 

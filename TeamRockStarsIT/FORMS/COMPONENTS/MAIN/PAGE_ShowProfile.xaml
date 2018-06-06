@@ -52,17 +52,18 @@
         <Label x:Name="LblFunction" Content="Stagaire Fontys" HorizontalAlignment="Left" Margin="69,232,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18" FontWeight="Bold"/>
         <Label x:Name="LblQoute" Content="&quot;The men that always looks down will never see the sun&quot;" HorizontalAlignment="Left" Margin="69,271,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
         <Label x:Name="LblPortfolio" Content="Portfolio:" HorizontalAlignment="Left" Margin="25,310,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
-        <Expander x:Name="Exp_Users" Header="All users:" HorizontalAlignment="Left" Height="517" VerticalAlignment="Top" Width="190" Margin="10,10,0,0" FontSize="18" FontFamily="Segoe UI Semibold" Foreground="White" IsExpanded="False">
-            <StackPanel x:Name="StackPUsers" Height="487" Margin="0,0,-1,0" VerticalAlignment="Top">
-                <TextBox x:Name="TxtUserSearch" Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Semibold" SelectionBrush="#FFFFE000" Margin="1,0,0,0"/>
-                <ListBox x:Name="LB_Users" Height="444" VerticalAlignment="Bottom" Margin="1,0,0,0" SelectionChanged="LB_Users_SelectionChanged"/>
-            </StackPanel>
-        </Expander>
         <Label x:Name="LblInterest" Content="Interest:" HorizontalAlignment="Left" Margin="881,332,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18" FontWeight="Bold" FontStyle="Italic"/>
         <ListBox x:Name="LB_Interest_" Height="140" VerticalAlignment="Bottom" Margin="700,0,10,43" FontSize="18" FontFamily="Segoe UI Semibold"/>
         <Button x:Name="Btn_Edit" Content="Edit" HorizontalAlignment="Left" Margin="881,519,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Edit_Click" Visibility="Hidden"/>
         <ScrollViewer HorizontalAlignment="Left" Height="195" Margin="25,344,0,0" VerticalAlignment="Top" Width="670" VerticalScrollBarVisibility="Auto">
             <TextBox x:Name="TxtPortfolio" IsReadOnly="True" IsHitTestVisible="False" HorizontalAlignment="Left" Height="auto" TextWrapping="Wrap" VerticalAlignment="Top" Width="652" FontSize="16" FontFamily="Segoe UI Semibold" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam suscipit pellentesque magna et maximus. Nulla semper justo dui, eget vulputate dui mattis hendrerit. Cras pulvinar maximus tristique. Sed quis neque mollis, malesuada velit placerat, convallis arcu. Curabitur condimentum varius convallis. Nam egestas venenatis dignissim. Suspendisse consequat in felis egestas consectetur. In arcu tellus, fermentum et libero nec, imperdiet efficitur purus. Sed nec ipsum ac mi mollis lobortis et id felis. Nulla facilisi." SelectionBrush="#FFFFE000" IsReadOnlyCaretVisible="True"/>
         </ScrollViewer>
+        <Expander x:Name="Exp_Users" Header="All users:" HorizontalAlignment="Left" Height="539" VerticalAlignment="Top" Width="190" Margin="10,10,0,0" FontSize="18" FontFamily="Segoe UI Semibold" Foreground="White" IsExpanded="False">
+            <Grid x:Name="Grid_Expander" HorizontalAlignment="Left" Height="503" Width="190" VerticalAlignment="Top" Margin="0,0,-2,0">
+                <TextBox x:Name="TxtUserSearch" Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Semibold" SelectionBrush="#FFFFE000" Margin="0,0,1,0" BorderBrush="#FF707070" TextChanged="TxtUserSearch_TextChanged"/>
+                <ListBox x:Name="LB_Users" Height="435" VerticalAlignment="Bottom" Margin="0,0,1,37" SelectionChanged="LB_Users_SelectionChanged" BorderBrush="#FF707070"/>
+                <Button x:Name="Btn_AddUser" Content="Add user" HorizontalAlignment="Left" Height="31" VerticalAlignment="Bottom" Width="189" Background="#FFFFE000" FontFamily="Segoe UI Semibold" FontSize="16" Click="Btn_AddUser_Click" Margin="0,0,0,6" Visibility="Hidden"/>
+            </Grid>
+        </Expander>
     </Grid>
 </Page>

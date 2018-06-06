@@ -17,7 +17,7 @@
         </Rectangle>
         <Label Content="Group name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Foreground="White"/>
         <Label Content="Group description:" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Foreground="White"/>
-        <TextBox x:Name="TB_Name" HorizontalAlignment="Left" Height="23" Margin="131,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" FontSize="16" FontFamily="Segoe UI Semibold" Background="White" SelectionBrush="#FFFFE000" Text=""/>
+        <TextBox x:Name="TB_Name"  HorizontalAlignment="Left" Height="23" Margin="131,16,0,0" TextWrapping="Wrap" MaxLength="20" VerticalAlignment="Top" Width="199" FontSize="16" FontFamily="Segoe UI Semibold" Background="White" SelectionBrush="#FFFFE000" Text=""/>
         <TextBox x:Name="TB_Description" HorizontalAlignment="Left" Height="196" Margin="10,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" FontSize="16" FontFamily="Segoe UI Semibold" Background="White" SelectionBrush="#FFFFE000" Text=""/>
         <Button x:Name="Btn_GetImage" Content="Change picture" HorizontalAlignment="Left" Margin="360,215,0,0" VerticalAlignment="Top" Width="139" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_GetImage_Click"/>
         <Button x:Name="Btn_Cancel" Content="Cancel" HorizontalAlignment="Center" Margin="10,279,447,0" VerticalAlignment="Top" Width="83" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Cancel_Click"/>

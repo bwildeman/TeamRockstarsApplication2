@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TRS_Domain.CHANNEL.CHAT;
 using TRS_Logic;
 
 namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
@@ -28,10 +27,10 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         //  Memory:
         private Frame _contentFrame;
         private Frame _channelFrame;
-        private Chat _selectedChat;
-        private List<Message> ChatList { get; set; }
+        TRS_Domain.CHAT.Data _selectedChat;
+        private List<TRS_Domain.CHAT.Message> ChatList { get; set; }
 
-        public PageChat(Frame contentFrame, Frame channelFrame, Chat selectedChat)
+        public PageChat(Frame contentFrame, Frame channelFrame, TRS_Domain.CHAT.Data selectedChat)
         {
             _contentFrame = contentFrame;
             _channelFrame = channelFrame;
@@ -42,7 +41,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void PAGE_CHAT_Loaded(object sender, RoutedEventArgs e)
         {
-            ChatList = _chatLogic.GetAllMessages(_selectedChat.Id);
+            ChatList = _chatLogic.GetAllMessages(_selectedChat.ChatId);
             Lb_Chat.Items.Clear();
             foreach (var item in ChatList)
             {
