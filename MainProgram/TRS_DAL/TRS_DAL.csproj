@@ -6,10 +6,14 @@
 
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <PackageReference Include="MySql.Data" Version="8.0.11" />
 =======
     <ProjectReference Include="..\TRS_Domain\TRS_Domain.csproj" />
 >>>>>>> parent of 8312520... Merge branch 'master' into F_GroepBeheer
+=======
+    <PackageReference Include="MySql.Data" Version="8.0.11" />
+>>>>>>> parent of e0c58a0... Merge branch 'master' of https://github.com/bwildeman/TeamRockstarsApplication2
   </ItemGroup>
 
   <ItemGroup>
