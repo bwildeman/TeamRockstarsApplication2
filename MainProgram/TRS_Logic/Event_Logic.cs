@@ -13,7 +13,7 @@ namespace TRS_Logic
 
         public void CreateNewGroupEvent(Data newEvent)
         {
-            eventRepo.CreateGroupEvent(newEvent.GroupId, newEvent.Name, newEvent.StartDate, newEvent.EndDate, newEvent.Online, newEvent.LocationUrl, newEvent.Description);
+            eventRepo.CreateGroupEvent(newEvent.GroupId, newEvent.EventOwnerId, newEvent.Name, newEvent.StartDate, newEvent.EndDate, newEvent.Online, newEvent.LocationUrl, newEvent.Description);
         }
 
         public List<Data> GetGroupEvents(int groupId)

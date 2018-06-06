@@ -40,6 +40,7 @@ namespace TRS_DAL.CONTEXT
                         while (reader.Read())
                         {
                             var eventId = (int)reader["EventID"];
+                            var ownerId = (int) reader["UserID"];
                             var groupID = (int)reader["GroupID"];
                             var name = (string)reader["Name"];
                             var startDate = (DateTime)reader["StartDate"];
@@ -48,7 +49,7 @@ namespace TRS_DAL.CONTEXT
                             var location = (string)reader["Location_Url"];
                             var description = (string)reader["Description"];
 
-                            output.Add(new TRS_Domain.EVENT.Data(eventId, groupID, name, startDate, endDate, online, location, description));
+                            output.Add(new TRS_Domain.EVENT.Data(eventId, ownerId, groupID, name, startDate, endDate, online, location, description));
                         }
                     }
 
@@ -61,7 +62,7 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public void CreateGroupEvent(int groupId, string name, DateTime startDate, DateTime endDate, bool online, string location,
+        public void CreateGroupEvent(int groupId, int ownerId, string name, DateTime startDate, DateTime endDate, bool online, string location,
             string description)
         {
             try
@@ -73,13 +74,14 @@ namespace TRS_DAL.CONTEXT
 
                     //incomplete query 
                     _mainQuery = "INSERT INTO event " +
-                                 "(GroupId, Name, StartDate, EndDate, Online, Location_Url, Description) " +
-                                 "VALUES (@groupId, @name, @startDate, @endDate, @online, @location, @description)";
+                                 "(GroupId, UserID, Name, StartDate, EndDate, Online, Location_Url, Description) " +
+                                 "VALUES (@groupId, @userId, @name, @startDate, @endDate, @online, @location, @description)";
 
                     //  build the command
                     _mainCommand = new MySqlCommand(_mainQuery, conn);
                     //defining parameters
                     _mainCommand.Parameters.AddWithValue("@groupId", groupId);
+                    _mainCommand.Parameters.AddWithValue("@userId", ownerId);
                     _mainCommand.Parameters.AddWithValue("@name", name);
                     _mainCommand.Parameters.AddWithValue("@startDate", startDate);
                     _mainCommand.Parameters.AddWithValue("@endDate", endDate);
@@ -173,7 +175,7 @@ namespace TRS_DAL.CONTEXT
 
 
                     //  the incomplete query
-                    _mainQuery = "SELECT * " +
+                    _mainQuery = "SELECT users.UserName, users.UserSurname, users.UserID " +
                                  "FROM users " +
                                  "INNER JOIN event_user ON users.UserID = event_user.UserID " +
                                  "WHERE event_user.EventID = @eventId";

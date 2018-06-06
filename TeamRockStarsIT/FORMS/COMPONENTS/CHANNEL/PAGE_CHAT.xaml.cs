@@ -91,7 +91,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             
         }
 
-        //
+        
         public void CheckForUpdate()
         {
             while (client.NewMsgLoad == true)

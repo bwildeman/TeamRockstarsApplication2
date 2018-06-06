@@ -22,14 +22,16 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     /// </summary>
     public partial class PAGE_AddEvent : Page
     {
-        private int _currentGroupId;
-        private Event_Logic eventLogic = new Event_Logic();
+        private readonly int _currentGroupId;
+        private readonly int _userId;
+        private readonly Event_Logic _eventLogic = new Event_Logic();
 
-        public PAGE_AddEvent(int groupId)
+        public PAGE_AddEvent(int groupId, TRS_Domain.USER.Data user)
         {
             InitializeComponent();
 
             _currentGroupId = groupId;
+            _userId = user.UserId;
         }
 
         private void RBtn_Online_Checked(object sender, RoutedEventArgs e)
@@ -69,7 +71,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             var location = CheckLocation();
             var description = TB_Description.Text;
 
-            eventLogic.CreateNewGroupEvent(new Data(groupId, name, startDate, endDate, online, location, description));
+            _eventLogic.CreateNewGroupEvent(new Data(groupId, _userId, name, startDate, endDate, online, location, description));
+
         }
 
         private string CheckLocation()
