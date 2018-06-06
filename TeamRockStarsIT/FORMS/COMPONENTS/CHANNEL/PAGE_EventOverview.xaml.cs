@@ -22,15 +22,18 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     /// </summary>
     public partial class PAGE_EventOverview : Page
     {
-        private readonly Data _currentEvent;
+        private Data _currentEvent;
         private readonly TRS_Domain.USER.Data _currentUser;
         readonly Event_Logic _eventLogic = new Event_Logic();
-        private readonly Frame _contentFrame;
+        private Frame _contentFrame;
+        private Frame _channelFrame;
 
-        public PAGE_EventOverview(Data selectedEvent, TRS_Domain.USER.Data user)
+        public PAGE_EventOverview(Frame contentFrame, Frame channelFrame, Data selectedEvent, TRS_Domain.USER.Data user)
         {
             InitializeComponent();
-            _currentEvent = new Data(selectedEvent);
+            _channelFrame = channelFrame;
+            _contentFrame = contentFrame;
+            _currentEvent = selectedEvent;
             _currentUser = user;
         }
 
@@ -117,7 +120,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-            _contentFrame.Content = new PAGE_EditEvent(_currentEvent);
+            _channelFrame.Content = new PAGE_EditEvent(_currentEvent, _contentFrame, _channelFrame, _currentUser);
         }
 
         private void CheckIfUserIsOwner(TRS_Domain.USER.Data user)

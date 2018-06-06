@@ -16,6 +16,7 @@ namespace TRS_Domain.EVENT
         public string LocationUrl { get; private set; }
         public string Description { get; private set; }
 
+
         /// <summary>
         /// Empty event constructor
         /// </summary>

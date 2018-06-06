@@ -22,11 +22,18 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     public partial class PAGE_EditEvent : Page
     {
         private readonly Data _currentEvent;
+        private TRS_Domain.USER.Data _currentClient;
+        private Frame _contentFrame;
+        private Frame _channelFrame;
 
-        public PAGE_EditEvent(Data currentEvent)
+        public PAGE_EditEvent(Data currentEvent, Frame contentFrame, Frame panelContentFrame, TRS_Domain.USER.Data client)
         {
-            InitializeComponent();
             _currentEvent = currentEvent;
+            _contentFrame = contentFrame;
+            _channelFrame = panelContentFrame;
+            _currentClient = client;
+            InitializeComponent();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -41,7 +48,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-
+            _channelFrame.Content = new PAGE_EventOverview(_contentFrame, _channelFrame, _currentEvent, _currentClient);
         }
 
         private void SetOnlineEvent()
@@ -78,8 +85,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             {
                 SetOfflineEvent();
             }
-
-            if (offline == false)
+            if(offline == false)
             {
                 SetOnlineEvent();
             }
