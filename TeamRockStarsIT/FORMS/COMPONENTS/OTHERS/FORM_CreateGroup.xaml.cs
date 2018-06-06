@@ -15,6 +15,8 @@ using System.IO;
 using Microsoft.Win32;
 using TRS_Domain.USER;
 using TRS_Logic;
+using TRS_Domain.EXCEPTIONS;
+using System.Windows.Threading;
 
 namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
 {
@@ -31,6 +33,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
         //  Memory:
         private byte[] BitMap;
         private Data Client;
+        private DispatcherTimer timer;
 
         //  References:
         Group_Logic groupLogic = new Group_Logic();
@@ -53,6 +56,42 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
 
             RCTL_GroupImage.Fill = new ImageBrush(image);
         }
+
+        private void RequiredFieldCheck(System.Windows.Controls.TextBox Field)
+        {
+            if (!string.IsNullOrEmpty(Field.Text))
+            {
+                Field.BorderBrush = new SolidColorBrush(Color.FromRgb(179, 171, 171));
+                Field.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            }
+            else
+            {
+                Field.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Field.Background = new SolidColorBrush(Color.FromRgb(255, 167, 167));
+            }
+        }
+
+        private void SetTimer()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Lbl_Warning.Visibility = Visibility.Hidden;
+            timer.Stop();
+        }
+
+        private void ShowWarning(string warningText)
+        {
+            Lbl_Warning.Content = warningText;
+            Lbl_Warning.Visibility = Visibility.Visible;
+        }
+
+        //  Program:
         public FORM_CreateGroup(Data client)
         {
             Client = client;
@@ -83,6 +122,28 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
         private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void TB_Name_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Name);
+        }
+
+        private void TB_Description_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                RequiredFieldCheck(TB_Description);
+                if (TB_Description.Text.Length <= 20)
+                {
+                    throw new DescriptionTooShort();
+                }
+            }
+            catch(DescriptionTooShort ex)
+            {
+                ShowWarning(ex.Message);
+                SetTimer();
+            }
         }
     }
 }
