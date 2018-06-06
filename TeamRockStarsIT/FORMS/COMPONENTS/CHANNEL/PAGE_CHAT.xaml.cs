@@ -34,6 +34,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         private List<TRS_Domain.CHAT.Message> NewMsg { get; set; }
         bool state = true;
         bool state2 = false;
+        bool state3 = false;
 
 
         public PageChat(Frame contentFrame, Frame channelFrame, TRS_Domain.CHAT.Data selectedChat, TRS_Domain.USER.Data _client,ClientClass client)
@@ -77,14 +78,14 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
                         }
                     } 
             }
-            //Thread Update = new Thread(new ThreadStart(CheckForUpdate));
-            //Update.Start();
+                Task task = Task.Run((Action)CheckForUpdate);
         }
 
         private void Txt_Message_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-            { 
+            {
+                state3 = false;
                 client.Msg(Txt_Message.Text, _selectedChat.ChatId);
                 Txt_Message.Clear();
             }
@@ -94,21 +95,23 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         //
         public void CheckForUpdate()
         {
-            while (client.NewMsgLoad == true)
+            while (state3 == false)
             {
                 if (client.NewMsgLoad == true)
-                {
-                    NewMsg = client.AddNewMsg();
-                    foreach (var item in NewMsg)
                     {
-                        TextBlock txtBlock = new TextBlock();
-                        txtBlock.TextWrapping = TextWrapping.Wrap;
-                        txtBlock.Text = $"{item.SendDate}: {item.Username}: {item.Text}";
+                    NewMsg = client.AddNewMsg();
+                    foreach (var item in NewMsg.ToList())
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            Lb_Chat.Items.Add(item.SendDate + ": " + item.Username + ": " + item.Text);
+                        });
                     }
                     client.ClearMsgList();
+                    client.NewMsgLoad = false;
                 }
-                client.NewMsgLoad = false;
             }
+           
         }
 
         private void Txt_Message_KeyUp(object sender, KeyEventArgs e)
