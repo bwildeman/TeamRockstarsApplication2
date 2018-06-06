@@ -173,7 +173,7 @@ namespace TRS_DAL.CONTEXT
 
 
                     //  the incomplete query
-                    _mainQuery = "SELECT users.UserName, users.UserSurname users.UserID " +
+                    _mainQuery = "SELECT * " +
                                  "FROM users " +
                                  "INNER JOIN event_user ON users.UserID = event_user.UserID " +
                                  "WHERE event_user.EventID = @eventId";
@@ -188,7 +188,7 @@ namespace TRS_DAL.CONTEXT
                         while (reader.Read())
                         {
                             var name = (string)reader["UserName"];
-                            var surName = (string)reader["UserSurename"];
+                            var surName = (string)reader["UserSurname"];
                             var id = (int) reader["UserID"];
 
                             output.Add(new TRS_Domain.USER.Data(id, name, surName));

@@ -99,6 +99,9 @@
     <Compile Include="FORMS\COMPONENTS\CHANNEL\PAGE_CHAT.xaml.cs">
       <DependentUpon>PAGE_CHAT.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FORMS\COMPONENTS\CHANNEL\PAGE_EventOverview.xaml.cs">
+      <DependentUpon>PAGE_EventOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FORMS\COMPONENTS\MAIN\PAGE_CreateGroup.xaml.cs">
       <DependentUpon>PAGE_CreateGroup.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FORMS\COMPONENTS\CHANNEL\PAGE_CHAT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\CHANNEL\PAGE_EventOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
