@@ -29,7 +29,7 @@ namespace TRS_Logic
         ControllerLogin _loginlogic = new ControllerLogin();
         public void LoadIn()
         {
-            string ip = "127.0.0.1";
+            string ip = "145.93.44.131";
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
