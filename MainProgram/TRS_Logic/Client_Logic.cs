@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using TRS_Domain.CHAT;
+using TRS_Domain.EVENT;
 using TRS_DAL.REPOSITORIES;
 
 namespace TRS_Logic
@@ -18,23 +22,6 @@ namespace TRS_Logic
 
             output = _userRepo.GetUser(clientId);
             output.SetGroups(_groupRepo.GetGroups(output.UserId));
-
-            return output;
-        }
-
-        public List<TRS_Domain.EVENT.Data> GetAllEvents(int groupId)
-        {
-            //Todo create event space in database
-
-
-
-            //TODO remove following code;
-            List<TRS_Domain.EVENT.Data> output = new List<TRS_Domain.EVENT.Data>
-            {
-                new TRS_Domain.EVENT.Data(1, "First event", "Descr"),
-                new TRS_Domain.EVENT.Data(2, "Second event", "Descr"),
-                new TRS_Domain.EVENT.Data(3, "Third event", "Descr")
-            };
 
             return output;
         }

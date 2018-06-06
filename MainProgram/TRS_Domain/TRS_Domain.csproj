@@ -4,11 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-<<<<<<< HEAD
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.11" />
   </ItemGroup>
 
-=======
->>>>>>> parent of 8312520... Merge branch 'master' into F_GroepBeheer
 </Project>

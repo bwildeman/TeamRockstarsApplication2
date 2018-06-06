@@ -11,14 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRS_DAL", "TRS_DAL\TRS_DAL.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TRS_Domain", "TRS_Domain\TRS_Domain.csproj", "{D7A67C1A-33CD-4624-BC42-31209B5BDACA}"
 EndProject
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of e0c58a0... Merge branch 'master' of https://github.com/bwildeman/TeamRockstarsApplication2
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "..\..\..\..\Desktop\ICT\Project1\Project1\Server\Server.csproj", "{DCF68EEE-D340-4530-ADC4-B2C2346EEA56}"
-EndProject
-=======
->>>>>>> parent of 8312520... Merge branch 'master' into F_GroepBeheer
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,19 +33,6 @@ Global
 		{D7A67C1A-33CD-4624-BC42-31209B5BDACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7A67C1A-33CD-4624-BC42-31209B5BDACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7A67C1A-33CD-4624-BC42-31209B5BDACA}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of e0c58a0... Merge branch 'master' of https://github.com/bwildeman/TeamRockstarsApplication2
-		{DCF68EEE-D340-4530-ADC4-B2C2346EEA56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DCF68EEE-D340-4530-ADC4-B2C2346EEA56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DCF68EEE-D340-4530-ADC4-B2C2346EEA56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DCF68EEE-D340-4530-ADC4-B2C2346EEA56}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
-=======
->>>>>>> parent of 8312520... Merge branch 'master' into F_GroepBeheer
-=======
->>>>>>> parent of e0c58a0... Merge branch 'master' of https://github.com/bwildeman/TeamRockstarsApplication2
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

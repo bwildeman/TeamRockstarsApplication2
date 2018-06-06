@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.INTERFACES;
-using TRS_Domain.CHANNEL.CHAT;
 
 namespace TRS_DAL.CONTEXT
 {
@@ -109,10 +108,10 @@ namespace TRS_DAL.CONTEXT
             }
         }
 
-        public List<Chat> GetAllChats(int groupId)
+        public List<TRS_Domain.CHAT.Data> GetAllChats(int groupId)
         {
             //  Define output:
-            List<Chat> output = new List<Chat>();
+            List<TRS_Domain.CHAT.Data> output = new List<TRS_Domain.CHAT.Data>();
 
             //Try-Catch for safety:
             try
@@ -149,7 +148,7 @@ namespace TRS_DAL.CONTEXT
                                 int chatId = Convert.ToInt32(reader["ChatID"]);
                                 string chatName = Convert.ToString(reader["ChatName"]);
                                 string chatDescription = Convert.ToString(reader["ChatDescription"]);
-                                output.Add(new Chat(chatId, chatName, chatDescription));
+                                output.Add(new TRS_Domain.CHAT.Data(chatId, chatName, chatDescription));
                             }
                         }
                     }
@@ -163,10 +162,10 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public List<Message> GetMessages(int chatId)
+        public List<TRS_Domain.CHAT.Message> GetMessages(int chatId)
         {
             //Define output:
-            List<Message> output = new List<Message>();
+            List<TRS_Domain.CHAT.Message> output = new List<TRS_Domain.CHAT.Message>();
             //Try-Catch for safety:
             try
             {
@@ -198,7 +197,7 @@ namespace TRS_DAL.CONTEXT
                             string surname = Convert.ToString(reader["UserSurname"]);
                             string message = Convert.ToString(reader["Message"]);
                             string sendDate = Convert.ToDateTime(reader["SendDate"]).ToShortDateString();
-                            output.Add(new Message($"{name} {surname}", message, sendDate));
+                            output.Add(new TRS_Domain.CHAT.Message($"{name} {surname}", message, sendDate));
                         }
                     }
                 }

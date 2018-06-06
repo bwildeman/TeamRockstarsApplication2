@@ -1,42 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TRS_Domain.CHANNEL.CHAT;
+using TRS_Domain.CHAT;
 using TRS_Domain.EVENT;
 
 namespace TRS_Domain.GROUP
 {
     public class Data
     {
-        #region Properties
-
-        public int GroupID { get; private set; }
-        public int GroupLeadersId { get; private set; }
+        // ********** PROPERTIES *********
+        public int GroupId { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }
-        public string Region { get; private set; }
-        public List<Chat> Chats { get; private set; }
+        public List<CHAT.Data> Chats { get; private set; }
         public List<EVENT.Data> Events { get; private set; }
         public byte[] Img { get; private set; }
 
-        #endregion
-        #region Constructors
-
         public Data() { }
 
-        public Data(int id, int groupLeadersId, string name, string description, string region)
+        public Data(int id, string name, string description, byte[] img)
         {
-            GroupID = id;
-            GroupLeadersId = groupLeadersId;
+            GroupId = id;
             Name = name;
             Description = description;
-            Region = region;
+            Img = img;
         }
 
-        #endregion
-        #region Methods
-
-        public void FillChats(List<Chat> inputList)
+        public void FillChats(List<CHAT.Data> inputList)
         {
             Chats = inputList;
         }
@@ -45,7 +35,7 @@ namespace TRS_Domain.GROUP
             return Name;
         }
 
-        public void SetChats(List<Chat> newChatList)
+        public void SetChats(List<CHAT.Data> newChatList)
         {
             Chats = newChatList;
         }
@@ -54,7 +44,5 @@ namespace TRS_Domain.GROUP
         {
             Events = newEventsList;
         }
-
-        #endregion
     }
 }

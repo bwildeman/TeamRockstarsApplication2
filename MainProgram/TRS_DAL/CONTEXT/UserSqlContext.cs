@@ -14,8 +14,10 @@ namespace TRS_DAL.CONTEXT
         public dynamic Procedure;
         public MySqlCommand MainCommand;
 
-        public void CreateUser(string username, string usersurname, string region, string department, string email, string phonenumber, int gender, DateTime dateOb, string oldpassword, int usertype)
+        public bool CreateUser(string name, string surName, string email, string region, string phonenumber, string adres, int gender, int userType, DateTime dob, string password)
         {
+            //  Define output:
+            bool output = false; 
             //  Try-Catch for safety:
             try
             {
@@ -24,44 +26,41 @@ namespace TRS_DAL.CONTEXT
                     // Open Connection:
                     conn.Open();
 
-                    //  TODO write this into the logic layer:
-                    int password = oldpassword.GetHashCode();
-
                     //incomplete query 
-                    MainQuery = @"INSERT INTO users(Online, UserType,UserPassword, UserName, UserSurname, UserEmail, UserRegion, UserDepartment, UserPhoneNumber, UserGender, UserDOB) 
-                                    VALUES (0,@usertype,@password,@username,@usersurname,@useremail,@userregion,@userdepartment,@userphonenumber,@usergender,@userdob)";
+                    MainQuery = @"INSERT INTO `users`(`UserPassword`, `UserName`, `UserSurname`, `UserEmail`, `UserRegion`, `UserPhoneNumber`, `UserAdres`, `UserGender`, `UserType`, `UserDOB`) 
+                                    VALUES (@password, @name, @surname, @email, @region, @phonenumber, @adres, @gender, @type, @dob)";
 
                     //defining parameters
                     MySqlParameter param1 = new MySqlParameter();
-                    param1.ParameterName = "@usertype";
-                    param1.Value = usertype;
+                    param1.ParameterName = "@password";
+                    param1.Value = password;
                     MySqlParameter param2 = new MySqlParameter();
-                    param2.ParameterName = "@password";
-                    param2.Value = password;
+                    param2.ParameterName = "@name";
+                    param2.Value = name;
                     MySqlParameter param3 = new MySqlParameter();
-                    param3.ParameterName = "@username";
-                    param3.Value = username;
+                    param3.ParameterName = "@surname";
+                    param3.Value = surName;
                     MySqlParameter param4 = new MySqlParameter();
-                    param4.ParameterName = "@usersurname";
-                    param4.Value = usersurname;
+                    param4.ParameterName = "@email";
+                    param4.Value = email;
                     MySqlParameter param5 = new MySqlParameter();
-                    param5.ParameterName = "@useremail";
-                    param5.Value = email;
+                    param5.ParameterName = "@region";
+                    param5.Value = region;
                     MySqlParameter param6 = new MySqlParameter();
-                    param6.ParameterName = "@userregion";
-                    param6.Value = region;
+                    param6.ParameterName = "@phonenumber";
+                    param6.Value = phonenumber;
                     MySqlParameter param7 = new MySqlParameter();
-                    param7.ParameterName = "@userdepartment";
-                    param7.Value = department;
+                    param7.ParameterName = "@adres";
+                    param7.Value = adres;
                     MySqlParameter param8 = new MySqlParameter();
-                    param8.ParameterName = "@userphonenumber";
-                    param8.Value = phonenumber;
+                    param8.ParameterName = "@gender";
+                    param8.Value = gender;
                     MySqlParameter param9 = new MySqlParameter();
-                    param9.ParameterName = "@usergender";
-                    param9.Value = gender;
+                    param9.ParameterName = "@type";
+                    param9.Value = userType;
                     MySqlParameter param10 = new MySqlParameter();
-                    param10.ParameterName = "@userdob";
-                    param10.Value = dateOb;
+                    param10.ParameterName = "@dob";
+                    param10.Value = dob;
 
 
                     //  build the command
@@ -80,13 +79,15 @@ namespace TRS_DAL.CONTEXT
                     MainCommand.Parameters.Add(param10);
 
                     //  use the command
-                    _connectDb.ExecuteNonQuery(MainCommand);
+                    output = _connectDb.ExecuteNonQuery(MainCommand);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+
+            return output;
         }
 
         public List<TRS_Domain.USER.Data> GetAllUsers()
@@ -377,10 +378,6 @@ namespace TRS_DAL.CONTEXT
                                 }
                             }
                         }
-                        else
-                        {
-                            output = -1;
-                        }
                     }
                 }
             }
@@ -472,6 +469,9 @@ namespace TRS_DAL.CONTEXT
             {
                 using (MySqlConnection conn = _connectDb.GetConnection())
                 {
+                    //  Open Connection:
+                    conn.Open();
+
                     //incomplete query 
                     MainQuery = "UPDATE users SET UserName= @username,UserSurname = @userSurname, UserEmail = @userEmail, UserRegion = @userRegion, UserDepartment = @userDepartment, UserPhoneNumber = @userPhoneNumber, UserQuote = @userQuote, UserPortfolio = @userPortfolio, UserAdres = @userAdres, UserProfilePicture = @UserProfilePicture WHERE  UserID = @UserId";
 
