@@ -29,7 +29,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         private Frame _contentFrame;
         private Frame _channelFrame;
         private TRS_Domain.USER.Data _client;
-        TRS_Domain.CHAT.Data _selectedChat;
+        TRS_Domain.CHANNEL.CHAT.Chat _selectedChat;
         private List<TRS_Domain.CHAT.Message> ChatList { get; set; }
         private List<TRS_Domain.CHAT.Message> NewMsg { get; set; }
         bool state = true;
@@ -37,7 +37,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         bool state3 = false;
 
 
-        public PageChat(Frame contentFrame, Frame channelFrame, TRS_Domain.CHAT.Data selectedChat, TRS_Domain.USER.Data _client,ClientClass client)
+        public PageChat(Frame contentFrame, Frame channelFrame, TRS_Domain.CHANNEL.CHAT.Chat selectedChat, TRS_Domain.USER.Data _client,ClientClass client)
         {
             _contentFrame = contentFrame;
             _channelFrame = channelFrame;
@@ -55,7 +55,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             Lb_Chat.Items.Clear();
             while (state == true)
             {
-                    client.LoadChat(_selectedChat.ChatId);
+                    client.LoadChat(_selectedChat.Id);
                     state2 = true;
                     while (state2 == true)
                     {
@@ -86,7 +86,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             if (e.Key == Key.Enter)
             {
                 state3 = false;
-                client.Msg(Txt_Message.Text, _selectedChat.ChatId);
+                client.Msg(Txt_Message.Text, _selectedChat.Id);
                 Txt_Message.Clear();
             }
             

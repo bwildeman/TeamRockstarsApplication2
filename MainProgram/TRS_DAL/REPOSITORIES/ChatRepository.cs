@@ -21,7 +21,7 @@ namespace TRS_DAL.REPOSITORIES
             _chatContext.AddChat(groupId, name, description);
         }
 
-        public List<TRS_Domain.CHAT.Data> GetAllChats(int groupId)
+        public List<TRS_Domain.CHANNEL.CHAT.Chat> GetAllChats(int groupId)
         {
             return _chatContext.GetAllChats(groupId);
         }

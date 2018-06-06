@@ -3,47 +3,84 @@ using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.CONTEXT;
 using TRS_DAL.INTERFACES;
+using TRS_Domain.CHANNEL;
+using TRS_Domain.GROUP;
 
 namespace TRS_DAL.REPOSITORIES
 {
-    public class GroupRepository
+    public class GroupRepository : IGroupContext
     {
         //  Add Context reference:
-        IGroupContext _groupContext = new GroupSqlContext();
+        IGroupContext groupContext = new GroupSqlContext();
 
-        public void AddGroup(int clientID, string name, string description)
+        public bool AddGroupWithPic(int clientID, string name, string description, byte[] bitMap)
         {
-            _groupContext.AddGroup(clientID, name, description);
+            throw new NotImplementedException();
+        }
+
+        public List<Data> GetAllGroupsThatUserIsNotIn(int UserID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddGroup(string name, string description)
+        {
+            groupContext.AddGroup(name, description);
         }
 
         public List<TRS_Domain.GROUP.Data> GetAllGroupInfo()
         {
-            return _groupContext.GetAllGroupInfo();
+            return groupContext.GetAllGroupInfo();
         }
 
-        public TRS_Domain.GROUP.Data GetGroupInfo(int groupId)
+        public Channel GetChannel(int GroupId, int Id)
         {
-            return _groupContext.GetGroupInfo(groupId);
+            return groupContext.GetChannel(GroupId, Id);
         }
 
-        public List<TRS_Domain.GROUP.Data> GetGroups(int userId)
+        public Channel[] GetChannels(int GroupId)
         {
-            return _groupContext.GetGroups(userId);
+            return groupContext.GetChannels(GroupId);
         }
 
-        public bool JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup)
+        public TRS_Domain.GROUP.Data GetGroupInfo(int groupID)
         {
-            return _groupContext.JoinGroup(client, myGroup);
+            return groupContext.GetGroupInfo(groupID);
         }
 
-        public List<TRS_Domain.GROUP.Data> GetAllGroupsThatUserIsNotIn(int UserID)
+        public List<TRS_Domain.GROUP.Data> GetGroups(int userID)
         {
-            return _groupContext.GetAllGroupsThatUserIsNotIn(UserID);
+            return groupContext.GetGroups(userID);
         }
 
-        public bool AddGroupWithPic(int clientID, string name, string description, byte[] bitMap)
+        public void JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup)
         {
-            return _groupContext.AddGroupWithPic(clientID, name, description, bitMap);
+            groupContext.JoinGroup(client, myGroup);
+        }
+
+        public void UpdateDescription(int id, string newDescription)
+        {
+            groupContext.UpdateDescription(id, newDescription);
+        }
+
+        public void UpdateImage(int id, byte[] newImage)
+        {
+            groupContext.UpdateImage(id, newImage);
+        }
+
+        public void UpdateName(int id, string name)
+        {
+            groupContext.UpdateName(id, name);
+        }
+
+        public void UpdateRegion(int id, string newName)
+        {
+            groupContext.UpdateRegion(id, newName);
+        }
+
+        public void UpdateStartUpChannel(string selectedChannel)
+        {
+            groupContext.UpdateStartUpChannel(selectedChannel);
         }
     }
 }

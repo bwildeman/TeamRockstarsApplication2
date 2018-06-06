@@ -134,11 +134,23 @@
     <Compile Include="FORMS\COMPONENTS\OTHERS\FROM_JoinOrCreateNewGroup.xaml.cs">
       <DependentUpon>FROM_JoinOrCreateNewGroup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\MENU\Channels.xaml.cs">
+      <DependentUpon>Channels.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\MENU\General.xaml.cs">
+      <DependentUpon>General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\MENU\Members.xaml.cs">
+      <DependentUpon>Members.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FORMS\COMPONENTS\OTHERS\PAGE_GroupInformation.xaml.cs">
       <DependentUpon>PAGE_GroupInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="FORMS\COMPONENTS\OTHERS\PAGE_UserInformation.xaml.cs">
       <DependentUpon>PAGE_UserInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\WINDOW_AddChannel.xaml.cs">
+      <DependentUpon>WINDOW_AddChannel.xaml</DependentUpon>
     </Compile>
     <Compile Include="FORMS\FORM_Login.xaml.cs">
       <DependentUpon>FORM_Login.xaml</DependentUpon>
@@ -228,11 +240,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\MENU\Channels.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\MENU\General.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\MENU\Members.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FORMS\COMPONENTS\OTHERS\PAGE_GroupInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FORMS\COMPONENTS\OTHERS\PAGE_UserInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\WINDOW_AddChannel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

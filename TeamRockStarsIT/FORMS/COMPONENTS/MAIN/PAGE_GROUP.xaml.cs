@@ -100,7 +100,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                 switch (_selectedChannel)
                 {
                     case Channel.Chat:
-                        Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem,_client, client);
+                        Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHANNEL.CHAT.Chat)Lb_Channel.SelectedItem,_client, client);
                         break;
                     case Channel.Event:
                         Fr_Channel.Content = new CHANNEL.PAGE_EventOverview((TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client);

@@ -10,7 +10,7 @@ namespace TRS_Logic
     {
         //  Add DAL reference
         ChatRepository _chatRepo = new ChatRepository();
-        public List<TRS_Domain.CHAT.Data> GetAllChats(int groupId)
+        public List<TRS_Domain.CHANNEL.CHAT.Chat> GetAllChats(int groupId)
         {
             return _chatRepo.GetAllChats(groupId);
         }
