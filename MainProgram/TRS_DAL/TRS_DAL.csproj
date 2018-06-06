@@ -5,11 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <PackageReference Include="MySql.Data" Version="8.0.11" />
+=======
+    <ProjectReference Include="..\TRS_Domain\TRS_Domain.csproj" />
+>>>>>>> parent of 8312520... Merge branch 'master' into F_GroepBeheer
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TRS_Domain\TRS_Domain.csproj" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

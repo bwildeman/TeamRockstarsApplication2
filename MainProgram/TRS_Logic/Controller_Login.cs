@@ -5,15 +5,13 @@ using System.Windows;
 using TRS_DAL;
 using TRS_DAL.REPOSITORIES;
 using TRS_Domain;
-using TRS_Domain.EXCEPTIONS;
 
 namespace TRS_Logic
 {
     public class ControllerLogin
     {
-        //  Add references
+        //  Add DAL referenceL
         UserRepository _userRepo = new UserRepository();
-        ExceptionHandler exHanlder = new ExceptionHandler();
 
 
         /// <summary>
@@ -26,29 +24,20 @@ namespace TRS_Logic
         {
             //  Define output:
             int output = -1;
-
-            try
+            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
             {
-
-                //  Check input:
-                if (exHanlder.Login(email, password))
+                _userRepo.Login(email, password);
+                int userId = _userRepo.Login(email, password); ;
+                if (userId == 0)
                 {
-                    _userRepo.Login(email, password);
-                    int userId = _userRepo.Login(email, password); ;
-                    if (userId == 0) { throw new InvalidLoginCombination(); }
-                    else
-                    {
-                        output = userId;
-                    }
                 }
-            }
-            catch(EmptyField ex)
-            {
-                throw ex;
-            }
-            catch(InvalidEmail ex)
-            {
-                throw ex;
+                else if (userId == -1)
+                {
+                }
+                else
+                {
+                    output = userId;
+                }
             }
             return output;
         }
@@ -61,19 +50,6 @@ namespace TRS_Logic
                 output = true;
             }
             return output;
-        }
-
-        public bool ValidEmail(string email)
-        {
-            try
-            {
-                exHanlder.ValidEmail(email);
-                return true;
-            }
-            catch (InvalidEmail ex)
-            {
-                throw ex;
-            }
         }
     }
 }

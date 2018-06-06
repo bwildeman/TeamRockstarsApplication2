@@ -5,18 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.0.11" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TRS_DAL\TRS_DAL.csproj" />
     <ProjectReference Include="..\TRS_Domain\TRS_Domain.csproj" />
   </ItemGroup>
 
+<<<<<<< HEAD
   <ItemGroup>
     <Reference Include="System.Windows.Forms">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Windows.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
 
+=======
+>>>>>>> parent of 8312520... Merge branch 'master' into F_GroepBeheer
 </Project>

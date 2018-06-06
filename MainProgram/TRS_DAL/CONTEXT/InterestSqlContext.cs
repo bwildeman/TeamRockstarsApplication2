@@ -29,7 +29,7 @@ namespace TRS_DAL.CONTEXT
 
                     //incomplete query 
                     MainQuery = "INSERT INTO interest (InterestName, InterestPending, InterestCategory) " +
-                        "VALUES (@interestName, 0, @interestId)";
+                        "VALUES (@interestName, 1, @interestId)";
 
                     //defining parameters
                     MySqlParameter param1 = new MySqlParameter();
