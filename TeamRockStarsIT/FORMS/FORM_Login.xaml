@@ -10,17 +10,17 @@
         <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/BlackBackGround1.jpg"/>
     </Window.Background>
     <Grid>
-        <Image x:Name="Img_Header" HorizontalAlignment="Center" Height="290" Margin="92,-14,108,0" VerticalAlignment="Top" Width="292" Source="/TeamRockStarsIT;component/RESCOURCES/ROCKSTAR LOGO SEETHROUGH.png">
+        <Image x:Name="Img_Header" HorizontalAlignment="Center" Height="282" Margin="92,-14,108,0" VerticalAlignment="Top" Width="292" Source="/TeamRockStarsIT;component/RESCOURCES/ROCKSTAR LOGO SEETHROUGH.png">
             <Image.OpacityMask>
                 <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/ROCKSTAR LOGO SEETHROUGH.png"/>
             </Image.OpacityMask>
         </Image>
-        <Label x:Name="Lbl_Email" Content="Email:" HorizontalAlignment="Left" Margin="94,259,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18"/>
-        <Label x:Name="Lbl_Password" Content="Password:" HorizontalAlignment="Left" Margin="61,289,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18"/>
-        <TextBox x:Name="Txt_Email" HorizontalAlignment="Left" Height="25" Margin="157,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" Foreground="Black" SelectionBrush="#FFFFE100" FontFamily="Segoe UI Semibold" FontSize="16" TextChanged="Txt_Email_TextChanged"/>
-        <PasswordBox x:Name="Txt_Password" HorizontalAlignment="Left" Margin="157,295,0,0" VerticalAlignment="Top" Width="252" FontFamily="Segoe UI Semibold" FontSize="16" PasswordChanged="Txt_Password_PasswordChanged" KeyDown="Txt_Password_KeyDown_1" Height="25"/>
-        <Label x:Name="Lbl_ForgotPassword" Content="I have forgotten my password" HorizontalAlignment="Left" Margin="61,323,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="10" FontStyle="Italic"/>
-        <Button x:Name="Btn_Login" Content="Login" HorizontalAlignment="Left" Margin="333,325,0,0" VerticalAlignment="Top" Width="76" Background="#FFFFE100" FontFamily="Segoe UI Semibold" FontSize="16" Click="Btn_Login_Click" Visibility="Hidden"/>
+        <Label x:Name="Lbl_Email" Content="Email:" HorizontalAlignment="Left" Margin="95,268,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18"/>
+        <Label x:Name="Lbl_Password" Content="Password:" HorizontalAlignment="Left" Margin="62,298,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18"/>
+        <TextBox x:Name="Txt_Email" HorizontalAlignment="Left" Height="25" Margin="158,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" Foreground="Black" SelectionBrush="#FFFFE100" FontFamily="Segoe UI Semibold" FontSize="16" TextChanged="Txt_Email_TextChanged" LostFocus="Txt_Email_LostFocus" BorderBrush="#FFB3ABAB"/>
+        <PasswordBox x:Name="Txt_Password" HorizontalAlignment="Left" Margin="158,304,0,0" VerticalAlignment="Top" Width="252" FontFamily="Segoe UI Semibold" FontSize="16" PasswordChanged="Txt_Password_PasswordChanged" KeyDown="Txt_Password_KeyDown_1" Height="25"/>
+        <Button x:Name="Btn_Login" Content="Login" HorizontalAlignment="Left" Margin="334,334,0,0" VerticalAlignment="Top" Width="76" Background="#FFFFE100" FontFamily="Segoe UI Semibold" FontSize="16" Click="Btn_Login_Click" Visibility="Hidden"/>
+        <Label x:Name="Lbl_Warning" Content="[Warning]" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,241,0,0" VerticalAlignment="Top" Foreground="#FFCF3F3F" FontFamily="Segoe UI Semibold" FontSize="16" RenderTransformOrigin="1.932,-0.184" Width="482" Visibility="Hidden"/>
 
     </Grid>
 </Window>

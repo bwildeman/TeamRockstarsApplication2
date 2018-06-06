@@ -4,6 +4,7 @@ using System.Text;
 
 namespace TRS_Domain.CHANNEL.CHAT
 {
+    [Serializable]
     public class Message
     {
         public string Username { get; private set; }

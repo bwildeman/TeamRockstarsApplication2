@@ -14,11 +14,13 @@ namespace TeamRockStarsIT.FORMS
         //  Add logic reference:
         ClientLogic _clientLogic = new ClientLogic();
         ChatLogic _chatLogic = new ChatLogic();
+        ClientClass client;
         //  Memory:
         private TRS_Domain.USER.Data _client;
 
-        public FormMain(int clientId)
+        public FormMain(int clientId,ClientClass client)
         {
+            this.client = client;
             //  Get user information
             _client = _clientLogic.LoadClient(clientId);
             //  Fill groupslist:
@@ -63,7 +65,7 @@ namespace TeamRockStarsIT.FORMS
         {
             if (LB_Groups.SelectedItem != null)
             {
-                Fr_Main.Content = new COMPONENTS.MAIN.PageGroup(Fr_Main, (TRS_Domain.GROUP.Data)LB_Groups.SelectedItem);
+                Fr_Main.Content = new COMPONENTS.MAIN.PageGroup(Fr_Main, (TRS_Domain.GROUP.Data)LB_Groups.SelectedItem,_client,client);
             }
         }
 

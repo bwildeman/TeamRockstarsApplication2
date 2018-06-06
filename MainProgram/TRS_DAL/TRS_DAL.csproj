@@ -5,13 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TRS_Domain\TRS_Domain.csproj" />
+    <PackageReference Include="MySql.Data" Version="6.9.12" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\bin\Debug\MySql.Data.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\TRS_Domain\TRS_Domain.csproj" />
   </ItemGroup>
 
 </Project>

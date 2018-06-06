@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="PAGE_GroupInformation">
+      Title="PAGE_GroupInformation" Loaded="Page_Loaded">
 
     <Grid>
         <Rectangle x:Name="RCTL_GroupImage" HorizontalAlignment="Center" Height="200" Margin="51,10,49,0" VerticalAlignment="Top" Width="200" RadiusY="99.5" RadiusX="99.5">

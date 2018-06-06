@@ -21,22 +21,5 @@ namespace TRS_Logic
 
             return output;
         }
-
-        public List<TRS_Domain.EVENT.Data> GetAllEvents(int groupId)
-        {
-            //Todo create event space in database
-
-
-
-            //TODO remove following code;
-            List<TRS_Domain.EVENT.Data> output = new List<TRS_Domain.EVENT.Data>
-            {
-                new TRS_Domain.EVENT.Data(1, "First event", "Descr"),
-                new TRS_Domain.EVENT.Data(2, "Second event", "Descr"),
-                new TRS_Domain.EVENT.Data(3, "Third event", "Descr")
-            };
-
-            return output;
-        }
     }
 }
