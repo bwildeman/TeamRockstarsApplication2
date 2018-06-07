@@ -1,0 +1,37 @@
+﻿<Page x:Class="TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL.PAGE_EventOverview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="549" d:DesignWidth="739"
+      Title="PAGE_AddEvent" Loaded ="Window_Loaded"
+      >
+
+
+    <Grid>
+        <Label x:Name="Lbl_Intro" HorizontalContentAlignment="Center" Content="Event overview" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="26" Background="{x:Null}" Foreground="White" Width="275"/>
+        <Label x:Name="Lbl_Name" TabIndex="1" HorizontalContentAlignment="Center" Content="Name:" HorizontalAlignment="Left" Margin="14,73,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Background="{x:Null}" Foreground="White" Width="68"/>
+        <Label x:Name="Lbl_StartDate" TabIndex="2" HorizontalContentAlignment="Center" Content="Start date:" HorizontalAlignment="Left" Margin="345,73,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Background="{x:Null}" Foreground="White" Width="102"/>
+        <Label x:Name="Lbl_EndDate" HorizontalContentAlignment="Center" Content="End date:" HorizontalAlignment="Left" Margin="345,112,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Background="{x:Null}" Foreground="White" Width="102"/>
+        <Label x:Name="Lbl_Participants" HorizontalContentAlignment="Center" Content="Participants:" HorizontalAlignment="Left" Margin="14,349,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Background="{x:Null}" Foreground="White" Width="110"/>
+        <TextBox x:Name="TB_Name" HorizontalAlignment="Left" Height="25" Margin="87,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" FontSize="16" FontFamily="Segoe UI Semibold" SelectionBrush="#FFFFE000"/>
+        <TextBox x:Name="TB_Description" MaxLength="60000" MaxLines="100" HorizontalAlignment="Left" Height="192" Margin="14,151,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="324" SelectionBrush="#FFFFE000" FontFamily="Segoe UI Semibold" FontSize="16"/>
+        <Label x:Name="Lbl_Intro_Copy4" HorizontalContentAlignment="Center" Content="Event is " HorizontalAlignment="Left" Margin="338,171,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Background="{x:Null}" Foreground="White" Width="109"/>
+        <Label x:Name="Lbl_Adres" KeyboardNavigation.TabIndex="1" HorizontalContentAlignment="Right" Content="Adres:" HorizontalAlignment="Left" Margin="353,215,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Background="{x:Null}" Foreground="White" Width="58" RenderTransformOrigin="0.794,10.882" Opacity="0.5"/>
+        <Label x:Name="Lbl_Url" KeyboardNavigation.TabIndex="1" HorizontalContentAlignment="Right" Content="Url:" HorizontalAlignment="Left" Margin="353,279,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Background="{x:Null}" Foreground="White" Width="36" RenderTransformOrigin="0.794,10.882" Opacity="0.5"/>
+        <TextBox x:Name="TB_Adres" IsHitTestVisible="False" HorizontalAlignment="Left" Height="25" Margin="353,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="341" FontSize="16" FontFamily="Segoe UI Semibold" SelectionBrush="#FFFFE000" Opacity="0.5"/>
+        <TextBox x:Name="TB_Url" IsHitTestVisible="False" HorizontalAlignment="Left" Height="25" Margin="353,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="341" FontSize="16" FontFamily="Segoe UI Semibold" SelectionBrush="#FFFFE000" Opacity="0.5"/>
+        <TextBox x:Name="TB_StartDate" HorizontalAlignment="Left" Height="25" Margin="452,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" FontSize="16" FontFamily="Segoe UI Semibold" SelectionBrush="#FFFFE000"/>
+        <TextBox x:Name="TB_EndDate" HorizontalAlignment="Left" Height="25" Margin="452,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" FontSize="16" FontFamily="Segoe UI Semibold" SelectionBrush="#FFFFE000"/>
+        <ListBox x:Name ="LB_Users" HorizontalAlignment="Left" Height="151" Margin="14,388,0,0" VerticalAlignment="Top" Width="250"/>
+        <Button x:Name="Btn_Join" Content="Join" HorizontalAlignment="Left" Margin="284,473,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Join_Click" />
+        <Button x:Name="Btn_Leave" Content="Leave" HorizontalAlignment="Left" Margin="284,513,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Leave_Click" />
+        <Label x:Name="Lbl_Description_Copy" HorizontalContentAlignment="Center" Content="Description:" HorizontalAlignment="Left" Margin="14,112,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Background="{x:Null}" Foreground="White" Width="110"/>
+        <TextBox x:Name="TB_OnlineOffline" HorizontalAlignment="Left" Height="25" Margin="452,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" FontSize="16" FontFamily="Segoe UI Semibold" SelectionBrush="#FFFFE000"/>
+        <Button x:Name="Btn_Edit" Content="Edit" HorizontalAlignment="Left" Margin="654,513,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Edit_Click"  />
+
+
+    </Grid>
+</Page>
