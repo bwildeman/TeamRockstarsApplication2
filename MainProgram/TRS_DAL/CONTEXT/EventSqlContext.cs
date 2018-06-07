@@ -28,7 +28,8 @@ namespace TRS_DAL.CONTEXT
                     //  the incomplete query
                     _mainQuery = "SELECT EventID, UserID, GroupID, Name, StartDate, EndDate, Online, Location_Url, Description " +
                                  "FROM event " +
-                                 "WHERE GroupID = @groupId";
+                                 "WHERE GroupID = @groupId " +
+                                 "AND StartDate > UTC_DATE";
 
                     //  build the command
                     _mainCommand = new MySqlCommand(_mainQuery, conn);
