@@ -16,7 +16,7 @@ using Microsoft.Win32;
 using TRS_Domain.USER;
 using TRS_Logic;
 
-namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.POP_UPS.GROUP
+namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
 {
     /// <summary>
     /// Interaction logic for FORM_CreateGroup.xaml

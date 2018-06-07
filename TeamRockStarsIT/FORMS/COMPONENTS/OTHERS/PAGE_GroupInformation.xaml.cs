@@ -17,7 +17,7 @@ using TRS_Domain.GROUP;
 using TRS_Domain.USER;
 using TRS_Logic;
 
-namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.CONTENT.GROUP
+namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
 {
     /// <summary>
     /// Interaction logic for PAGE_GroupInformation.xaml

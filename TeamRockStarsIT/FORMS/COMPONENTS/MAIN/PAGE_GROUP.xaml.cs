@@ -92,7 +92,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         {
             if (Lb_Channel.SelectedItem != null)
             {
-                Fr_Channel.Content = new CHANNEL.PAGE_FORUM();
+                Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem);
             }
         }
 
