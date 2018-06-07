@@ -8,4 +8,8 @@
     <PackageReference Include="MySql.Data" Version="6.9.12" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="FORUM\" />
+  </ItemGroup>
+
 </Project>
