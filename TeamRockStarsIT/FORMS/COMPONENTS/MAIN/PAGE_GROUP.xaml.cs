@@ -68,12 +68,12 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             _selectedChannel = (Channel)newChannelIndex;
             LoadChannelList();
         }
-        public PageGroup(Frame contentFrame, TRS_Domain.GROUP.Data selectedGroup,TRS_Domain.USER.Data _client, ClientClass client)
+        public PageGroup(Frame contentFrame, TRS_Domain.GROUP.Data selectedGroup, TRS_Domain.USER.Data userClient, ClientClass client)
         {
             _contentFrame = contentFrame;
             _selectedGroup = selectedGroup;
             this.client = client;
-            this._client = _client;
+            this._client = userClient;
             _contentFrame.NavigationService.RemoveBackEntry();
             InitializeComponent();
             Loaded += PAGE_GROUP_Loaded;
@@ -91,7 +91,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                 switch (_selectedChannel)
                 {
                     case Channel.Chat:
-                        Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem,_client, client);
+                        Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem, _client, client);
                         break;
                     case Channel.Event:
                         Fr_Channel.Content = new CHANNEL.PAGE_EventOverview(_contentFrame, Fr_Channel, (TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client);
@@ -128,7 +128,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
                     break;
                 case Channel.Event:
-                    Fr_Channel.Content = new CHANNEL.PAGE_AddEvent(_selectedGroup.GroupId, _client);
+                    Fr_Channel.Content = new CHANNEL.PAGE_AddEvent(_selectedGroup, _client, _contentFrame, (TRS_Domain.GROUP.Data)Lb_Channel.SelectedItem, client);
                     break;
                 case Channel.Forum:
 
