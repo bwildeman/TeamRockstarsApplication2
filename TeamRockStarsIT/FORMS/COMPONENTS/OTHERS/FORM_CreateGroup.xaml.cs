@@ -32,11 +32,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
 
         //  Memory:
         private byte[] BitMap;
+        private string PicturePath;
         private Data Client;
         private DispatcherTimer timer;
 
         //  References:
         Group_Logic groupLogic = new Group_Logic();
+        InterestLogic interestLogic = new InterestLogic();
 
         //  Private methode:
         private void ShowImage()
@@ -89,6 +91,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
         {
             Lbl_Warning.Content = warningText;
             Lbl_Warning.Visibility = Visibility.Visible;
+            SetTimer();
         }
 
         //  Program:
@@ -96,6 +99,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
         {
             Client = client;
             InitializeComponent();
+            Loaded += FORM_CreateGroup_Loaded;
+        }
+
+        private void FORM_CreateGroup_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<TRS_Domain.INTEREST.Data> Interest = interestLogic.GetAllVerifiedInterests();
+            CBox_Interests.ItemsSource = Interest;
         }
 
         private void Btn_GetImage_Click(object sender, RoutedEventArgs e)
@@ -107,15 +117,35 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
             if (filedialog.ShowDialog() == true)
             {
                 BitMap = File.ReadAllBytes($@"{filedialog.FileName}");
+                PicturePath = filedialog.FileName;
                 ShowImage();
             }
         }
 
         private void Btn_Save_Click(object sender, RoutedEventArgs e)
         {
-            if (groupLogic.CreateGroup(Client.UserId, TB_Name.Text, TB_Description.Text, BitMap))
+            try
             {
-                this.DialogResult = true;
+                if (groupLogic.CreateGroup(Client, TB_Name.Text, TB_Description.Text, CBox_Interests.SelectedItem, PicturePath, BitMap))
+                {
+                    this.DialogResult = true;
+                }
+            }
+            catch(EmptyField ex)
+            {
+                ShowWarning(ex.Message);
+            }
+            catch(MaxPhotoSizeReached ex)
+            {
+                ShowWarning(ex.Message);
+            }
+            catch(PhotoNotFound ex)
+            {
+                ShowWarning(ex.Message);
+            }   
+            catch(Exception ex)
+            {
+                throw new NotImplementedException();
             }
         }
 
@@ -142,7 +172,6 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
             catch(DescriptionTooShort ex)
             {
                 ShowWarning(ex.Message);
-                SetTimer();
             }
         }
     }

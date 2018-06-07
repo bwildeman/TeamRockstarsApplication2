@@ -18,6 +18,13 @@ namespace TRS_Logic
                 throw new EmptyField(fieldName);
             }
         }
+        private void ComboBoxEmpty(object input, string comboBoxName)
+        {
+            if (input == null)
+            {
+                throw new EmptyField(comboBoxName);
+            }
+        }
         private void ValidateEmail(string email)
         {
             string Pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
@@ -54,7 +61,7 @@ namespace TRS_Logic
                     if (byteMapPhoto.Length >= MaxSize)
                     {
                         string size = String.Format("{0:##.##}", byteMapPhoto.Length / 1048576.0) + " MB";
-                        throw new MaxPhotoSizeReached(size);
+                        throw new MaxPhotoSizeReached(Convert.ToString(MaxSize));
                     }
                 }
             }
@@ -62,11 +69,12 @@ namespace TRS_Logic
             {
                 throw ex;
             }
-            catch(System.IO.FileNotFoundException ex)
+            catch(FileNotFoundException ex)
             {
                 throw new PhotoNotFound();
             }
         }
+
         private void ValidateAdminRights(bool noRights, bool yesRights)
         {
             if (noRights == yesRights)
@@ -192,6 +200,19 @@ namespace TRS_Logic
 
             //  Check if the password meets the requirements:
             NewPasswordValidation(newPass1);
+
+            return true;
+        }
+
+        public bool NewGroup(string name, string description, object selectedInterest, string picturePath)
+        {
+            //  Check if all required fields are filled:
+            FieldEmpty(name, "name");
+            ComboBoxEmpty(selectedInterest, "interest");
+            FieldEmpty(description, "description");
+
+            //  Check for a correct image size:
+            ImageSize(picturePath);
 
             return true;
         }

@@ -29,7 +29,7 @@ namespace TRS_Logic
         public void LoadIn()
         {
             //string ip = "145.93.45.157";
-            string ip = "145.93.64.49";
+            string ip = "145.93.64.37";
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 

@@ -14,8 +14,8 @@ namespace TRS_DAL.INTERFACES
 
         bool JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup);
 
-        void AddGroup(int clientID, string name, string description);
-        bool AddGroupWithPic(int clientID, string name, string description, byte[] bitMap);
+        bool AddGroup(TRS_Domain.USER.Data client, string name, string description);
+        bool AddGroup(TRS_Domain.USER.Data client, string name, string description, byte[] bitMap);
         List<TRS_Domain.GROUP.Data> GetAllGroupsThatUserIsNotIn(int UserID);
     }
 }
