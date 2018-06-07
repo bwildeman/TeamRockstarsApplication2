@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS"
         mc:Ignorable="d"
-        Title="FORM_CreateGroup" Height="321.951" Width="547.866" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="FORM_CreateGroup" Height="366.951" Width="547.866" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/BlackBackGround1.jpg"/>
     </Window.Background>
@@ -16,11 +16,14 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label Content="Group name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Foreground="White"/>
-        <Label Content="Group description:" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Foreground="White"/>
-        <TextBox x:Name="TB_Name"  HorizontalAlignment="Left" Height="23" Margin="131,16,0,0" TextWrapping="Wrap" MaxLength="20" VerticalAlignment="Top" Width="199" FontSize="16" FontFamily="Segoe UI Semibold" Background="White" SelectionBrush="#FFFFE000" Text=""/>
-        <TextBox x:Name="TB_Description" HorizontalAlignment="Left" Height="196" Margin="10,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" FontSize="16" FontFamily="Segoe UI Semibold" Background="White" SelectionBrush="#FFFFE000" Text=""/>
+        <Label Content="Group description:" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Foreground="White"/>
+        <TextBox x:Name="TB_Name"  HorizontalAlignment="Left" Height="23" Margin="131,16,0,0" TextWrapping="Wrap" MaxLength="20" VerticalAlignment="Top" Width="199" FontSize="16" FontFamily="Segoe UI Semibold" Background="White" SelectionBrush="#FFFFE000" Text="" LostFocus="TB_Name_LostFocus"/>
+        <TextBox x:Name="TB_Description" HorizontalAlignment="Left" Height="205" Margin="10,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" FontSize="16" FontFamily="Segoe UI Semibold" Background="White" SelectionBrush="#FFFFE000" Text="" LostFocus="TB_Description_LostFocus"/>
         <Button x:Name="Btn_GetImage" Content="Change picture" HorizontalAlignment="Left" Margin="360,215,0,0" VerticalAlignment="Top" Width="139" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_GetImage_Click"/>
-        <Button x:Name="Btn_Cancel" Content="Cancel" HorizontalAlignment="Center" Margin="10,279,447,0" VerticalAlignment="Top" Width="83" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Cancel_Click"/>
-        <Button x:Name="Btn_Save" Content="Save" HorizontalAlignment="Center" Margin="447,279,10,0" VerticalAlignment="Top" Width="83" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Save_Click"/>
+        <Button x:Name="Btn_Cancel" Content="Cancel" HorizontalAlignment="Center" Margin="14,332,451,0" VerticalAlignment="Top" Width="83" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Cancel_Click"/>
+        <Button x:Name="Btn_Save" Content="Save" HorizontalAlignment="Center" Margin="451,332,14,0" VerticalAlignment="Top" Width="83" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Save_Click"/>
+        <Label x:Name="Lbl_Warning" Visibility="Hidden" Content="[Warning]" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="102,327,0,0" VerticalAlignment="Top" Foreground="#FFCF3F3F" FontFamily="Segoe UI Semibold" FontSize="18" FontWeight="Bold" RenderTransformOrigin="0.091,1.967" Width="344" Height="33"/>
+        <Label x:Name="Lbl_Category" Content="Group category:" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Foreground="White"/>
+        <ComboBox x:Name="CBox_Interests" HorizontalAlignment="Left" Margin="158,55,0,0" VerticalAlignment="Top" Width="172" Height="24" FontSize="16" FontFamily="Segoe UI Semibold"/>
     </Grid>
 </Window>

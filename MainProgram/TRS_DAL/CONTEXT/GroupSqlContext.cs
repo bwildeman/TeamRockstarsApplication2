@@ -16,8 +16,10 @@ namespace TRS_DAL.CONTEXT
         public dynamic Procedure;
         public MySqlCommand MainCommand;
 
-        public void AddGroup(int clientID, string name, string description)
+        public bool AddGroup(TRS_Domain.USER.Data client, string name, string description)
         {
+            //  Define output:
+            bool output = false;
             //Try-Catch for safety:
             try
             {
@@ -44,7 +46,7 @@ namespace TRS_DAL.CONTEXT
 
                     MySqlParameter param3 = new MySqlParameter();
                     param3.ParameterName = "@clientID";
-                    param3.Value = clientID;
+                    param3.Value = client.UserId;
 
                     MySqlParameter param4 = new MySqlParameter();
                     param4.ParameterName = "@region";
@@ -52,7 +54,7 @@ namespace TRS_DAL.CONTEXT
 
                     MySqlParameter param5 = new MySqlParameter();
                     param5.ParameterName = "@idclient";
-                    param5.Value = clientID;
+                    param5.Value = client.UserId;
 
                     //  build the command
                     MainCommand = new MySqlCommand(MainQuery, conn);
@@ -65,16 +67,18 @@ namespace TRS_DAL.CONTEXT
                     MainCommand.Parameters.Add(param5);
 
                     //  use the command
-                    _connectDb.ExecuteNonQuery(MainCommand);
+                    output = _connectDb.ExecuteNonQuery(MainCommand);
                 }
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+
+            return output;
         }
 
-        public bool AddGroupWithPic(int clientID, string name, string description, byte[] bitMap)
+        public bool AddGroup(TRS_Domain.USER.Data client, string name, string description, byte[] bitMap)
         {
             //  Define output:
             bool output = false;
@@ -106,15 +110,18 @@ namespace TRS_DAL.CONTEXT
                     MySqlParameter param3 = new MySqlParameter();
                     param3.ParameterName = "@Image";
                     param3.Value = bitMap;
+
                     MySqlParameter param4 = new MySqlParameter();
                     param4.ParameterName = "@GroupLeader";
-                    param4.Value = clientID;
+                    param4.Value = client.UserId;
+
                     MySqlParameter param5 = new MySqlParameter();
                     param5.ParameterName = "@GroupRegion";
-                    param5.Value = "Hardcoded";
+                    param5.Value = client.Region;
+
                     MySqlParameter param6 = new MySqlParameter();
                     param6.ParameterName = "@idclient";
-                    param6.Value = clientID;
+                    param6.Value = client.UserId;
 
                     //  build the command
                     MainCommand = new MySqlCommand(MainQuery, Conn);

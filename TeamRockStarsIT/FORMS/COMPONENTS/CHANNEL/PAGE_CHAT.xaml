@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL"
       mc:Ignorable="d" 
       d:DesignHeight="549" d:DesignWidth="739"
-      Title="PAGE_CHAT">
+      Title="PAGE_CHAT" Unloaded="Page_Unloaded">
 
     <Grid>
         <TextBox x:Name="Txt_Message" HorizontalAlignment="Left" Height="65" Margin="10,474,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="719" SelectionBrush="#FFFFE000" FontFamily="Segoe UI Semibold" FontSize="16" KeyDown="Txt_Message_KeyDown" KeyUp="Txt_Message_KeyUp"/>

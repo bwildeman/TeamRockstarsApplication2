@@ -23,9 +23,12 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     public partial class PageChat : Page
     {
         //  References:
+
         ChatLogic _chatLogic = new ChatLogic();
         ClientClass client;
+
         //  Memory:
+
         private Frame _contentFrame;
         private Frame _channelFrame;
         private TRS_Domain.USER.Data _client;
@@ -78,7 +81,9 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
                         }
                     } 
             }
-                Task task = Task.Run((Action)CheckForUpdate);
+                
+                Thread thread = new Thread(CheckForUpdate);
+                thread.Start();
         }
 
         private void Txt_Message_KeyDown(object sender, KeyEventArgs e)
@@ -104,19 +109,27 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
                     {
                         this.Dispatcher.Invoke(() =>
                         {
-                            Lb_Chat.Items.Add(item.SendDate + ": " + item.Username + ": " + item.Text);
+                            TextBlock txtBlock = new TextBlock();
+                            txtBlock.TextWrapping = TextWrapping.Wrap;
+                            txtBlock.Text = $"{item.SendDate}: {item.Username}: {item.Text}";
+                            Lb_Chat.Items.Add(txtBlock);
                         });
                     }
                     client.ClearMsgList();
                     client.NewMsgLoad = false;
+                    
                 }
             }
-           
         }
 
         private void Txt_Message_KeyUp(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            state3 = true;
         }
     }
 }
