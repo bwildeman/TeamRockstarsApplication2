@@ -12,7 +12,7 @@ namespace TRS_Logic
         {
             public int Compare(Post c1, Post c2)
             {
-                return c1._votes.CompareTo(c2._votes);
+                return c1._upvotes.CompareTo(c2._upvotes);
             }
             public int Compare(Comment c1, Comment c2)
             {
@@ -32,7 +32,7 @@ namespace TRS_Logic
         {
             public int Compare(Post c1, Post c2)
             {
-                return c1._votes.CompareTo(c2._votes);
+                return c1._downvotes.CompareTo(c2._downvotes);
             }
         }
         //sorteert de comment naar Downvotes

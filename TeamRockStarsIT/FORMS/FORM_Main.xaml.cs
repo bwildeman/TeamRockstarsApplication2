@@ -83,7 +83,7 @@ namespace TeamRockStarsIT.FORMS
 
         private void Btn_CreateGroup_Click(object sender, RoutedEventArgs e)
         {
-            COMPONENTS.OTHERS.POP_UPS.GROUP.FromJoinOrCreateNewGroup joinOrCreateNewGroup = new COMPONENTS.OTHERS.POP_UPS.GROUP.FromJoinOrCreateNewGroup();
+            FromJoinOrCreateNewGroup joinOrCreateNewGroup = new FromJoinOrCreateNewGroup();
             joinOrCreateNewGroup.ShowDialog();
             if (joinOrCreateNewGroup.DialogResult == true)
             {
