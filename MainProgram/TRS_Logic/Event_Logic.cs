@@ -35,5 +35,10 @@ namespace TRS_Logic
         {
             eventRepo.RemoveUserFromEvent(eventId, userId);
         }
+
+        public void UpdateEvent(Data selectedEvent)
+        {
+            eventRepo.UpdateEvent(selectedEvent);
+        }
     }
 }

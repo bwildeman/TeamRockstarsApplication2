@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.CONTEXT;
 using TRS_DAL.INTERFACES;
+using TRS_Domain.EVENT;
 
 namespace TRS_DAL.REPOSITORIES
 {
@@ -35,6 +36,11 @@ namespace TRS_DAL.REPOSITORIES
         public List<TRS_Domain.USER.Data> GetAllEventSignOns(int eventId)
         {
             return _eventContext.GetAllEventSignOns(eventId);
+        }
+
+        public void UpdateEvent(Data selectedEvent)
+        {
+            _eventContext.UpdateEvent(selectedEvent);
         }
     }
 }

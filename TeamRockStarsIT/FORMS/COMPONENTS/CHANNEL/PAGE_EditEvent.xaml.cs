@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TRS_Domain.EVENT;
+using TRS_Logic;
 
 namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 {
@@ -21,6 +22,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     /// </summary>
     public partial class PAGE_EditEvent : Page
     {
+        Event_Logic _eventLogic = new Event_Logic();
         private readonly Data _currentEvent;
         private TRS_Domain.USER.Data _currentClient;
         private Frame _contentFrame;
@@ -48,6 +50,15 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
+            // get event data from form
+            var name = TB_Name.Text;
+            DateTime startDate = Convert.ToDateTime(DateP_Start.Value);
+            DateTime endDate = Convert.ToDateTime(DateP_End.Value);
+            var online = CheckRadioButtons();
+            var location = CheckLocation();
+            var description = TB_Description.Text;
+
+            _eventLogic.UpdateEvent(new Data(_currentEvent.Id, _currentEvent.GroupId, _currentEvent.EventOwnerId, name, startDate, endDate, online, location, description));
             _channelFrame.Content = new PAGE_EventOverview(_contentFrame, _channelFrame, _currentEvent, _currentClient);
         }
 
@@ -85,7 +96,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             {
                 SetOfflineEvent();
             }
-            if(offline == false)
+            if (!offline)
             {
                 SetOnlineEvent();
             }
@@ -115,6 +126,35 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             Lbl_Url.Opacity = 0.5;
 
             TB_Url.Clear();
+        }
+
+        private string CheckLocation()
+        {
+            var location = "";
+
+            if (RBtn_Online.IsChecked == true)
+            {
+                location = TB_Url.Text;
+            }
+            else if (RBtn_IRL.IsChecked == true)
+            {
+                location = TB_Adres.Text;
+            }
+
+            return location;
+        }
+
+        private bool CheckRadioButtons()
+        {
+            var isOnline = false;
+
+            if (RBtn_Online.IsChecked == true)
+            {
+                isOnline = true;
+            }
+
+
+            return isOnline;
         }
     }
 }

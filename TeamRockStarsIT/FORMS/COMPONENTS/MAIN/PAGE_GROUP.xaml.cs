@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TRS_Logic;
 
 namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
@@ -103,7 +94,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                         Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem,_client, client);
                         break;
                     case Channel.Event:
-                        Fr_Channel.Content = new CHANNEL.PAGE_EventOverview(_contentFrame, Fr_Channel, (TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client);                      
+                        Fr_Channel.Content = new CHANNEL.PAGE_EventOverview(_contentFrame, Fr_Channel, (TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client);
+                        Lb_Channel.SelectedIndex = -1;
                         break;
                     case Channel.Forum:
                         break;

@@ -26,7 +26,7 @@ namespace TRS_DAL.CONTEXT
 
 
                     //  the incomplete query
-                    _mainQuery = "SELECT * " +
+                    _mainQuery = "SELECT EventID, UserID, GroupID, Name, StartDate, EndDate, Online, Location_Url, Description " +
                                  "FROM event " +
                                  "WHERE GroupID = @groupId";
 
@@ -203,6 +203,43 @@ namespace TRS_DAL.CONTEXT
                 Console.WriteLine(ex.Message);
             }
             return output;
+        }
+
+        public void UpdateEvent(Data changedEvent)
+        {
+            try
+            {
+                using (MySqlConnection conn = _connectDb.GetConnection())
+                {
+                    //  Open Connection:
+                    conn.Open();
+
+                    //incomplete query 
+                    _mainQuery = "UPDATE event " +
+                                 "SET " +
+                                 "Name = @name, StartDate = @startDate, endDate = @endDate, " +
+                                 "Online = @online, Location_Url = @location, Description = @description " +
+                                 "WHERE EventID = @eventId";
+
+                    //  build the command
+                    _mainCommand = new MySqlCommand(_mainQuery, conn);
+                    //defining parameters
+                    _mainCommand.Parameters.AddWithValue("@eventId", changedEvent.Id);
+                    _mainCommand.Parameters.AddWithValue("@name", changedEvent.Name);
+                    _mainCommand.Parameters.AddWithValue("@startDate", changedEvent.StartDate);
+                    _mainCommand.Parameters.AddWithValue("@endDate", changedEvent.EndDate);
+                    _mainCommand.Parameters.AddWithValue("@online", changedEvent.Online);
+                    _mainCommand.Parameters.AddWithValue("@location", changedEvent.LocationUrl);
+                    _mainCommand.Parameters.AddWithValue("@description", changedEvent.Description);
+
+                    //  use the command
+                    _connectDb.ExecuteNonQuery(_mainCommand);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

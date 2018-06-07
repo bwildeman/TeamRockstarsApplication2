@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TRS_Domain.EVENT;
 
 namespace TRS_DAL.INTERFACES
 {
@@ -16,5 +17,7 @@ namespace TRS_DAL.INTERFACES
         void RemoveUserFromEvent(int eventId, int userId);
 
         List<TRS_Domain.USER.Data> GetAllEventSignOns(int eventId);
+
+        void UpdateEvent(Data changedEvent);
     }
 }
