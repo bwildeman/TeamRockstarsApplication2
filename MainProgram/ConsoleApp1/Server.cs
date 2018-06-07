@@ -101,7 +101,10 @@ namespace Server
                                 while (p.loginid == 0)
                                 {
                                     p.loginid = _userRepo.Login(p.Gdata[0], p.Gdata[1]);
-                                    
+                                    if (p.loginid == 0)
+                                    {
+                                        p.loginid = -1;
+                                    }
                                 }
                            
                             c.clientSocket.Send(p.ToBytes());
