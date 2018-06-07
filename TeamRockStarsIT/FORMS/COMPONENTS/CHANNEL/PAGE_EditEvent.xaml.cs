@@ -64,6 +64,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void SetOnlineEvent()
         {
+            RBtn_Online.IsChecked = true;
+
             TB_Adres.IsHitTestVisible = false;
             TB_Adres.Opacity = 0.5;
             Lbl_Adres.Opacity = 0.5;
@@ -78,7 +80,9 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void SetOfflineEvent()
         {
-            TB_Adres.IsHitTestVisible = false;
+            RBtn_IRL.IsChecked = true;
+
+            TB_Adres.IsHitTestVisible = true;
             TB_Adres.Opacity = 1;
             Lbl_Adres.Opacity = 1;
 
@@ -90,13 +94,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         }
 
-        private void CheckOnlineOffline(bool offline)
+        private void CheckOnlineOffline(bool online)
         {
-            if (offline)
+            if (!online)
             {
                 SetOfflineEvent();
             }
-            if (!offline)
+            if (online)
             {
                 SetOnlineEvent();
             }
@@ -136,7 +140,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             {
                 location = TB_Url.Text;
             }
-            else if (RBtn_IRL.IsChecked == true)
+            if (RBtn_IRL.IsChecked == true)
             {
                 location = TB_Adres.Text;
             }
@@ -146,13 +150,16 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private bool CheckRadioButtons()
         {
-            var isOnline = false;
+            bool isOnline = true;
 
             if (RBtn_Online.IsChecked == true)
             {
                 isOnline = true;
             }
-
+            else if (RBtn_IRL.IsChecked == true)
+            {
+                isOnline = false;
+            }
 
             return isOnline;
         }

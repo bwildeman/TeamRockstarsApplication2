@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TRS_Domain.EVENT;
 using TRS_Logic;
 
@@ -54,7 +43,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void SetOfflineEvent()
         {
-            TB_Adres.IsHitTestVisible = false;
+            TB_Adres.IsHitTestVisible = true;
             TB_Adres.Opacity = 1;
             Lbl_Adres.Opacity = 1;
 
@@ -67,14 +56,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         }
 
-        private void CheckOnlineOffline(bool offline)
+        private void CheckOnlineOffline(bool online)
         {
-            if (offline)
+            if (!online)
             {
                 SetOfflineEvent();
             }
-
-            if (offline == false)
+            if (online)
             {
                 SetOnlineEvent();
             }
