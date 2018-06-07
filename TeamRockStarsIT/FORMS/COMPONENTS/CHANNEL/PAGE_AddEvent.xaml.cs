@@ -73,6 +73,17 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void Btn_CreateEvent_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (_eventLogic.CreateNewGroupEvent(new Data(_currentGroupId, _userId, TB_Name.Text, Convert.ToDateTime(DateP_Start.Value), Convert.ToDateTime(DateP_End.Value), CheckRadioButtons(), CheckLocation(), TB_Description.Text)))
+                {
+
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new NotImplementedException();
+            }
             var groupId = _currentGroupId;
             // get event data from form
             var name = TB_Name.Text;
@@ -82,7 +93,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             var location = CheckLocation();
             var description = TB_Description.Text;
 
-            _eventLogic.CreateNewGroupEvent(new Data(groupId, _userId, name, startDate, endDate, online, location, description));
+            //_eventLogic.CreateNewGroupEvent(new Data(groupId, _userId, name, startDate, endDate, online, location, description));
 
             _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client, MAIN.PageGroup.Channel.Event);
 

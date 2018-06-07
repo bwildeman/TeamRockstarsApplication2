@@ -63,9 +63,9 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public void CreateGroupEvent(int groupId, int ownerId, string name, DateTime startDate, DateTime endDate, bool online, string location,
-            string description)
+        public bool CreateGroupEvent(int groupId, int ownerId, string name, DateTime startDate, DateTime endDate, bool online, string location, string description)
         {
+            bool output = false;
             try
             {
                 using (MySqlConnection conn = _connectDb.GetConnection())
@@ -91,13 +91,15 @@ namespace TRS_DAL.CONTEXT
                     _mainCommand.Parameters.AddWithValue("@description", description);
 
                     //  use the command
-                    _connectDb.ExecuteNonQuery(_mainCommand);
+                    output = _connectDb.ExecuteNonQuery(_mainCommand);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+
+            return output;
         }
 
         public void AssignUserToEvent(int eventId, int userId)
