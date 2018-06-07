@@ -9,7 +9,7 @@
       Title="PAGE_CHAT">
 
     <Grid>
-        <TextBox x:Name="Txt_Message" HorizontalAlignment="Left" Height="65" Margin="10,474,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="719" SelectionBrush="#FFFFE000" FontFamily="Segoe UI Semibold" FontSize="16"/>
+        <TextBox x:Name="Txt_Message" HorizontalAlignment="Left" Height="65" Margin="10,474,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="719" SelectionBrush="#FFFFE000" FontFamily="Segoe UI Semibold" FontSize="16" KeyDown="Txt_Message_KeyDown" KeyUp="Txt_Message_KeyUp"/>
         <ListBox x:Name="Lb_Chat" HorizontalAlignment="Left"  Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="469" VerticalAlignment="Top" Width="719" Margin="10,0,0,0" Background="{x:Null}" BorderBrush="Black" Foreground="White" OpacityMask="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold"/>
 
     </Grid>
