@@ -68,10 +68,11 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             _selectedChannel = (Channel)newChannelIndex;
             LoadChannelList();
         }
-        public PageGroup(Frame contentFrame, TRS_Domain.GROUP.Data selectedGroup, TRS_Domain.USER.Data userClient, ClientClass client)
+        public PageGroup(Frame contentFrame, TRS_Domain.GROUP.Data selectedGroup, TRS_Domain.USER.Data userClient, ClientClass client, Channel channel)
         {
             _contentFrame = contentFrame;
             _selectedGroup = selectedGroup;
+            _selectedChannel = channel;
             this.client = client;
             this._client = userClient;
             _contentFrame.NavigationService.RemoveBackEntry();
@@ -94,7 +95,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                         Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem, _client, client);
                         break;
                     case Channel.Event:
-                        Fr_Channel.Content = new CHANNEL.PAGE_EventOverview(_contentFrame, Fr_Channel, (TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client);
+                        Fr_Channel.Content = new CHANNEL.PAGE_EventOverview(_contentFrame, Fr_Channel, (TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client, _selectedGroup, client);
                         Lb_Channel.SelectedIndex = -1;
                         break;
                     case Channel.Forum:
@@ -113,7 +114,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             ChangeChannel(true);
         }
 
-        private enum Channel
+        public enum Channel
         {
             Chat = 1,
             Event = 2,

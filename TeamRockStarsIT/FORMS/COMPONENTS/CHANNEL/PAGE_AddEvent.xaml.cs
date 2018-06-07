@@ -84,7 +84,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
             _eventLogic.CreateNewGroupEvent(new Data(groupId, _userId, name, startDate, endDate, online, location, description));
 
-            _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client);
+            _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client, MAIN.PageGroup.Channel.Event);
 
         }
 

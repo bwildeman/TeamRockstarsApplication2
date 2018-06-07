@@ -13,17 +13,21 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     {
         private Data _currentEvent;
         private readonly TRS_Domain.USER.Data _currentUser;
+        private readonly TRS_Domain.GROUP.Data _selectedGroup;
+        private ClientClass ClientClass;
         readonly Event_Logic _eventLogic = new Event_Logic();
         private Frame _contentFrame;
         private Frame _channelFrame;
 
-        public PAGE_EventOverview(Frame contentFrame, Frame channelFrame, Data selectedEvent, TRS_Domain.USER.Data user)
+        public PAGE_EventOverview(Frame contentFrame, Frame channelFrame, Data selectedEvent, TRS_Domain.USER.Data user, TRS_Domain.GROUP.Data selectedgroup, ClientClass clientClass)
         {
             InitializeComponent();
             _channelFrame = channelFrame;
             _contentFrame = contentFrame;
             _currentEvent = selectedEvent;
             _currentUser = user;
+            _selectedGroup = selectedgroup;
+            ClientClass = clientClass;
         }
 
         private void SetOnlineEvent()
@@ -108,7 +112,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-            _channelFrame.Content = new PAGE_EditEvent(_currentEvent, _contentFrame, _channelFrame, _currentUser);
+            _channelFrame.Content = new PAGE_EditEvent(_currentEvent, _contentFrame, _channelFrame, _currentUser, _selectedGroup, ClientClass);
         }
 
         private void CheckIfUserIsOwner(TRS_Domain.USER.Data user)

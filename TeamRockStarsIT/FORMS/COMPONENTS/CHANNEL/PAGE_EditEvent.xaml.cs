@@ -24,16 +24,20 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     {
         Event_Logic _eventLogic = new Event_Logic();
         private readonly Data _currentEvent;
+        private readonly TRS_Domain.GROUP.Data _selectedGroup;
+        private ClientClass ClientClass;
         private TRS_Domain.USER.Data _currentClient;
         private Frame _contentFrame;
         private Frame _channelFrame;
 
-        public PAGE_EditEvent(Data currentEvent, Frame contentFrame, Frame panelContentFrame, TRS_Domain.USER.Data client)
+        public PAGE_EditEvent(Data currentEvent, Frame contentFrame, Frame panelContentFrame, TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data selectedGroup, ClientClass clientClass)
         {
             _currentEvent = currentEvent;
             _contentFrame = contentFrame;
             _channelFrame = panelContentFrame;
             _currentClient = client;
+            _selectedGroup = selectedGroup;
+            ClientClass = clientClass;
             InitializeComponent();
 
         }
@@ -59,7 +63,9 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             var description = TB_Description.Text;
 
             _eventLogic.UpdateEvent(new Data(_currentEvent.Id, _currentEvent.GroupId, _currentEvent.EventOwnerId, name, startDate, endDate, online, location, description));
-            _channelFrame.Content = new PAGE_EventOverview(_contentFrame, _channelFrame, _currentEvent, _currentClient);
+            //_channelFrame.Content = new PAGE_EventOverview(_contentFrame, _channelFrame, _currentEvent, _currentClient);
+
+            _contentFrame.Content = new MAIN.PageGroup(_contentFrame, _selectedGroup, _currentClient, ClientClass, MAIN.PageGroup.Channel.Event);
         }
 
         private void SetOnlineEvent()
