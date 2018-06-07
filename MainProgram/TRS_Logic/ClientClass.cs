@@ -12,21 +12,57 @@ namespace TRS_Logic
 {
     public class ClientClass
     {
+        //Memory
         public static Socket master;
-        public string name;
         public string id;
         public int SenderId;
         public int chatindex;
         public int loginid;
-        public List<TRS_Domain.CHAT.Message> ChatList = new List<TRS_Domain.CHAT.Message>();
-        public List<TRS_Domain.CHAT.Message> NewMsg = new List<TRS_Domain.CHAT.Message>();
         public bool IsDone = false;
         public bool IsLoading = false;
         public bool NewMsgLoad = false;
         public bool loginstate = false;
+
+        //Reference
+        List<TRS_Domain.CHAT.Message> ChatList = new List<TRS_Domain.CHAT.Message>();
+        List<TRS_Domain.CHAT.Message> NewMsg = new List<TRS_Domain.CHAT.Message>();
         ChatLogic chatLogic = new ChatLogic();
         TRS_Domain.USER.Data _client;
         ControllerLogin _loginlogic = new ControllerLogin();
+
+        //public
+        public List<TRS_Domain.CHAT.Message> AddNewMsg()
+        {
+            return NewMsg;
+        }
+
+        public void ClearList()
+        {
+            ChatList.Clear();
+            IsDone = false;
+        }
+
+        public void ClearMsgList()
+        {
+            NewMsg.Clear();
+        }
+
+        public void GetPersonInfo(TRS_Domain.USER.Data data)
+        {
+            _client = data;
+        }
+
+        public int GetLoginId()
+        {
+            return loginid;
+        }
+
+        public List<TRS_Domain.CHAT.Message> LoadinChat()
+        {
+            return ChatList;
+        }
+
+
         public void LoadIn()
         {
             string ip = "145.93.45.157";
@@ -34,25 +70,20 @@ namespace TRS_Logic
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ip), 4242);
-            
+
             try
             {
                 master.Connect(ipe);
                 Console.WriteLine("connected");
                 Thread t = new Thread(Data_IN);
                 t.Start();
-                
+
             }
             catch
             {
                 Console.WriteLine("Could not connect");
                 Thread.Sleep(1000);
-            }        
-        }
-
-        public void GetPersonInfo(TRS_Domain.USER.Data data)
-        {
-            _client = data;
+            }
         }
 
 
@@ -75,30 +106,12 @@ namespace TRS_Logic
             }
         }
 
-        public List<TRS_Domain.CHAT.Message> LoadinChat()
+        public void Login(string email, string password)
         {
-            return ChatList;
-        }
-
-        public int GetLoginId()
-        {
-            return loginid;
-        }
-
-        public void ClearList()
-        {
-            ChatList.Clear();
-            IsDone = false;
-        }
-
-        public void ClearMsgList()
-        {
-            NewMsg.Clear();
-        }
-
-        public List<TRS_Domain.CHAT.Message> AddNewMsg()
-        {
-            return NewMsg;
+            Packet p = new Packet(PacketType.Login, id);
+            p.Gdata.Add(email);
+            p.Gdata.Add(password);
+            master.Send(p.ToBytes());
         }
 
         public void Msg(string text,int chatindex)
@@ -115,15 +128,9 @@ namespace TRS_Logic
                 master.Send(p.ToBytes());
         }
 
-        public void Login(string email, string password)
-        {
-            Packet p = new Packet(PacketType.Login,id);
-            p.Gdata.Add(email);
-            p.Gdata.Add(password);
-            master.Send(p.ToBytes());
-        }
 
-        public void Data_IN()
+        //private
+        private void Data_IN()
         {
             byte[] Buffer;
             int readByte;
@@ -140,7 +147,7 @@ namespace TRS_Logic
         }
 
 
-        public void DataManeger(Packet p)
+        private void DataManeger(Packet p)
         {
             switch (p.packetType)
             {

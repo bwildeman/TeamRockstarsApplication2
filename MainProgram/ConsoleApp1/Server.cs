@@ -73,7 +73,6 @@ namespace Server
         {
             switch (p.packetType)
             {
-
                 case PacketType.Chat:
                     foreach (ClientData c in _clients)
                     {
