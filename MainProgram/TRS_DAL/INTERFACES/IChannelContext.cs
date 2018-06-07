@@ -16,7 +16,7 @@ namespace TRS_DAL.INTERFACES
         /// <param name="Name"></param>
         /// <param name="Description"></param>
         /// <param name="type">either an event, channel or Chat</param>
-        void AddChannel(string Name, string Description, int type);
+        void AddChannel(string Name, string Description, int type, int groupID);
 
         #endregion
         #region Read Methods
@@ -27,7 +27,7 @@ namespace TRS_DAL.INTERFACES
         /// <param name="groupId"></param>
         /// <param name="Id"></param>
         /// <returns></returns>
-        Channel GetChannel(int groupId, int Id);
+        Channel GetChannel(int groupId, int Id, int type);
 
         /// <summary>
         /// returns every channel that a group has
@@ -44,14 +44,14 @@ namespace TRS_DAL.INTERFACES
         /// </summary>
         /// <remarks> Kan niet dezelfde naam zijn als een andere channel in die groep</remarks>
         /// <param name="newName"></param>
-        void UpdateName(string newName);
+        void UpdateName(int groupID, int channelID,int type,string newName);
 
-        void UpdateDescription(string newDescription);
+        void UpdateDescription(int groupID, int channelID,int type,string newDesc);
 
         #endregion
         #region Delete Methods
 
-        void DeleteChannel(int groupId, int Id);
+        void DeleteChannel(int groupId, int Id, int type);
 
         #endregion
 
