@@ -10,7 +10,7 @@ namespace TRS_DAL.INTERFACES
         List<TRS_Domain.GROUP.Data> GetAllGroupsThatUserIsNotIn(int UserID);
             #region Create Methods
 
-            void AddGroup(string name, string description);
+            void AddGroup(int userid, string name, string description);
 
             #endregion
             #region Read Methods
@@ -27,13 +27,11 @@ namespace TRS_DAL.INTERFACES
             /// <param name="GroupId"></param>
             /// <param name="Id"></param>
             /// <returns></returns>
-            TRS_Domain.CHANNEL.Channel GetChannel(int GroupId, int Id);
 
             /// <summary>
             /// Returns all the channels in a group
             /// </summary>
             /// <returns></returns>
-            TRS_Domain.CHANNEL.Channel[] GetChannels(int GroupId);
         
             #endregion
             #region Update Methods
@@ -44,7 +42,7 @@ namespace TRS_DAL.INTERFACES
             void UpdateDescription(int id, string newDescription);
             void UpdateStartUpChannel(string selectedChannel);
 
-            void JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup);
+            bool JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup);
         
             #endregion
             #region Delete Methods

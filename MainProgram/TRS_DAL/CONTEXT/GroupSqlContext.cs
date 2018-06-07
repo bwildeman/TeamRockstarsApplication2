@@ -69,7 +69,7 @@ namespace TRS_DAL.CONTEXT
                     _connectDb.ExecuteNonQuery(MainCommand);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -93,7 +93,8 @@ namespace TRS_DAL.CONTEXT
                         "INSERT INTO `groups`(`GroupName`, `GroupDescription`, `GroupImage`,`GroupLeader`,`GroupRegion`) " +
                         "VALUES(@Name, @Description, @Image, @GroupLeader, @GroupRegion); " +
                         "INSERT INTO `group_members` (`GroupID`, `UserID`) " +
-                        "VALUES((SELECT LAST_INSERT_ID()), @idclient)"; ;
+                        "VALUES((SELECT LAST_INSERT_ID()), @idclient)";
+                    ;
 
                     //  DEFINE the paramaters
                     MySqlParameter param1 = new MySqlParameter();
@@ -170,13 +171,14 @@ namespace TRS_DAL.CONTEXT
                         {
                             int id = Convert.ToInt32(reader["GroupID"]);
                             string Name = Convert.ToString(reader["GroupName"]);
-                            string Description =Convert.ToString(reader["GroupDescription"]);
+                            string Description = Convert.ToString(reader["GroupDescription"]);
                             byte[] img = null;
                             if (reader["GroupImage"] != DBNull.Value)
                             {
-                                img = (byte[])(reader["GroupImage"]);
+                                img = (byte[]) (reader["GroupImage"]);
                             }
-                            output.Add((new Data(id,Name,Description,img)));
+
+                            output.Add((new Data(id, Name, Description, img)));
                         }
                     }
                 }
@@ -261,8 +263,9 @@ namespace TRS_DAL.CONTEXT
                                 byte[] img = null;
                                 if (reader["GroupImage"] != DBNull.Value)
                                 {
-                                    img = (byte[])(reader["GroupImage"]);
+                                    img = (byte[]) (reader["GroupImage"]);
                                 }
+
                                 //Retrieve information from the database and put it into a class.
                                 output.Add(new TRS_Domain.GROUP.Data(
                                     Convert.ToInt32(reader["GroupID"]),
@@ -270,7 +273,7 @@ namespace TRS_DAL.CONTEXT
                                     Convert.ToString(reader["GroupDescription"]),
                                     img
 
-                                    ));
+                                ));
                             }
                         }
                     }
@@ -280,6 +283,7 @@ namespace TRS_DAL.CONTEXT
             {
                 Console.WriteLine(ex.Message);
             }
+
             return output;
         }
 
@@ -322,14 +326,15 @@ namespace TRS_DAL.CONTEXT
                                 byte[] img = null;
                                 if (reader["GroupImage"] != DBNull.Value)
                                 {
-                                    img = (byte[])(reader["GroupImage"]);
+                                    img = (byte[]) (reader["GroupImage"]);
                                 }
+
                                 //Retrieve information from the database and put it into a class.
                                 output = new TRS_Domain.GROUP.Data(
                                     Convert.ToInt32(reader["GroupID"]),
                                     Convert.ToString(reader["GroupName"]),
                                     Convert.ToString(reader["GroupDescription"]), img
-                                    );
+                                );
                             }
                         }
                     }
@@ -339,6 +344,7 @@ namespace TRS_DAL.CONTEXT
             {
                 Console.WriteLine(ex.Message);
             }
+
             return output;
         }
 
@@ -384,8 +390,9 @@ namespace TRS_DAL.CONTEXT
                             byte[] img = null;
                             if (reader["GroupImage"] != DBNull.Value)
                             {
-                                img = (byte[])(reader["GroupImage"]);
+                                img = (byte[]) (reader["GroupImage"]);
                             }
+
                             output.Add(new TRS_Domain.GROUP.Data(groupId, groupName, groupDescription, img));
                         }
                     }
@@ -395,17 +402,8 @@ namespace TRS_DAL.CONTEXT
             {
                 Console.WriteLine(ex.Message);
             }
+
             return output;
-        }
-
-        public Channel GetChannel(int GroupId, int Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Channel[] GetChannels(int GroupId)
-        {
-            throw new NotImplementedException();
         }
 
         public void UpdateName(int id, string name)
@@ -514,8 +512,9 @@ namespace TRS_DAL.CONTEXT
             throw new NotImplementedException();
         }
 
-        void IGroupContext.JoinGroup(TRS_Domain.USER.Data client, Data myGroup)
+        public bool JoinGroup(TRS_Domain.USER.Data client, Data myGroup)
         {
+            bool output = false;
             //Try-Catch for safety:
             try
             {
@@ -547,51 +546,6 @@ namespace TRS_DAL.CONTEXT
                     MainCommand.Parameters.Add(param2);
 
                     //  use the command
-                    _connectDb.ExecuteNonQuery(MainCommand);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        public bool JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup)
-        {
-            //  Define output:
-            bool output = false;
-
-            //Try-Catch for safety:
-            try
-            {
-                using (MySqlConnection Conn = _connectDb.GetConnection())
-                {
-                    //  Open Connection:
-                    Conn.Open();
-
-                    //  the incomplete query
-                    MainQuery =
-                        "INSERT INTO `group_members` (`GroupID`, `UserID`)" +
-                        "VALUES(@GroupId, @ClientId)";
-
-
-                    //  DEFINE the paramaters
-                    MySqlParameter param1 = new MySqlParameter();
-                    param1.ParameterName = "@ClientId";
-                    param1.Value = client.UserId;
-
-                    MySqlParameter param2 = new MySqlParameter();
-                    param2.ParameterName = "@GroupId";
-                    param2.Value = myGroup.GroupId;
-
-                    //  build the command
-                    MainCommand = new MySqlCommand(MainQuery, Conn);
-
-                    //  add the parameters to the command
-                    MainCommand.Parameters.Add(param1);
-                    MainCommand.Parameters.Add(param2);
-
-                    //  use the command
                     output = _connectDb.ExecuteNonQuery(MainCommand);
                 }
             }
@@ -602,5 +556,6 @@ namespace TRS_DAL.CONTEXT
 
             return output;
         }
+
     }
 }

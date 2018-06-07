@@ -20,12 +20,12 @@ namespace TRS_DAL.REPOSITORIES
 
         public List<Data> GetAllGroupsThatUserIsNotIn(int UserID)
         {
-            throw new NotImplementedException();
+            return groupContext.GetAllGroupsThatUserIsNotIn(UserID);
         }
 
-        public void AddGroup(string name, string description)
+        public void AddGroup(int userid,string name, string description)
         {
-            groupContext.AddGroup(name, description);
+            groupContext.AddGroup(userid,name, description);
         }
 
         public List<TRS_Domain.GROUP.Data> GetAllGroupInfo()
@@ -33,15 +33,6 @@ namespace TRS_DAL.REPOSITORIES
             return groupContext.GetAllGroupInfo();
         }
 
-        public Channel GetChannel(int GroupId, int Id)
-        {
-            return groupContext.GetChannel(GroupId, Id);
-        }
-
-        public Channel[] GetChannels(int GroupId)
-        {
-            return groupContext.GetChannels(GroupId);
-        }
 
         public TRS_Domain.GROUP.Data GetGroupInfo(int groupID)
         {
@@ -53,9 +44,9 @@ namespace TRS_DAL.REPOSITORIES
             return groupContext.GetGroups(userID);
         }
 
-        public void JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup)
+        public bool JoinGroup(TRS_Domain.USER.Data client, TRS_Domain.GROUP.Data myGroup)
         {
-            groupContext.JoinGroup(client, myGroup);
+            return groupContext.JoinGroup(client, myGroup);
         }
 
         public void UpdateDescription(int id, string newDescription)

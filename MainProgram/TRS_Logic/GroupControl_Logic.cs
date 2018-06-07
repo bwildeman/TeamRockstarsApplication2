@@ -9,6 +9,7 @@ namespace TRS_Logic
     public class GroupControl_Logic
     {
         private static GroupRepository GP = new GroupRepository();
+        private static ChannelRepository CR = new ChannelRepository();
 
         public static Data GetGroupInformation(int id)
         {
@@ -37,7 +38,7 @@ namespace TRS_Logic
 
         public static TRS_Domain.CHANNEL.Channel[] GetChannels(int groupId)
         {
-            return GP.GetChannels(groupId);
+            return CR.GetChannels(groupId);
         }
 
         public enum Regions

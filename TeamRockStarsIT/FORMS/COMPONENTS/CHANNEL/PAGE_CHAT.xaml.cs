@@ -104,7 +104,12 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
                     {
                         this.Dispatcher.Invoke(() =>
                         {
-                            Lb_Chat.Items.Add(item.SendDate + ": " + item.Username + ": " + item.Text);
+                            //Lb_Chat.Items.Add(item.SendDate + ": " + item.Username + ": " + item.Text);
+
+                            TextBlock txtBlock = new TextBlock();
+                            txtBlock.TextWrapping = TextWrapping.Wrap;
+                            txtBlock.Text = $"{item.SendDate}: {item.Username}: {item.Text}";
+                            Lb_Chat.Items.Add(txtBlock);
                         });
                     }
                     client.ClearMsgList();
