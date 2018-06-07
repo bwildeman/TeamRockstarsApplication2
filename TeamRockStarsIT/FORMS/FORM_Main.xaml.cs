@@ -81,11 +81,11 @@ namespace TeamRockStarsIT.FORMS
 
         private void Btn_CreateGroup_Click(object sender, RoutedEventArgs e)
         {
-            FromJoinOrCreateNewGroup joinOrCreateNewGroup = new FromJoinOrCreateNewGroup();
+            COMPONENTS.OTHERS.POP_UPS.GROUP.FromJoinOrCreateNewGroup joinOrCreateNewGroup = new COMPONENTS.OTHERS.POP_UPS.GROUP.FromJoinOrCreateNewGroup();
             joinOrCreateNewGroup.ShowDialog();
             if (joinOrCreateNewGroup.DialogResult == true)
             {
-                FORM_CreateGroup PopUp = new FORM_CreateGroup(_client);
+                COMPONENTS.OTHERS.POP_UPS.GROUP.FORM_CreateGroup PopUp = new COMPONENTS.OTHERS.POP_UPS.GROUP.FORM_CreateGroup(_client);
                 PopUp.ShowDialog();
                 if (PopUp.DialogResult == true)
                 {

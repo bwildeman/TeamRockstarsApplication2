@@ -12,26 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
+namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.POP_UPS.FORUM
 {
     /// <summary>
-    /// Interaction logic for FROM_JoinOrCreateNewGroup.xaml
+    /// Interaction logic for AddPost.xaml
     /// </summary>
-    public partial class FromJoinOrCreateNewGroup : Window
+    public partial class AddPost : Window
     {
-        public FromJoinOrCreateNewGroup()
+        public AddPost()
         {
             InitializeComponent();
         }
 
-        private void ExistingGroupBtn_Click(object sender, RoutedEventArgs e)
+        private void btnInsertPost_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
-        }
 
-        private void NewGroupBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.DialogResult = true;
         }
     }
 }

@@ -5,10 +5,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="549" d:DesignWidth="739"
       Title="PAGE_FORUM">
 
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
+        <ScrollViewer Margin="10,9,109,45" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="MainBox" HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="620"/>
+        </ScrollViewer>
         
+        <Button x:Name="BtnNew" Content="New Forum" HorizontalAlignment="Left" Margin="10,509,0,0" VerticalAlignment="Top" Width="200" Height="31" Click="BtnNew_Click"/>
+        <Button x:Name="BtnSelect" Content="Select Forum" HorizontalAlignment="Left" Margin="220,510,0,0" VerticalAlignment="Top" Width="200" Height="30" Click="BtnSelect_Click" RenderTransformOrigin="0.545,0.533"/>
+        <Button x:Name="BtnBack" Content="Back" HorizontalAlignment="Left" Margin="430,510,0,0" VerticalAlignment="Top" Width="200" Height="30" Click="BtnBack_Click" IsEnabled="False"/>
+        <GroupBox x:Name="GBSort" Foreground="White" Header="Sort by" HorizontalAlignment="Left" Height="100" Margin="639,11,0,0" VerticalAlignment="Top" Width="90" IsEnabled="False"/>
+        <RadioButton x:Name="RBUpVotes" Content="Upvotes" Foreground="White" HorizontalAlignment="Left" Margin="647,28,0,0" VerticalAlignment="Top" Width="82" Height="15" IsEnabled="False" Checked="RBUpVotes_Checked"/>
+        <RadioButton x:Name="RBDownVotes" Content="Downvotes" Foreground="White" HorizontalAlignment="Left" Margin="647,48,0,0" VerticalAlignment="Top" Width="82" Height="15" IsEnabled="False" Checked="RBDownVotes_Checked"/>
+        <RadioButton x:Name="RBNewest" Content="Newest" Foreground="White" HorizontalAlignment="Left" Margin="647,68,0,0" VerticalAlignment="Top" Width="82" Height="15" IsEnabled="False" Checked="RBNewest_Checked"/>
+        <RadioButton x:Name="RBOldest" Content="Oldest" Foreground="White" HorizontalAlignment="Left" Margin="647,88,0,0" VerticalAlignment="Top" Width="82" Height="15" IsEnabled="False" Checked="RBOldest_Checked"/>
+        <Button x:Name="BtnUpvote" Content="Upvote" HorizontalAlignment="Left" Margin="639,121,0,0" VerticalAlignment="Top" Width="90" Height="30"/>
+        <Button x:Name="BtnDownVote1" Content="Downvote" HorizontalAlignment="Left" Margin="639,156,0,0" VerticalAlignment="Top" Width="90" Height="30"/>
     </Grid>
 </Page>

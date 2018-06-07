@@ -54,7 +54,7 @@ public class SQL
                     var dt = new DataTable();
                     dt.Load(reader);
                     _disconnect();
-                    return dt.AsEnumerable().ToList();
+                    return null;//dt.AsEnumerable().ToList();
                 }
             }
 

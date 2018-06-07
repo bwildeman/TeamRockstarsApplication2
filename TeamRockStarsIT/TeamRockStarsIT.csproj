@@ -96,20 +96,29 @@
     <Compile Include="FORMS\COMPONENTS\MAIN\PAGE_ShowProfile.xaml.cs">
       <DependentUpon>PAGE_ShowProfile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FORMS\COMPONENTS\OTHERS\FORM_CreateGroup.xaml.cs">
+    <Compile Include="FORMS\COMPONENTS\OTHERS\CONTENT\FORUM\UC_Post.xaml.cs">
+      <DependentUpon>UC_Post.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\POP-UPS\GROUP\FORM_CreateGroup.xaml.cs">
       <DependentUpon>FORM_CreateGroup.xaml</DependentUpon>
     </Compile>
     <Compile Include="FORMS\COMPONENTS\OTHERS\FORM_CreateInterest.xaml.cs">
       <DependentUpon>FORM_CreateInterest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FORMS\COMPONENTS\OTHERS\FROM_JoinOrCreateNewGroup.xaml.cs">
+    <Compile Include="FORMS\COMPONENTS\OTHERS\POP-UPS\GROUP\FROM_JoinOrCreateNewGroup.xaml.cs">
       <DependentUpon>FROM_JoinOrCreateNewGroup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FORMS\COMPONENTS\OTHERS\PAGE_GroupInformation.xaml.cs">
+    <Compile Include="FORMS\COMPONENTS\OTHERS\CONTENT\GROUP\PAGE_GroupInformation.xaml.cs">
       <DependentUpon>PAGE_GroupInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="FORMS\COMPONENTS\OTHERS\PAGE_UserInformation.xaml.cs">
       <DependentUpon>PAGE_UserInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\POP-UPS\FORUM\AddPost.xaml.cs">
+      <DependentUpon>AddPost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FORMS\COMPONENTS\OTHERS\POP-UPS\FORUM\NewComment.xaml.cs">
+      <DependentUpon>NewComment.xaml</DependentUpon>
     </Compile>
     <Compile Include="FORMS\FORM_Login.xaml.cs">
       <DependentUpon>FORM_Login.xaml</DependentUpon>
@@ -175,7 +184,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FORMS\COMPONENTS\OTHERS\FORM_CreateGroup.xaml">
+    <Page Include="FORMS\COMPONENTS\OTHERS\CONTENT\FORUM\UC_Post.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\POP-UPS\GROUP\FORM_CreateGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,15 +196,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FORMS\COMPONENTS\OTHERS\FROM_JoinOrCreateNewGroup.xaml">
+    <Page Include="FORMS\COMPONENTS\OTHERS\POP-UPS\GROUP\FROM_JoinOrCreateNewGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FORMS\COMPONENTS\OTHERS\PAGE_GroupInformation.xaml">
+    <Page Include="FORMS\COMPONENTS\OTHERS\CONTENT\GROUP\PAGE_GroupInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FORMS\COMPONENTS\OTHERS\PAGE_UserInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\POP-UPS\FORUM\AddPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FORMS\COMPONENTS\OTHERS\POP-UPS\FORUM\NewComment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,5 +249,6 @@
   <ItemGroup>
     <Resource Include="RESCOURCES\Arrow.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

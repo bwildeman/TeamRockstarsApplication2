@@ -35,6 +35,6 @@ namespace TRS_DAL.INTERFACES
 
         List<DataRow> GetGroups(int userID);
 
-        List<DataRow> GetGroupNames(int groupID)
+        List<DataRow> GetGroupNames(int groupID);
     }
 }

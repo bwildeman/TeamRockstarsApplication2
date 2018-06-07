@@ -7,17 +7,15 @@ namespace TRS_Domain.FORUM
     public class Post
     {
         public int _postID { get; }
-        public int _upvotes { get; }
-        public int _downvotes { get; }
+        public int _votes { get; }
         public DateTime date { get; set; }
         public string _titel { get; private set; }
         public string _content;
 
-        public Post(int postID, int upvotes, int downvotes, string datum, string titel, string content)
+        public Post(int postID, int votes, string datum, string titel, string content)
         {
             _postID = postID;
-            _upvotes = upvotes;
-            _downvotes = downvotes;
+            _votes = votes;
             date = Convert.ToDateTime(datum);
             _titel = titel;
             _content = content;

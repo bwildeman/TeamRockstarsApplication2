@@ -53,7 +53,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                testFrame.Height = 300;
 
                //TODO
-               testFrame.Content = new PAGE_GroupInformation(item,userdata, Main);
+               testFrame.Content = new COMPONENTS.OTHERS.CONTENT.GROUP.PAGE_GroupInformation(item,userdata, Main);
 
                //GroupsList.Add(testFrame);
                //DGrid_Groups.Items.Add(testFrame.Content = new PAGE_GroupInformation(item));

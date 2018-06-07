@@ -1,9 +1,9 @@
-﻿<Window x:Class="TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.FORM_CreateGroup"
+﻿<Window x:Class="TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.POP_UPS.GROUP.FORM_CreateGroup"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS"
+        xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.POP_UPS.GROUP"
         mc:Ignorable="d"
         Title="FORM_CreateGroup" Height="321.951" Width="547.866" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
