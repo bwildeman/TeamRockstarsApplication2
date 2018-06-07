@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TRS_Logic;
 
 namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
@@ -25,6 +16,9 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         ClientLogic _clientLogic = new ClientLogic();
         Group_Logic _groupLogic = new Group_Logic();
         ChatLogic _chatLogic = new ChatLogic();
+        Event_Logic eventLogic = new Event_Logic();
+        ClientClass client;
+        TRS_Domain.USER.Data _client;
 
         //  Memory:
         private Frame _contentFrame;
@@ -49,7 +43,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                 case Channel.Event:
                     Lbl_SelectedChannel.Content = "Event";
                     Btn_AddChannel.Content = "Add event";
-                    _selectedGroup.SetEvents(_clientLogic.GetAllEvents(_selectedGroup.GroupId));
+                    _selectedGroup.SetEvents(eventLogic.GetGroupEvents(_selectedGroup.GroupId));
                     foreach (var item in _selectedGroup.Events)
                     {
                         Lb_Channel.Items.Add(item);
@@ -74,10 +68,12 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             _selectedChannel = (Channel)newChannelIndex;
             LoadChannelList();
         }
-        public PageGroup(Frame contentFrame, TRS_Domain.GROUP.Data selectedGroup)
+        public PageGroup(Frame contentFrame, TRS_Domain.GROUP.Data selectedGroup,TRS_Domain.USER.Data _client, ClientClass client)
         {
             _contentFrame = contentFrame;
             _selectedGroup = selectedGroup;
+            this.client = client;
+            this._client = _client;
             _contentFrame.NavigationService.RemoveBackEntry();
             InitializeComponent();
             Loaded += PAGE_GROUP_Loaded;
@@ -92,7 +88,18 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         {
             if (Lb_Channel.SelectedItem != null)
             {
-                Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem);
+                switch (_selectedChannel)
+                {
+                    case Channel.Chat:
+                        Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHAT.Data)Lb_Channel.SelectedItem,_client, client);
+                        break;
+                    case Channel.Event:
+                        Fr_Channel.Content = new CHANNEL.PAGE_EventOverview(_contentFrame, Fr_Channel, (TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client);
+                        Lb_Channel.SelectedIndex = -1;
+                        break;
+                    case Channel.Forum:
+                        break;
+                }
             }
         }
 
@@ -111,6 +118,22 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             Chat = 1,
             Event = 2,
             Forum = 3
+        }
+
+        private void Btn_AddChannel_Click(object sender, RoutedEventArgs e)
+        {
+            switch (_selectedChannel)
+            {
+                case Channel.Chat:
+
+                    break;
+                case Channel.Event:
+                    Fr_Channel.Content = new CHANNEL.PAGE_AddEvent(_selectedGroup.GroupId, _client);
+                    break;
+                case Channel.Forum:
+
+                    break;
+            }
         }
     }
 }

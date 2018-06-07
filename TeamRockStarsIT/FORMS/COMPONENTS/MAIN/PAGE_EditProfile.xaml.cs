@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using TeamRockStarsIT.FORMS.COMPONENTS.OTHERS;
 using TRS_Domain.INTEREST;
 using TRS_Logic;
@@ -35,6 +36,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         private Frame _contentFrame;
         private Frame _clientFrame;
         private List<TRS_Domain.INTEREST.Data> _interestList;
+        private DispatcherTimer timer;
 
         //  Private methodes:
         private void FillComboboxes()
@@ -78,7 +80,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         private void RemoveUserInterestFromList()
         {
             if (LB_UserInterests.SelectedItem != null)
-            {         
+            {
                 // remove selected interest
                 LB_UserInterests.Items.Remove(LB_UserInterests.SelectedItem);
             }
@@ -87,7 +89,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         private void RemoveInterestFromCategoryList()
         {
             if (LB_Interests.SelectedItem != null)
-            {              
+            {
                 // remove selected interest
                 LB_Interests.Items.Remove(LB_Interests.SelectedItem);
             }
@@ -119,6 +121,43 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
 
         }
+
+        private void SetTimer()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Lbl_PasswordMessage.Visibility = Visibility.Hidden;
+            timer.Stop();
+        }
+
+        private void RequiredFieldCheck(System.Windows.Controls.TextBox Field)
+        {
+            if (!string.IsNullOrEmpty(Field.Text))
+            {
+                Field.BorderBrush = new SolidColorBrush(Color.FromRgb(179, 171, 171));
+                Field.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            }
+            else
+            {
+                Field.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Field.Background = new SolidColorBrush(Color.FromRgb(255, 167, 167));
+            }
+        }
+
+        private void ChangePasswordValidation()
+        {
+            if (_client.UserId == _selectedUser.UserId || _client.Type == 1)
+            {
+                Btn_ChangePassword.Visibility = Visibility.Visible;
+            }
+        }
+
         public PageEditProfile(TRS_Domain.USER.Data client, TRS_Domain.USER.Data selectedUser, Frame contentFrame, Frame clientInfo)
         {
             _client = client;
@@ -142,6 +181,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             //Fill in selected user information
             FillUserInformation();
 
+            //  Check if the password can be changed:
+            ChangePasswordValidation();
         }
 
         private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
@@ -165,7 +206,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Lbl_Warning.Visibility = Visibility.Visible;
+                Lbl_Warning.Content = ex.Message;
             }
         }
 
@@ -185,7 +227,6 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         {
             FillCategoryInterestsListbox();
         }
-
 
         private void LB_UserInterests_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -210,6 +251,55 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             {
 
             }
+
+        }
+
+        private void TB_Name_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Name);
+        }
+
+        private void TB_Surname_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Surname);
+        }
+
+        private void TB_Email_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_Email);
+        }
+
+        private void TB_PhoneNumber_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RequiredFieldCheck(TB_PhoneNumber);
+        }
+
+        private void TB_PhoneNumber_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            e.Handled = (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9);
+        }
+
+        private void Btn_ChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            FORM_ChangePassword Dialog = new FORM_ChangePassword(_selectedUser, _client);
+            bool? DialogResult = Dialog.ShowDialog();
+            switch (DialogResult)
+            {
+                case true:
+                    Lbl_PasswordMessage.Content = "Password saved";
+                    break;
+                case false:
+                    Lbl_PasswordMessage.Content = "Action cancelled";
+                    break;
+                default:
+                    break;
+            }
+            Lbl_PasswordMessage.Visibility = Visibility.Visible;
+            SetTimer();
+        }
+
+        private void TB_Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
     }
