@@ -21,5 +21,6 @@ namespace TRS_DAL.INTERFACES
         void UpdateUserInformation(string username, string usersurname, string useremail, string userregion, string userdepartment, string userPhoneNumber, string userQuote, string userPortfolio, string userAdres, int userId, int gender);
 
         void UpdateUserInformation(string username, string usersurname, string useremail, string userregion, string userdepartment, string userPhoneNumber, string userQuote, string userPortfolio, string userAdres, int userId, byte[] userProfilePicture, int gender);
+        bool UpdatePassword(string password, TRS_Domain.USER.Data user);
     }
 }

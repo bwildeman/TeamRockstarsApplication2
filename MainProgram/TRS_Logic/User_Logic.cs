@@ -14,6 +14,7 @@ namespace TRS_Logic
 
         //  Logic reference:
         ExceptionHandler exHanlder = new ExceptionHandler();
+
         //  Private memory:
         private byte[] _profilepicture;
 
@@ -80,23 +81,23 @@ namespace TRS_Logic
             {
                 throw ex;
             }
-            catch(EmptyField ex)
+            catch (EmptyField ex)
             {
                 throw ex;
             }
-            catch(InvalidEmail ex)
+            catch (InvalidEmail ex)
             {
                 throw ex;
             }
-            catch(StringContainsDigit ex)
+            catch (StringContainsDigit ex)
             {
                 throw ex;
             }
-            catch(StringContainsLeter ex)
+            catch (StringContainsLeter ex)
             {
                 throw ex;
             }
-            catch(PhotoNotFound ex)
+            catch (PhotoNotFound ex)
             {
                 throw ex;
             }
@@ -125,7 +126,7 @@ namespace TRS_Logic
                     {
                         Gender = 1;
                     }
-                    else if(gender == "Female")
+                    else if (gender == "Female")
                     {
                         Gender = 0;
                     }
@@ -156,11 +157,11 @@ namespace TRS_Logic
             {
                 throw ex;
             }
-            catch(InvalidAdminRightsSelection ex)
+            catch (InvalidAdminRightsSelection ex)
             {
                 throw ex;
             }
-            catch(InvalidDOB ex)
+            catch (InvalidDOB ex)
             {
                 throw ex;
             }
@@ -171,6 +172,47 @@ namespace TRS_Logic
         public TRS_Domain.USER.Data GetUser(int userId)
         {
             return _userRepo.GetUser(userId);
+        }
+
+        public bool ChangePassword(string oldPass, string newPass1, string newPass2, bool? reset, TRS_Domain.USER.Data user)
+        {
+            //  Define output:
+            bool output = false;
+
+            try
+            {
+                if (!reset ?? false)
+                {
+                    //  First input check:
+                    if (exHanlder.Login(user.Email, oldPass))
+                    {
+                        if (_userRepo.Login(user.Email, oldPass) != user.UserId)
+                        {
+                            throw new PasswordNotFound();
+                        }
+                    }
+                }
+
+                //  Validate new password:
+                if (exHanlder.NewPassword(newPass1, newPass2))
+                {
+                    output = _userRepo.UpdatePassword(newPass1.GetHashCode().ToString(), user);
+                }
+            }
+            catch (PasswordNotFound ex)
+            {
+                throw ex;
+            }
+            catch (EmptyField ex)
+            {
+                throw ex;
+            }
+            catch (PasswordNotEqual ex)
+            {
+                throw ex;
+            }
+
+            return output;
         }
     }
 }

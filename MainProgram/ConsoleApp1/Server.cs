@@ -17,6 +17,8 @@ namespace Server
         static Socket listenerSocket;
         static List<ClientData> _clients;
         static UserRepository _userRepo = new UserRepository();
+        static ChatRepository _chatsql = new ChatRepository();
+        static string currgroep;
 
         static void Main(string[] args)
         {
@@ -64,8 +66,6 @@ namespace Server
                     DataManager(packet);
                 }
             }
-
-
         }
 
 
@@ -77,7 +77,10 @@ namespace Server
                 case PacketType.Chat:
                     foreach (ClientData c in _clients)
                     {
-                        c.clientSocket.Send(p.ToBytes());
+                        if (currgroep == p.Gdata[2])
+                        {
+                            c.clientSocket.Send(p.ToBytes());
+                        } 
                     }
                     break;
                 case PacketType.GetAllChat:
@@ -85,6 +88,8 @@ namespace Server
                     {
                         if (c.id == p.senderID)
                         {
+                            p.listmessage = _chatsql.GetMessages(Convert.ToInt32(p.Gdata[1]));
+                            currgroep = p.Gdata[1];
                             c.clientSocket.Send(p.ToBytes());
                         }
                     }
@@ -97,6 +102,7 @@ namespace Server
                                 while (p.loginid == 0)
                                 {
                                     p.loginid = _userRepo.Login(p.Gdata[0], p.Gdata[1]);
+                                    
                                 }
                            
                             c.clientSocket.Send(p.ToBytes());

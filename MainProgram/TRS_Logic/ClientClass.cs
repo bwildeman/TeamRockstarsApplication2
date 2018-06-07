@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Windows.Forms;
 
 
 //using MySql.Data.MySqlClient;
@@ -28,7 +29,7 @@ namespace TRS_Logic
         ControllerLogin _loginlogic = new ControllerLogin();
         public void LoadIn()
         {
-            string ip = "145.93.73.180";
+            string ip = "145.93.45.157";
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
@@ -74,7 +75,6 @@ namespace TRS_Logic
             }
         }
 
-
         public List<TRS_Domain.CHAT.Message> LoadinChat()
         {
             return ChatList;
@@ -111,8 +111,8 @@ namespace TRS_Logic
                 p.Gdata.Add(input);
                 p.Gdata.Add(Convert.ToString(chatindex));
                 p.Gdata.Add(Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy")));
+                chatLogic.AddMessage(_client.UserId,chatindex,input,DateTime.Now);
                 master.Send(p.ToBytes());
-            
         }
 
         public void Login(string email, string password)
@@ -151,13 +151,9 @@ namespace TRS_Logic
                     break;
 
                 case PacketType.Chat:
-                            if (Convert.ToInt32(p.Gdata[2]) == chatindex)
-                            {
-                                NewMsg.Add(new TRS_Domain.CHAT.Message(p.Gdata[0],p.Gdata[1],p.Gdata[3]));
-                                chatLogic.AddMessage(_client.UserId,Convert.ToInt32(p.Gdata[2]),p.Gdata[1],Convert.ToDateTime(p.Gdata[3]));
-                                NewMsgLoad = true;
-                                
-                            }
+                        NewMsg.Add(new TRS_Domain.CHAT.Message(p.Gdata[0],p.Gdata[1],p.Gdata[3]));
+                        
+                        NewMsgLoad = true;
                     break;
                 case PacketType.GetAllChat:
                     Console.WriteLine("Getting msg " + p.Gdata[1]);

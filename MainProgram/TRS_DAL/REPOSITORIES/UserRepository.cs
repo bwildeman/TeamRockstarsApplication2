@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.CONTEXT;
 using TRS_DAL.INTERFACES;
+using TRS_Domain.USER;
 
 namespace TRS_DAL.REPOSITORIES
 {
@@ -50,6 +51,11 @@ namespace TRS_DAL.REPOSITORIES
         public void UpdateUserInformation(string username, string usersurname, string useremail, string userregion, string userdepartment, string userPhoneNumber, string userQuote, string userPortfolio, string userAdres, int userId, byte[] userProfilePicture, int gender)
         {
             _userContext.UpdateUserInformation(username, usersurname, useremail, userregion, userdepartment, userPhoneNumber, userQuote, userPortfolio, userAdres, userId, userProfilePicture, gender);
+        }
+
+        public bool UpdatePassword(string password, Data user)
+        {
+            return _userContext.UpdatePassword(password, user);
         }
     }
 }
