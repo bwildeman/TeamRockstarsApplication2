@@ -97,7 +97,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             
         }
 
-        //
+        
         public void CheckForUpdate()
         {
             while (state3 == false)

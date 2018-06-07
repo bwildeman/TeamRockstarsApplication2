@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.CONTEXT;
 using TRS_DAL.INTERFACES;
+using TRS_Domain.EVENT;
 
 namespace TRS_DAL.REPOSITORIES
 {
@@ -16,10 +17,10 @@ namespace TRS_DAL.REPOSITORIES
             return _eventContext.GetGroupEvents(groupId);
         }
 
-        public void CreateGroupEvent(int groupId, string name, DateTime startDate, DateTime endDate, bool online,
+        public void CreateGroupEvent(int groupId, int ownerId, string name, DateTime startDate, DateTime endDate, bool online,
             string location, string description)
         {
-            _eventContext.CreateGroupEvent(groupId, name, startDate, endDate, online, location, description);
+            _eventContext.CreateGroupEvent(groupId, ownerId, name, startDate, endDate, online, location, description);
         }
 
         public void AssignUserToEvent(int eventId, int userId)
@@ -35,6 +36,11 @@ namespace TRS_DAL.REPOSITORIES
         public List<TRS_Domain.USER.Data> GetAllEventSignOns(int eventId)
         {
             return _eventContext.GetAllEventSignOns(eventId);
+        }
+
+        public void UpdateEvent(Data selectedEvent)
+        {
+            _eventContext.UpdateEvent(selectedEvent);
         }
     }
 }
