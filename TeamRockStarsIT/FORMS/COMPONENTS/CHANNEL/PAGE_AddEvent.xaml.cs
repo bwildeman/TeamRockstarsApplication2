@@ -73,8 +73,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void Btn_CreateEvent_Click(object sender, RoutedEventArgs e)
         {
-            var groupId = _currentGroupId;
-            // get event data from form
+            var groupId = _currentGroupId;   // get event data from form
             var name = TB_Name.Text;
             DateTime startDate = Convert.ToDateTime(DateP_Start.Value);
             DateTime endDate = Convert.ToDateTime(DateP_End.Value);
@@ -88,6 +87,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         }
 
+         
         private string CheckLocation()
         {
             var location = "";
@@ -120,5 +120,17 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             return isOnline;
         }
 
+        private void DateP_Start_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Console.WriteLine("entered");
+                _eventLogic.ValidateStartDate(DateP_Start.Value);
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
     }
 }

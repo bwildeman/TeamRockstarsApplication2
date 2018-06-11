@@ -269,7 +269,7 @@ namespace TRS_DAL.CONTEXT
 
                     //  the incomplete query
                     MainQuery = "SELECT * FROM interest " +
-                                "WHERE interest.InterestPending = 1";
+                                "WHERE interest.InterestPending = 0";
 
                     //  build the command
                     MainCommand = new MySqlCommand(MainQuery, conn);
