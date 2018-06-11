@@ -31,9 +31,10 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private Frame _mainFrame;
         private TRS_Domain.GROUP.Data _selectedItem;
+        private FORMS.FormMain _main;
             
 
-        public PAGE_AddEvent(TRS_Domain.GROUP.Data group, TRS_Domain.USER.Data user, Frame mainFrame, TRS_Domain.GROUP.Data selectedLbItem, ClientClass client)
+        public PAGE_AddEvent(TRS_Domain.GROUP.Data group, TRS_Domain.USER.Data user, Frame mainFrame, TRS_Domain.GROUP.Data selectedLbItem, ClientClass client, FORMS.FormMain Main)
         {
             InitializeComponent();
             _selectedGroup = group;
@@ -43,6 +44,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             _selectedItem = selectedLbItem;
             _user = user;
             _client = client;
+            _main = Main;
         }
 
         private void RBtn_Online_Checked(object sender, RoutedEventArgs e)
@@ -84,7 +86,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
             _eventLogic.CreateNewGroupEvent(new Data(groupId, _userId, name, startDate, endDate, online, location, description));
 
-            _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client, MAIN.PageGroup.Channel.Event);
+            _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client, MAIN.PageGroup.Channel.Event, _main);
 
         }
 

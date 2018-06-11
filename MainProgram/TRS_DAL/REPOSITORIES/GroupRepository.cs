@@ -13,19 +13,19 @@ namespace TRS_DAL.REPOSITORIES
         //  Add Context reference:
         IGroupContext groupContext = new GroupSqlContext();
 
-        public bool AddGroupWithPic(int clientID, string name, string description, byte[] bitMap)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Data> GetAllGroupsThatUserIsNotIn(int UserID)
         {
             return groupContext.GetAllGroupsThatUserIsNotIn(UserID);
         }
 
-        public void AddGroup(int userid,string name, string description)
+        public bool AddGroup(TRS_Domain.USER.Data client, string name, string description, byte[] bitMap,string region)
         {
-            groupContext.AddGroup(userid,name, description);
+            return groupContext.AddGroup(client, name, description, bitMap,  region);
+        }
+
+        public bool AddGroup(TRS_Domain.USER.Data client,string name, string description, string region)
+        {
+            return groupContext.AddGroup(client ,name, description, region);
         }
 
         public List<TRS_Domain.GROUP.Data> GetAllGroupInfo()

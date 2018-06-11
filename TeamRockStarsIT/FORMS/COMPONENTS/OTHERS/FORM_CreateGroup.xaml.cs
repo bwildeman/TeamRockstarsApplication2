@@ -99,6 +99,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
         {
             Client = client;
             InitializeComponent();
+            CBox_Regions.ItemsSource = Enum.GetNames(typeof(GroupControl_Logic.Regions));
             Loaded += FORM_CreateGroup_Loaded;
         }
 
@@ -126,7 +127,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
         {
             try
             {
-                if (groupLogic.CreateGroup(Client, TB_Name.Text, TB_Description.Text, CBox_Interests.SelectedItem, PicturePath, BitMap))
+                if (groupLogic.CreateGroup(Client, TB_Name.Text, TB_Description.Text, CBox_Interests.SelectedItem, PicturePath, BitMap, CBox_Regions.SelectionBoxItem.ToString()))
                 {
                     this.DialogResult = true;
                 }

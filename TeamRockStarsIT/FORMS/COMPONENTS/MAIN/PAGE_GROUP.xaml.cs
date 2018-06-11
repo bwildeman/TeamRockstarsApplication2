@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeamRockStarsIT.FORMS.COMPONENTS.OTHERS;
 using TRS_Logic;
 
 namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
@@ -27,6 +28,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         ChatLogic _chatLogic = new ChatLogic();
         Event_Logic eventLogic = new Event_Logic();
         ClientClass client;
+        private FORMS.FormMain Main;
         TRS_Domain.USER.Data _client;
 
         //  Memory:
@@ -77,13 +79,14 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             _selectedChannel = (Channel)newChannelIndex;
             LoadChannelList();
         }
-        public PageGroup(Frame contentFrame, TRS_Domain.GROUP.Data selectedGroup,TRS_Domain.USER.Data _client, ClientClass client)
+        public PageGroup(Frame contentFrame, TRS_Domain.GROUP.Data selectedGroup,TRS_Domain.USER.Data _client, ClientClass client, Channel selectedChannel, FORMS.FormMain main)
         {
             _contentFrame = contentFrame;
             _selectedGroup = selectedGroup;
             this.client = client;
             this._client = _client;
-
+            _selectedChannel = selectedChannel;
+            Main = main;
             _contentFrame.NavigationService.RemoveBackEntry();
             InitializeComponent();
             Loaded += PAGE_GROUP_Loaded;
@@ -94,8 +97,10 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             LoadChannelList();
             if (_selectedGroup.GroupLeader == _client.UserId)
             {
+                Btn_EditGrouo.Visibility = Visibility.Visible;
                 Btn_EditChannel.Visibility = Visibility.Visible;
                 Lb_Channel.Height = 399;
+
             }
         }
 
@@ -109,8 +114,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                         Fr_Channel.Content = new CHANNEL.PageChat(_contentFrame, Fr_Channel, (TRS_Domain.CHANNEL.CHAT.Chat)Lb_Channel.SelectedItem,_client, client);
                         break;
                     case Channel.Event:
-                        Fr_Channel.Content = new CHANNEL.PAGE_EventOverview((TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client);
-                        
+                        Fr_Channel.Content = new CHANNEL.PAGE_EventOverview(_contentFrame, Fr_Channel, (TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client, _selectedGroup, client, Main);
                         break;
                     case Channel.Forum:
                         break;
@@ -128,7 +132,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             ChangeChannel(true);
         }
 
-        private enum Channel
+        public enum Channel
         {
             Chat = 1,
             Event = 2,
@@ -140,15 +144,18 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             switch (_selectedChannel)
             {
                 case Channel.Chat:
-
+                    FORMS.COMPONENTS.OTHERS.WINDOW_AddChannel addChannel= new WINDOW_AddChannel(_selectedGroup.GroupId);
+                    addChannel.ShowDialog();
+                    
                     break;
                 case Channel.Event:
-                    Fr_Channel.Content = new CHANNEL.PAGE_AddEvent(_selectedGroup.GroupId);
+                    Fr_Channel.Content = new CHANNEL.PAGE_AddEvent(_selectedGroup, _client, _contentFrame, _selectedGroup, client, Main);
                     break;
                 case Channel.Forum:
 
                     break;
             }
+            LoadChannelList();
         }
 
         private void Btn_EditChannel_Click(object sender, RoutedEventArgs e)
@@ -158,7 +165,12 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
         private void Btn_EditGrouo_Click(object sender, RoutedEventArgs e)
         {
-            Fr_Channel.Content = new  FORMS.COMPONENTS.OTHERS.MENU.General(_selectedGroup.GroupId, _contentFrame);
+            Fr_Channel.Content = new  FORMS.COMPONENTS.OTHERS.MENU.General(_selectedGroup.GroupId, _contentFrame, _client, Main );
+        }
+
+        private void Btn_LEAVE_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

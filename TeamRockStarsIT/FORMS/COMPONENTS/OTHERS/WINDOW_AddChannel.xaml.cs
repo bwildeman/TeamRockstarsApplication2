@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TRS_Logic;
+
 
 namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
 {
@@ -19,10 +21,15 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
     /// </summary>
     public partial class WINDOW_AddChannel : Window
     {
-        public WINDOW_AddChannel()
+        public int _groupID { get; private set; }
+        ChatLogic chatlogic = new ChatLogic();
+        
+        public WINDOW_AddChannel(int groupID)
         {
+            _groupID = groupID;
             InitializeComponent();
         }
+        
 
         private void BTN_Create_Click(object sender, RoutedEventArgs e)
         {
@@ -31,7 +38,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
 
         private void BTN_Create_Click_1(object sender, RoutedEventArgs e)
         {
-
+            chatlogic.AddChannel(TB_ChannelName.Text,TB_ChannelDEscr.Text,_groupID);
+            this.Close();
         }
     }
 }

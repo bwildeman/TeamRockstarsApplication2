@@ -6,13 +6,11 @@
         xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS"
         mc:Ignorable="d"
         Title="WINDOW_AddChannel" Height="280.297" Width="279.449">
-    <Grid>
-        <TextBlock HorizontalAlignment="Left" FontSize="16" TextWrapping="Wrap" Text="ChannelName" VerticalAlignment="Top" Width="155" Height="32"/>
-        <TextBlock HorizontalAlignment="Left" FontSize="16" TextWrapping="Wrap" Text="ChannelType" VerticalAlignment="Top" Width="155" Height="32" Margin="0,77,0,0"/>
+    <Grid Background="Black">
+        <TextBlock HorizontalAlignment="Left" FontSize="16" TextWrapping="Wrap" Text="ChannelName" VerticalAlignment="Top" Width="155" Height="32" FontFamily="Segoe UI Semibold" Foreground="White"/>
         <TextBox HorizontalAlignment="Left" FontSize="18" Margin="10,32,0,0" Name="TB_ChannelName" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="145" Height="40"/>
-        <ComboBox HorizontalAlignment="Left" FontSize="24"  Margin="10,109,0,0" Name="CB_ChannelName" VerticalAlignment="Top" Width="145" Height="40"/>
-        <TextBlock HorizontalAlignment="Left" FontSize="16" TextWrapping="Wrap" Text="ChannelDescription" VerticalAlignment="Top" Width="155" Height="32" Margin="0,154,0,0"/>
-        <TextBox HorizontalAlignment="Left" Height="59" Margin="10,186,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="255"/>
-        <Button x:Name="BTN_Create" Content="Create" HorizontalAlignment="Left" Margin="165,32,0,0" VerticalAlignment="Top" Width="100" Height="131" Click="BTN_Create_Click_1" />
+        <TextBlock HorizontalAlignment="Left" FontSize="16" TextWrapping="Wrap" Text="ChannelDescription" VerticalAlignment="Top" Width="155" Height="32" Margin="0,154,0,0" Foreground="White" FontFamily="Segoe UI Semibold"/>
+        <TextBox HorizontalAlignment="Left" Name="TB_ChannelDEscr" Height="59" Margin="10,186,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="255" Foreground="White" FontFamily="Segoe UI Semibold"/>
+        <Button x:Name="BTN_Create" Content="Create" HorizontalAlignment="Left" Margin="165,32,0,0" VerticalAlignment="Top" Width="100" Height="131" Click="BTN_Create_Click_1" Background="#FFFFE000" FontFamily="Segoe UI Semibold" Foreground="White" FontSize="18" />
     </Grid>
 </Window>

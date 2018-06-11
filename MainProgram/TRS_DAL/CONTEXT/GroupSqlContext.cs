@@ -17,7 +17,7 @@ namespace TRS_DAL.CONTEXT
         public dynamic Procedure;
         public MySqlCommand MainCommand;
 
-        public bool AddGroup(TRS_Domain.USER.Data client, string name, string description)
+        public bool AddGroup(TRS_Domain.USER.Data client, string name, string description, string region)
         {
             //  Define output:
             bool output = false;
@@ -51,7 +51,7 @@ namespace TRS_DAL.CONTEXT
 
                     MySqlParameter param4 = new MySqlParameter();
                     param4.ParameterName = "@region";
-                    param4.Value = "HardCoded";
+                    param4.Value = region;
 
                     MySqlParameter param5 = new MySqlParameter();
                     param5.ParameterName = "@idclient";
@@ -79,7 +79,7 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public bool AddGroup(TRS_Domain.USER.Data client, string name, string description, byte[] bitMap)
+        public bool AddGroup(TRS_Domain.USER.Data client, string name, string description, byte[] bitMap, string region)
         {
             //  Define output:
             bool output = false;
@@ -119,7 +119,7 @@ namespace TRS_DAL.CONTEXT
 
                     MySqlParameter param5 = new MySqlParameter();
                     param5.ParameterName = "@GroupRegion";
-                    param5.Value = client.Region;
+                    param5.Value = region;
 
                     MySqlParameter param6 = new MySqlParameter();
                     param6.ParameterName = "@idclient";
@@ -146,6 +146,7 @@ namespace TRS_DAL.CONTEXT
 
             return output;
         }
+
 
         public List<Data> GetAllGroupsThatUserIsNotIn(int UserID)
         {
@@ -186,7 +187,9 @@ namespace TRS_DAL.CONTEXT
                             }
 
                             int groupleader = Convert.ToInt32(reader["GroupLeader"]);
-                            output.Add((new Data(id, Name, Description, img,groupleader)));
+                            Convert.ToString(reader["GroupRegion"]);
+                            string region =Convert.ToString(reader["GroupRegion"]);
+                            output.Add((new Data(id, Name, Description, img,groupleader, region)));
                         }
                     }
                 }
@@ -197,47 +200,6 @@ namespace TRS_DAL.CONTEXT
             }
 
             return output;
-        }
-
-        public void AddGroup(string name, string description)
-        {
-            //Try-Catch for safety:
-            try
-            {
-                using (MySqlConnection Conn = _connectDb.GetConnection())
-                {
-                    //  Open Connection:
-                    Conn.Open();
-
-                    //  the incomplete query
-                    MainQuery =
-                        "INSERT INTO `groups`(`GroupName`, `GroupDescription`) " +
-                        "VALUES(@Name, @Description)";
-
-                    //  DEFINE the paramaters
-                    MySqlParameter param1 = new MySqlParameter();
-                    param1.ParameterName = "@Name";
-                    param1.Value = name;
-
-                    MySqlParameter param2 = new MySqlParameter();
-                    param2.ParameterName = "@Description";
-                    param2.Value = description;
-
-                    //  build the command
-                    MainCommand = new MySqlCommand(MainQuery, Conn);
-
-                    //  add the parameters to the command
-                    MainCommand.Parameters.Add(param1);
-                    MainCommand.Parameters.Add(param2);
-
-                    //  use the command
-                    _connectDb.ExecuteNonQuery(MainCommand);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
         }
 
         public List<TRS_Domain.GROUP.Data> GetAllGroupInfo()
@@ -280,7 +242,8 @@ namespace TRS_DAL.CONTEXT
                                     Convert.ToString(reader["GroupName"]),
                                     Convert.ToString(reader["GroupDescription"]),
                                     img,
-                             Convert.ToInt32(reader["GroupLeader"])
+                                    Convert.ToInt32(reader["GroupLeader"]),
+                                        Convert.ToString(reader["GroupRegion"])
 
                                 ));
                             }
@@ -310,7 +273,7 @@ namespace TRS_DAL.CONTEXT
                     conn.Open();
 
                     //  the incomplete query
-                    MainQuery = "SELECT * FROM `group` WHERE `GroupID` = @id";
+                    MainQuery = "SELECT * FROM `groups` WHERE `GroupID` = @id";
 
                     //  DEFINE the paramaters
                     MySqlParameter param1 = new MySqlParameter();
@@ -343,7 +306,8 @@ namespace TRS_DAL.CONTEXT
                                     Convert.ToInt32(reader["GroupID"]),
                                     Convert.ToString(reader["GroupName"]),
                                     Convert.ToString(reader["GroupDescription"]), img,
-                                    Convert.ToInt32(reader["GroupLeader"])
+                                    Convert.ToInt32(reader["GroupLeader"]),
+                                    Convert.ToString(reader["GroupRegion"])
                                 );
                             }
                         }
@@ -373,7 +337,7 @@ namespace TRS_DAL.CONTEXT
 
                     //  the incomplete query
                     MainQuery =
-                        "SELECT groups.GroupID, GroupName, GroupDescription, GroupImage " +
+                        "SELECT groups.GroupID, GroupName, GroupDescription, GroupImage,GroupLeader, GroupRegion " +
                         "FROM groups " +
                         "INNER join group_members on groups.GroupID = group_members.GroupID " +
                         "WHERE group_members.UserID = @id";
@@ -404,7 +368,8 @@ namespace TRS_DAL.CONTEXT
                             }
 
                             int groupleader = Convert.ToInt32(reader["GroupLeader"]);
-                            output.Add(new TRS_Domain.GROUP.Data(groupId, groupName, groupDescription, img,groupleader));
+                            string region =Convert.ToString(reader["GroupRegion"]);
+                            output.Add(new TRS_Domain.GROUP.Data(groupId, groupName, groupDescription, img,groupleader, region));
                         }
                     }
                 }
@@ -550,7 +515,8 @@ namespace TRS_DAL.CONTEXT
                     param2.Value = myGroup.GroupId;
 
                     //  build the command
-                    MySqlCommand command = new MySqlCommand(MainQuery, Conn);
+                   
+                    MainCommand = new MySqlCommand(MainQuery, Conn);
 
                     //  add the parameters to the command
                     MainCommand.Parameters.Add(param1);

@@ -123,5 +123,10 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         {
 
         }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            state3 = true;
+        }
     }
 }

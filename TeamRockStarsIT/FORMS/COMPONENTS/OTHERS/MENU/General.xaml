@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU"
-             mc:Ignorable="d" d:DesignWidth="750" Height="765.333">
-    <Grid Width="750" Margin="25,0" Height="765" VerticalAlignment="Top" Loaded="Grid_Loaded">
+             mc:Ignorable="d" d:DesignWidth="750" Height="605.333">
+
+    <Grid Width="750" Margin="25,0,-25,10" Loaded="Grid_Loaded">
+
         <Separator HorizontalAlignment="Left" Height="100" Margin="10,-50,0,0" VerticalAlignment="Top" Width="720"/>
         <Rectangle Name="IMG_GroupImage" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="200" Margin="20,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="200"/>
         <TextBlock HorizontalAlignment="Left" FontSize="16" Foreground="White" Margin="225,56,0,0" TextWrapping="Wrap" Text="Group Foto" VerticalAlignment="Top" Width="155" Height="32"/>
@@ -25,13 +27,9 @@
         <Button Content="Empty" HorizontalAlignment="Left" Margin="443,355,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_EmptyDescription_Click"/>
         <Button Content="Reset" HorizontalAlignment="Left" Margin="443,430,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_ResetDescription_Click"/>
         <Button Content="Save" HorizontalAlignment="Left" Margin="443,505,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_SaveDescription_Click"/>
-        <Separator HorizontalAlignment="Left" Height="100" Margin="10,550,0,0" VerticalAlignment="Top" Width="729"/>
 
-        <TextBlock HorizontalAlignment="Left" FontSize="16" Foreground="White" Margin="20,618,0,0" TextWrapping="Wrap" Text="Startup Channel" VerticalAlignment="Top" Width="155" Height="32"/>
-        <ComboBox Name="CB_StartUpChannel" HorizontalAlignment="Left" Height="35" Margin="20,672,0,0" VerticalAlignment="Top" Width="155"/>
-        <Button Content="Select" HorizontalAlignment="Left" Margin="225,672,0,0" VerticalAlignment="Top" Width="125" Height="35"  Click="BTN_ChangeStartUpChannel_Click"/>
-        <Separator HorizontalAlignment="Left" Height="100" Margin="10,700,0,-45" VerticalAlignment="Top" Width="729"/>
     </Grid>
 </UserControl>
+
 
     
