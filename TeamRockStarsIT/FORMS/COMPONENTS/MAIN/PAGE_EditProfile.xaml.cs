@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using TeamRockStarsIT.FORMS.COMPONENTS.OTHERS;
+using TRS_Domain.EXCEPTIONS;
 using TRS_Domain.INTEREST;
 using TRS_Logic;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -39,6 +40,12 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         private DispatcherTimer timer;
 
         //  Private methodes:
+        private void ShowWarning(string message)
+        {
+            Lbl_Warning.Visibility = Visibility.Visible;
+            Lbl_Warning.Content = message;
+        }
+
         private void FillComboboxes()
         {
             CBox_Region.ItemsSource = new List<string> { "Groningen", "Friesland", "Drenthe", "Overijssel", "Flevoland", "Gelderland", "Utrecht", "Noord-Holland", "Zuid-Holland", "Zeeland", "Noord-Brabant", "Limburg" };
@@ -206,10 +213,14 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                     Console.WriteLine("Something went wrong in saving the user, check PAGE_EditProfile.xaml.cs");
                 }
             }
+            catch(MaxPhotoSizeReached ex)
+            {
+                TB_ProfilePic.Text = "";
+                ShowWarning(ex.Message);
+            }
             catch (Exception ex)
             {
-                Lbl_Warning.Visibility = Visibility.Visible;
-                Lbl_Warning.Content = ex.Message;
+                ShowWarning(ex.Message);
             }
         }
 

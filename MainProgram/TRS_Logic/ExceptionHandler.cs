@@ -60,8 +60,8 @@ namespace TRS_Logic
 
                     if (byteMapPhoto.Length >= MaxSize)
                     {
-                        string size = String.Format("{0:##.##}", byteMapPhoto.Length / 1048576.0) + " MB";
-                        throw new MaxPhotoSizeReached(Convert.ToString(MaxSize));
+                        string size = String.Format("{0:##.##}", MaxSize / 1048576.0) + " MB";
+                        throw new MaxPhotoSizeReached(Convert.ToString(size));
                     }
                 }
             }
