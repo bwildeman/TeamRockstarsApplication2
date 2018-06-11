@@ -58,13 +58,22 @@ namespace TRS_Logic
 
         public byte[] ToBytes()
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            MemoryStream ms = new MemoryStream();
+            try
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                MemoryStream ms = new MemoryStream();
 
-            bf.Serialize(ms, this);
-            byte[] bytes = ms.ToArray();
-            ms.Close();
-            return bytes;
+                bf.Serialize(ms, this);
+                byte[] bytes = ms.ToArray();
+                ms.Close();
+                return bytes;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                
+            }
+            return null;
         }
 
 
