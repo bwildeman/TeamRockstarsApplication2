@@ -17,10 +17,9 @@ namespace TRS_DAL.REPOSITORIES
             return _eventContext.GetGroupEvents(groupId);
         }
 
-        public void CreateGroupEvent(int groupId, int ownerId, string name, DateTime startDate, DateTime endDate, bool online,
-            string location, string description)
+        public bool CreateGroupEvent(int groupId, int ownerId, string name, DateTime startDate, DateTime endDate, bool online, string location, string description)
         {
-            _eventContext.CreateGroupEvent(groupId, ownerId, name, startDate, endDate, online, location, description);
+           return _eventContext.CreateGroupEvent(groupId, ownerId, name, startDate, endDate, online, location, description);
         }
 
         public void AssignUserToEvent(int eventId, int userId)

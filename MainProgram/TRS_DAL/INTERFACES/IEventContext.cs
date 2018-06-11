@@ -9,8 +9,7 @@ namespace TRS_DAL.INTERFACES
     {
         List<TRS_Domain.EVENT.Data> GetGroupEvents(int groupId);
 
-        void CreateGroupEvent(int groupId, int owderId, string name, DateTime startDate, DateTime endDate, bool online,
-            string location, string description);
+        bool CreateGroupEvent(int groupId, int owderId, string name, DateTime startDate, DateTime endDate, bool online, string location, string description);
 
         void AssignUserToEvent(int eventId, int userId);
 
