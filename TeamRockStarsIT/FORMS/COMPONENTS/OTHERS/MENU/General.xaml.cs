@@ -26,11 +26,12 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU
     public partial class General : UserControl
     {
         int groupId;
-
-        public General(int groupId)
+        private Frame frameimin;
+        public General(int groupId, Frame frame)
         {
             this.groupId = groupId;
             InitializeComponent();
+            frameimin = frame;
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)

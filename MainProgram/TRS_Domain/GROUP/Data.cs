@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using TRS_Domain.CHAT;
 using TRS_Domain.EVENT;
 
@@ -16,10 +17,14 @@ namespace TRS_Domain.GROUP
         public List<EVENT.Data> Events { get; private set; }
         public byte[] Img { get; private set; }
 
+        public int GroupLeader { get; private set; }   
+
+
         public Data() { }
 
-        public Data(int id, string name, string description, byte[] img)
+        public Data(int id, string name, string description, byte[] img, int groupleader)
         {
+            GroupLeader = groupleader;
             GroupId = id;
             Name = name;
             Description = description;

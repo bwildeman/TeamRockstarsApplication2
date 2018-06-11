@@ -83,6 +83,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             _selectedGroup = selectedGroup;
             this.client = client;
             this._client = _client;
+
             _contentFrame.NavigationService.RemoveBackEntry();
             InitializeComponent();
             Loaded += PAGE_GROUP_Loaded;
@@ -91,6 +92,11 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         private void PAGE_GROUP_Loaded(object sender, RoutedEventArgs e)
         {
             LoadChannelList();
+            if (_selectedGroup.GroupLeader == _client.UserId)
+            {
+                Btn_EditChannel.Visibility = Visibility.Visible;
+                Lb_Channel.Height = 399;
+            }
         }
 
         private void Lb_Channel_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -143,6 +149,16 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
                     break;
             }
+        }
+
+        private void Btn_EditChannel_Click(object sender, RoutedEventArgs e)
+        {
+            Fr_Channel.Content = new  FORMS.COMPONENTS.OTHERS.MENU.Channels(_selectedGroup.GroupId,true, _contentFrame);
+        }
+
+        private void Btn_EditGrouo_Click(object sender, RoutedEventArgs e)
+        {
+            Fr_Channel.Content = new  FORMS.COMPONENTS.OTHERS.MENU.General(_selectedGroup.GroupId, _contentFrame);
         }
     }
 }

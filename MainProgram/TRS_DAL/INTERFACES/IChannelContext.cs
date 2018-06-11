@@ -17,6 +17,7 @@ namespace TRS_DAL.INTERFACES
         /// <param name="Description"></param>
         /// <param name="type">either an event, channel or Chat</param>
         void AddChannel(string Name, string Description, int type, int groupID);
+        void AddEvent(string Name, string Description, int type,DateTime starttime, DateTime endtime,bool online, string locationurl, int userID, int groupID);
 
         #endregion
         #region Read Methods

@@ -21,9 +21,11 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU
     public partial class Channels : UserControl
     {
         int groupId;
-        public Channels(int groupId, bool Owner)
+        private Frame frameimin;
+        public Channels(int groupId, bool Owner, Frame frame)
         {
             this.groupId = groupId;
+            frameimin = frame;
             InitializeComponent();
 
             if (!Owner)

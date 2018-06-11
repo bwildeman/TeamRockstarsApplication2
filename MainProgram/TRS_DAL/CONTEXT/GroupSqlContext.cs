@@ -178,7 +178,8 @@ namespace TRS_DAL.CONTEXT
                                 img = (byte[]) (reader["GroupImage"]);
                             }
 
-                            output.Add((new Data(id, Name, Description, img)));
+                            int groupleader = Convert.ToInt32(reader["GroupLeader"]);
+                            output.Add((new Data(id, Name, Description, img,groupleader)));
                         }
                     }
                 }
@@ -271,7 +272,8 @@ namespace TRS_DAL.CONTEXT
                                     Convert.ToInt32(reader["GroupID"]),
                                     Convert.ToString(reader["GroupName"]),
                                     Convert.ToString(reader["GroupDescription"]),
-                                    img
+                                    img,
+                             Convert.ToInt32(reader["GroupLeader"])
 
                                 ));
                             }
@@ -333,7 +335,8 @@ namespace TRS_DAL.CONTEXT
                                 output = new TRS_Domain.GROUP.Data(
                                     Convert.ToInt32(reader["GroupID"]),
                                     Convert.ToString(reader["GroupName"]),
-                                    Convert.ToString(reader["GroupDescription"]), img
+                                    Convert.ToString(reader["GroupDescription"]), img,
+                                    Convert.ToInt32(reader["GroupLeader"])
                                 );
                             }
                         }
@@ -393,7 +396,8 @@ namespace TRS_DAL.CONTEXT
                                 img = (byte[]) (reader["GroupImage"]);
                             }
 
-                            output.Add(new TRS_Domain.GROUP.Data(groupId, groupName, groupDescription, img));
+                            int groupleader = Convert.ToInt32(reader["GroupLeader"]);
+                            output.Add(new TRS_Domain.GROUP.Data(groupId, groupName, groupDescription, img,groupleader));
                         }
                     }
                 }

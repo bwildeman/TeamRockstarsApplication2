@@ -14,6 +14,10 @@ namespace TRS_DAL.REPOSITORIES
             CC.AddChannel(Name, Description, type, groupID);
         }
 
+        public void AddEvent(string Name, string Description, int type,DateTime starttime, DateTime endtime,bool online, string locationurl, int userID, int groupID)
+        {
+            CC.AddEvent(Name,  Description,  type, starttime,  endtime, online,  locationurl,  userID,  groupID);
+        }
         public void DeleteChannel(int groupId, int Id, int type)
         {
             CC.DeleteChannel(groupId, Id,type);
