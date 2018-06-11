@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.REPOSITORIES;
 using TRS_Domain.EVENT;
+using TRS_Domain.EXCEPTIONS;
 
 namespace TRS_Logic
 {
@@ -22,9 +23,17 @@ namespace TRS_Logic
                     output = eventRepo.CreateGroupEvent(newEvent.GroupId, newEvent.EventOwnerId, newEvent.Name, newEvent.StartDate, newEvent.EndDate, newEvent.Online, newEvent.LocationUrl, newEvent.Description);
                 }
             }
-            catch(Exception ex)
+            catch(EmptyField ex)
             {
-                throw new NotImplementedException();
+                throw ex;
+            }
+            catch(InvalidEndDate ex)
+            {
+                throw ex;
+            }
+            catch (StartDateInPast ex)
+            {
+                throw ex;
             }
             return output;
         }

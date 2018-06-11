@@ -22,6 +22,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     /// </summary>
     public partial class PAGE_AddEvent : Page
     {
+        //  Memory:
         private readonly int _currentGroupId;
         private readonly int _userId;
         private readonly TRS_Domain.GROUP.Data _selectedGroup;
@@ -31,7 +32,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private Frame _mainFrame;
         private TRS_Domain.GROUP.Data _selectedItem;
-            
+
+        //  Private methodes:
+        private void ShowWarning(string message)
+        {
+            Lbl_Warning.Visibility = Visibility.Visible;
+            Lbl_Warning.Content = message;
+        }
 
         public PAGE_AddEvent(TRS_Domain.GROUP.Data group, TRS_Domain.USER.Data user, Frame mainFrame, TRS_Domain.GROUP.Data selectedLbItem, ClientClass client)
         {
@@ -43,6 +50,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             _selectedItem = selectedLbItem;
             _user = user;
             _client = client;
+
+            PAGE_AddEvent_Loaded();
+        }
+
+        private void PAGE_AddEvent_Loaded()
+        {
+            RBtn_Online.IsChecked = true;
         }
 
         private void RBtn_Online_Checked(object sender, RoutedEventArgs e)
@@ -77,25 +91,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             {
                 if (_eventLogic.CreateNewGroupEvent(new Data(_currentGroupId, _userId, TB_Name.Text, Convert.ToDateTime(DateP_Start.Value), Convert.ToDateTime(DateP_End.Value), CheckRadioButtons(), CheckLocation(), TB_Description.Text)))
                 {
-
+                    _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client, MAIN.PageGroup.Channel.Event);
                 }
             }
             catch(Exception ex)
             {
-                throw new NotImplementedException();
+                ShowWarning(ex.Message);
             }
-            var groupId = _currentGroupId;
-            // get event data from form
-            var name = TB_Name.Text;
-            DateTime startDate = Convert.ToDateTime(DateP_Start.Value);
-            DateTime endDate = Convert.ToDateTime(DateP_End.Value);
-            var online = CheckRadioButtons();
-            var location = CheckLocation();
-            var description = TB_Description.Text;
-
-            //_eventLogic.CreateNewGroupEvent(new Data(groupId, _userId, name, startDate, endDate, online, location, description));
-
-            _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client, MAIN.PageGroup.Channel.Event);
 
         }
 

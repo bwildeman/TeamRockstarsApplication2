@@ -35,11 +35,12 @@ namespace TRS_Logic
         }
         private void ValidateEventDate(DateTime startDate, DateTime endDate)
         {
-            if (startDate == null || endDate == null)
+            DateTime EmptyValue = new DateTime();
+            if (startDate == EmptyValue || endDate == EmptyValue)
             {
                 throw new EmptyField("date(s)");
             }
-            if (endDate > startDate)
+            if (endDate < startDate)
             {
                 throw new InvalidEndDate();
             }
@@ -236,7 +237,7 @@ namespace TRS_Logic
             //  Check if all required fields are filled;
             FieldEmpty(name, "name");
             FieldEmpty(description, "description");
-            FieldEmpty(locationUrl, online ? "location" : "web-url");
+            FieldEmpty(locationUrl, online ? "web-url" : "location");
 
             // Check if dates are correct:
             ValidateEventDate(startDate, endDate);
