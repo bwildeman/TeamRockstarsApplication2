@@ -13,7 +13,7 @@ namespace TRS_Logic
 
         public void CreateNewGroupEvent(Data newEvent)
         {
-            eventRepo.CreateGroupEvent(newEvent.GroupId, newEvent.Name, newEvent.StartDate, newEvent.EndDate, newEvent.Online, newEvent.LocationUrl, newEvent.Description);
+            eventRepo.CreateGroupEvent(newEvent.GroupId, newEvent.EventOwnerId, newEvent.Name, newEvent.StartDate, newEvent.EndDate, newEvent.Online, newEvent.LocationUrl, newEvent.Description);
         }
 
         public List<Data> GetGroupEvents(int groupId)
@@ -34,6 +34,11 @@ namespace TRS_Logic
         public void RemoveUserFromEvent(int eventId, int userId)
         {
             eventRepo.RemoveUserFromEvent(eventId, userId);
+        }
+
+        public void UpdateEvent(Data selectedEvent)
+        {
+            eventRepo.UpdateEvent(selectedEvent);
         }
     }
 }

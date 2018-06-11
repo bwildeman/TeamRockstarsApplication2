@@ -26,9 +26,10 @@ namespace TRS_DAL.CONTEXT
 
 
                     //  the incomplete query
-                    _mainQuery = "SELECT * " +
+                    _mainQuery = "SELECT EventID, UserID, GroupID, Name, StartDate, EndDate, Online, Location_Url, Description " +
                                  "FROM event " +
-                                 "WHERE GroupID = @groupId";
+                                 "WHERE GroupID = @groupId " +
+                                 "AND StartDate > UTC_DATE";
 
                     //  build the command
                     _mainCommand = new MySqlCommand(_mainQuery, conn);
@@ -40,6 +41,7 @@ namespace TRS_DAL.CONTEXT
                         while (reader.Read())
                         {
                             var eventId = (int)reader["EventID"];
+                            var ownerId = (int) reader["UserID"];
                             var groupID = (int)reader["GroupID"];
                             var name = (string)reader["Name"];
                             var startDate = (DateTime)reader["StartDate"];
@@ -48,7 +50,7 @@ namespace TRS_DAL.CONTEXT
                             var location = (string)reader["Location_Url"];
                             var description = (string)reader["Description"];
 
-                            output.Add(new TRS_Domain.EVENT.Data(eventId, groupID, name, startDate, endDate, online, location, description));
+                            output.Add(new TRS_Domain.EVENT.Data(eventId, ownerId, groupID, name, startDate, endDate, online, location, description));
                         }
                     }
 
@@ -61,7 +63,7 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
-        public void CreateGroupEvent(int groupId, string name, DateTime startDate, DateTime endDate, bool online, string location,
+        public void CreateGroupEvent(int groupId, int ownerId, string name, DateTime startDate, DateTime endDate, bool online, string location,
             string description)
         {
             try
@@ -73,13 +75,14 @@ namespace TRS_DAL.CONTEXT
 
                     //incomplete query 
                     _mainQuery = "INSERT INTO event " +
-                                 "(GroupId, Name, StartDate, EndDate, Online, Location_Url, Description) " +
-                                 "VALUES (@groupId, @name, @startDate, @endDate, @online, @location, @description)";
+                                 "(GroupId, UserID, Name, StartDate, EndDate, Online, Location_Url, Description) " +
+                                 "VALUES (@groupId, @userId, @name, @startDate, @endDate, @online, @location, @description)";
 
                     //  build the command
                     _mainCommand = new MySqlCommand(_mainQuery, conn);
                     //defining parameters
                     _mainCommand.Parameters.AddWithValue("@groupId", groupId);
+                    _mainCommand.Parameters.AddWithValue("@userId", ownerId);
                     _mainCommand.Parameters.AddWithValue("@name", name);
                     _mainCommand.Parameters.AddWithValue("@startDate", startDate);
                     _mainCommand.Parameters.AddWithValue("@endDate", endDate);
@@ -173,7 +176,7 @@ namespace TRS_DAL.CONTEXT
 
 
                     //  the incomplete query
-                    _mainQuery = "SELECT * " +
+                    _mainQuery = "SELECT users.UserName, users.UserSurname, users.UserID " +
                                  "FROM users " +
                                  "INNER JOIN event_user ON users.UserID = event_user.UserID " +
                                  "WHERE event_user.EventID = @eventId";
@@ -201,6 +204,43 @@ namespace TRS_DAL.CONTEXT
                 Console.WriteLine(ex.Message);
             }
             return output;
+        }
+
+        public void UpdateEvent(Data changedEvent)
+        {
+            try
+            {
+                using (MySqlConnection conn = _connectDb.GetConnection())
+                {
+                    //  Open Connection:
+                    conn.Open();
+
+                    //incomplete query 
+                    _mainQuery = "UPDATE event " +
+                                 "SET " +
+                                 "Name = @name, StartDate = @startDate, endDate = @endDate, " +
+                                 "Online = @online, Location_Url = @location, Description = @description " +
+                                 "WHERE EventID = @eventId";
+
+                    //  build the command
+                    _mainCommand = new MySqlCommand(_mainQuery, conn);
+                    //defining parameters
+                    _mainCommand.Parameters.AddWithValue("@eventId", changedEvent.Id);
+                    _mainCommand.Parameters.AddWithValue("@name", changedEvent.Name);
+                    _mainCommand.Parameters.AddWithValue("@startDate", changedEvent.StartDate);
+                    _mainCommand.Parameters.AddWithValue("@endDate", changedEvent.EndDate);
+                    _mainCommand.Parameters.AddWithValue("@online", changedEvent.Online);
+                    _mainCommand.Parameters.AddWithValue("@location", changedEvent.LocationUrl);
+                    _mainCommand.Parameters.AddWithValue("@description", changedEvent.Description);
+
+                    //  use the command
+                    _connectDb.ExecuteNonQuery(_mainCommand);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

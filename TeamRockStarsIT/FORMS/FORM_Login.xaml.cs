@@ -72,7 +72,7 @@ namespace TeamRockStarsIT.FORMS
                 Client.Login(Txt_Email.Text, Txt_Password.Password.ToString());
                 while (Client.loginstate == false)
                 {
-
+                    
                 }
                 
                 int userId = Client.GetLoginId();
@@ -85,6 +85,10 @@ namespace TeamRockStarsIT.FORMS
                     form.ShowDialog();
                     // close current form
                     this.Close();
+                }
+                else
+                {
+                    throw new InvalidLoginCombination();
                 }
             }
             catch (InvalidLoginCombination ex)

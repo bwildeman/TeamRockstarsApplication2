@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using TRS_DAL.REPOSITORIES;
+using TRS_Domain.EXCEPTIONS;
 
 namespace TRS_Logic
 {
     public class Group_Logic
     {
-        //  Add DAL reference:
+        //  Add reference:
         GroupRepository groupRepo = new GroupRepository();
+        ExceptionHandler exHandler = new ExceptionHandler();
+
         public int ChangeChannel(int currentIndex, int minEnumValue, int maxEnumValue, bool ChannelUp)
         {
             if (ChannelUp)
@@ -44,7 +47,7 @@ namespace TRS_Logic
             return groupRepo.JoinGroup(client,Group);
         }
 
-        public bool CreateGroup(int clientID, string Name, string Description, byte[] bitMap)
+        public bool CreateGroup(TRS_Domain.USER.Data client, string Name, string Description, object selectedInterest, string picturePath, byte[] bitMap)
         {
             //  Define output:
             bool output = false;
@@ -52,30 +55,22 @@ namespace TRS_Logic
             //  Try-Catch for safety:
             try
             {
-                if (!string.IsNullOrEmpty((Name)) && !string.IsNullOrEmpty(Description))
+                //  ExHanding:
+                if (exHandler.NewGroup(Name, Description, selectedInterest, picturePath))
                 {
                     if (bitMap != null)
                     {
-                        try
-                        {
-                            output = groupRepo.AddGroupWithPic(clientID, Name, Description, bitMap);
-                            output = true;
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                        output = groupRepo.AddGroup(client, Name, Description, bitMap);
                     }
                     else
                     {
-                        groupRepo.AddGroup(clientID, Name, Description);
-                        output = true;
+                        output = groupRepo.AddGroup(client, Name, Description);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw ex;
             }
 
             return output;
