@@ -118,6 +118,14 @@ namespace TRS_Logic
             return true;
         }
 
+        public bool NewInterest(string interestName)
+        {
+            // Check if all fields are filled:
+            FieldEmpty(interestName, "interest name");
+
+            return true;
+        }
+
         public bool ValidEmail(string email)
         {
             //  Validate email:

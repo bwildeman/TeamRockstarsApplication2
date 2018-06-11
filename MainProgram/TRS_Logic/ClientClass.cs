@@ -64,7 +64,7 @@ namespace TRS_Logic
 
         public void LoadIn()
         {
-            string ip = "145.93.64.54";
+            string ip = "145.93.73.78";
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
