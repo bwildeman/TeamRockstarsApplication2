@@ -103,7 +103,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             TB_Email.Text = _selectedUser.Email;
             TB_PhoneNumber.Text = _selectedUser.Phonenumber;
             TB_Function.Text = _selectedUser.Department;
-            TB_Qoute.Text = _selectedUser.Quote;
+            TB_Quote.Text = _selectedUser.Quote;
             TB_Portfolio.Text = _selectedUser.Portfolio;
             switch (_selectedUser.Gender)
             {
@@ -195,7 +195,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         {
             try
             {
-                if (_userLogic.SaveUser(_selectedUser.UserId, TB_Name.Text, TB_Surname.Text, CBox_Region.Text, TB_Residence.Text, TB_Email.Text, TB_PhoneNumber.Text, TB_ProfilePic.Text, CBox_Gender.Text, TB_Function.Text, TB_Qoute.Text, TB_Portfolio.Text))
+                if (_userLogic.SaveUser(_selectedUser.UserId, TB_Name.Text, TB_Surname.Text, CBox_Region.Text, TB_Residence.Text, TB_Email.Text, TB_PhoneNumber.Text, TB_ProfilePic.Text, CBox_Gender.Text, TB_Function.Text, TB_Quote.Text, TB_Portfolio.Text))
                 {
                     SaveUserInterests(_selectedUser.UserId);
                     _contentFrame.Content = new PageShowProfile(_client, _selectedUser, _clientFrame, _contentFrame);
