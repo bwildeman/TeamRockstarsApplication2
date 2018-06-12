@@ -14,6 +14,21 @@
         <ListBox x:Name="LB_Groups" HorizontalAlignment="Left" Height="516" Margin="10,243,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="#FFFFE000" FontSize="18" Foreground="White" FontFamily="Segoe UI Semibold" SelectionChanged="LB_Groups_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
         <Frame x:Name="Fr_Main" Content="Here comes the main frame" HorizontalAlignment="Left" Height="549" Margin="215,210,0,0" VerticalAlignment="Top" Width="967" FontSize="16" Foreground="White" NavigationUIVisibility="Hidden"/>
         <Button x:Name="Btn_CreateGroup" Content="Add Group" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" Width="200" Background="#FFFFE000" BorderBrush="#FFFFE000" FontSize="18" FontFamily="Segoe UI Semibold" Click="Btn_CreateGroup_Click"/>
+        <Rectangle HorizontalAlignment="Left" Height="156" Margin="210,30,0,0" VerticalAlignment="Top" Width="960" RadiusY="60.5" RadiusX="60.5" Stroke="#FFFFE000">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/rockstar.jpg" Stretch="UniformToFill"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Content="TEAM ROCKSTARS IT" HorizontalAlignment="Left" Margin="369,60,0,0" VerticalAlignment="Top" FontSize="72" FontFamily="Segoe UI Semibold" Foreground="White" Height="100" Width="702" Background="{x:Null}">
+            <Label.Effect>
+                <DropShadowEffect Direction="120" BlurRadius="10" Opacity="0.3" RenderingBias="Quality"/>
+            </Label.Effect>
+        </Label>
+        <Label Content="THE IT ROCKSTAR LIFESTYLE" HorizontalAlignment="Left" Margin="780,149,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" Width="275" FontSize="20">
+            <Label.Effect>
+                <DropShadowEffect Direction="120" Opacity="0.3" RenderingBias="Quality" BlurRadius="10"/>
+            </Label.Effect>
+        </Label>
 
     </Grid>
 </Window>

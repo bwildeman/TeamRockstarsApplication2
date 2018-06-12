@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using System.Windows.Forms;
 
 
 //using MySql.Data.MySqlClient;
@@ -30,7 +29,7 @@ namespace TRS_Logic
         public void LoadIn()
         {
 
-            string ip = "145.93.112.130";
+            string ip = "145.93.64.66";
 
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
