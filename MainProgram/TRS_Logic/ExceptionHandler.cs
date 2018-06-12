@@ -33,6 +33,22 @@ namespace TRS_Logic
                 throw new InvalidEmail();
             }
         }
+        private void ValidateEventDate(DateTime startDate, DateTime endDate)
+        {
+            DateTime EmptyValue = new DateTime();
+            if (startDate == EmptyValue || endDate == EmptyValue)
+            {
+                throw new EmptyField("date(s)");
+            }
+            if (endDate < startDate)
+            {
+                throw new InvalidEndDate();
+            }
+            if (DateTime.Now >= startDate)
+            {
+                throw new StartDateInPast();
+            }
+        }
         private void ContainsDigit(string input, string fieldName)
         {
             if (input.Any(c => char.IsDigit(c)))
@@ -74,7 +90,6 @@ namespace TRS_Logic
                 throw new PhotoNotFound();
             }
         }
-
         private void ValidateAdminRights(bool noRights, bool yesRights)
         {
             if (noRights == yesRights)
@@ -213,6 +228,19 @@ namespace TRS_Logic
 
             //  Check for a correct image size:
             ImageSize(picturePath);
+
+            return true;
+        }
+
+        public bool NewEvent(string name, string description, DateTime startDate, DateTime endDate, bool online, string locationUrl)
+        {
+            //  Check if all required fields are filled;
+            FieldEmpty(name, "name");
+            FieldEmpty(description, "description");
+            FieldEmpty(locationUrl, online ? "web-url" : "location");
+
+            // Check if dates are correct:
+            ValidateEventDate(startDate, endDate);
 
             return true;
         }

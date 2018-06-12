@@ -29,7 +29,9 @@ namespace TRS_Logic
         ControllerLogin _loginlogic = new ControllerLogin();
         public void LoadIn()
         {
+
             string ip = "145.93.112.130";
+
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
@@ -58,25 +60,34 @@ namespace TRS_Logic
 
         public void LoadChat(int Chatid)
         {
-            bool state = true;
-            while (state == true)
+            try
             {
-                if (id != null)
+                bool state = true;
+                while (state == true)
                 {
-                    Console.WriteLine("Loading Chat");
-                    Packet p = new Packet(PacketType.GetAllChat, id, Chatid);
-                    p.senderID = id;
-                    p.Gdata.Add(id);
-                    p.Gdata.Add(Convert.ToString(Chatid));
-                    p.groupid = Chatid;
-                    master.Send(p.ToBytes());
-                    state = false;
+                    if (id != null)
+                    {
+                        Console.WriteLine("Loading Chat");
+                        Packet p = new Packet(PacketType.GetAllChat, id, Chatid);
+                        p.senderID = id;
+                        p.Gdata.Add(id);
+                        p.Gdata.Add(Convert.ToString(Chatid));
+                        p.groupid = Chatid;
+                        master.Send(p.ToBytes());
+                        state = false;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
         public List<TRS_Domain.CHAT.Message> LoadinChat()
         {
+<<<<<<< HEAD
             return ChatList;
         }
 
@@ -103,40 +114,62 @@ namespace TRS_Logic
 
         public void Msg(string text,int chatindex)
         {
-
+            try
+            {
                 this.chatindex = chatindex;
                 string input = text;
-                Packet p = new Packet(PacketType.Chat, id,chatindex);
+                Packet p = new Packet(PacketType.Chat, id, chatindex);
                 p.Gdata.Add(_client.Name + " " + _client.Surname);
                 p.Gdata.Add(input);
                 p.Gdata.Add(Convert.ToString(chatindex));
                 p.Gdata.Add(Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy")));
-                chatLogic.AddMessage(_client.UserId,chatindex,input,DateTime.Now);
+                chatLogic.AddMessage(_client.UserId, chatindex, input, DateTime.Now);
                 master.Send(p.ToBytes());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+                
         }
 
         public void Login(string email, string password)
         {
-            Packet p = new Packet(PacketType.Login,id);
-            p.Gdata.Add(email);
-            p.Gdata.Add(password);
-            master.Send(p.ToBytes());
+            try
+            {
+                Packet p = new Packet(PacketType.Login, id);
+                p.Gdata.Add(email);
+                p.Gdata.Add(password);
+                master.Send(p.ToBytes());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void Data_IN()
         {
-            byte[] Buffer;
-            int readByte;
-
-            while (true)
+            try
             {
-                Buffer = new byte[master.SendBufferSize];
-                readByte = master.Receive(Buffer);
-                if (readByte > 0) 
+                byte[] Buffer;
+                int readByte;
+
+                while (true)
                 {
-                    DataManeger(new Packet(Buffer));
+                    Buffer = new byte[master.SendBufferSize];
+                    readByte = master.Receive(Buffer);
+                    if (readByte > 0)
+                    {
+                        DataManeger(new Packet(Buffer));
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
 

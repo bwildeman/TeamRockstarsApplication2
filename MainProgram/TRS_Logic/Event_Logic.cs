@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TRS_DAL.REPOSITORIES;
 using TRS_Domain.EVENT;
+using TRS_Domain.EXCEPTIONS;
 
 namespace TRS_Logic
 {
@@ -10,10 +11,31 @@ namespace TRS_Logic
     {
         // reference repository
         EventRepository eventRepo = new EventRepository();
+        ExceptionHandler ExHandler = new ExceptionHandler();
 
-        public void CreateNewGroupEvent(Data newEvent)
+        public bool CreateNewGroupEvent(Data newEvent)
         {
-            eventRepo.CreateGroupEvent(newEvent.GroupId, newEvent.EventOwnerId, newEvent.Name, newEvent.StartDate, newEvent.EndDate, newEvent.Online, newEvent.LocationUrl, newEvent.Description);
+            bool output = false;
+            try
+            {
+                if (ExHandler.NewEvent(newEvent.Name, newEvent.Description, newEvent.StartDate, newEvent.EndDate, newEvent.Online, newEvent.LocationUrl))
+                {
+                    output = eventRepo.CreateGroupEvent(newEvent.GroupId, newEvent.EventOwnerId, newEvent.Name, newEvent.StartDate, newEvent.EndDate, newEvent.Online, newEvent.LocationUrl, newEvent.Description);
+                }
+            }
+            catch(EmptyField ex)
+            {
+                throw ex;
+            }
+            catch(InvalidEndDate ex)
+            {
+                throw ex;
+            }
+            catch (StartDateInPast ex)
+            {
+                throw ex;
+            }
+            return output;
         }
 
         public List<Data> GetGroupEvents(int groupId)

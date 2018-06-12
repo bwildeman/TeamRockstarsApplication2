@@ -22,6 +22,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     /// </summary>
     public partial class PAGE_AddEvent : Page
     {
+        //  Memory:
         private readonly int _currentGroupId;
         private readonly int _userId;
         private readonly TRS_Domain.GROUP.Data _selectedGroup;
@@ -31,8 +32,18 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private Frame _mainFrame;
         private TRS_Domain.GROUP.Data _selectedItem;
+
         private FORMS.FormMain _main;
             
+
+
+        //  Private methodes:
+        private void ShowWarning(string message)
+        {
+            Lbl_Warning.Visibility = Visibility.Visible;
+            Lbl_Warning.Content = message;
+        }
+
 
         public PAGE_AddEvent(TRS_Domain.GROUP.Data group, TRS_Domain.USER.Data user, Frame mainFrame, TRS_Domain.GROUP.Data selectedLbItem, ClientClass client, FORMS.FormMain Main)
         {
@@ -44,7 +55,17 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             _selectedItem = selectedLbItem;
             _user = user;
             _client = client;
+
             _main = Main;
+
+
+            PAGE_AddEvent_Loaded();
+        }
+
+        private void PAGE_AddEvent_Loaded()
+        {
+            RBtn_Online.IsChecked = true;
+
         }
 
         private void RBtn_Online_Checked(object sender, RoutedEventArgs e)
@@ -75,6 +96,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void Btn_CreateEvent_Click(object sender, RoutedEventArgs e)
         {
+
             var groupId = _currentGroupId;
             // get event data from form
             var name = TB_Name.Text;
@@ -87,6 +109,19 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             _eventLogic.CreateNewGroupEvent(new Data(groupId, _userId, name, startDate, endDate, online, location, description));
 
             _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client, MAIN.PageGroup.Channel.Event, _main);
+
+            try
+            {
+                if (_eventLogic.CreateNewGroupEvent(new Data(_currentGroupId, _userId, TB_Name.Text, Convert.ToDateTime(DateP_Start.Value), Convert.ToDateTime(DateP_End.Value), CheckRadioButtons(), CheckLocation(), TB_Description.Text)))
+                {
+                    _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client, MAIN.PageGroup.Channel.Event);
+                }
+            }
+            catch(Exception ex)
+            {
+                ShowWarning(ex.Message);
+            }
+
 
         }
 
