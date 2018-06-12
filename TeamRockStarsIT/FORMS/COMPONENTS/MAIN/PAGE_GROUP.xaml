@@ -31,7 +31,7 @@
         <ListBox x:Name="Lb_Channel" HorizontalAlignment="Left" Height="432" Margin="10,74,0,0" VerticalAlignment="Top" Width="213" Background="{x:Null}" BorderBrush="#F4FFE000" Foreground="White" FontSize="16" FontFamily="Segoe UI Semibold" SelectionChanged="Lb_Channel_SelectionChanged"/>
         <Button x:Name="Btn_AddChannel" Content="Add [Channel]" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="213" FontFamily="Segoe UI Semibold" FontSize="18" Background="#FBFFE000" Foreground="Black" Click="Btn_AddChannel_Click"/>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="228,0,0,0" Width="739">
-            <Frame x:Name="Fr_Channel" Content="Fr_Channel" HorizontalAlignment="Left"  VerticalAlignment="Top"  Width="740"/>
+            <Frame x:Name="Fr_Channel"  HorizontalAlignment="Left"  VerticalAlignment="Top"  Width="740"/>
         </ScrollViewer>
 
         
