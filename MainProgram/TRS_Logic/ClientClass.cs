@@ -26,9 +26,9 @@ namespace TRS_Logic
         ChatLogic chatLogic = new ChatLogic();
         TRS_Domain.USER.Data _client;
         ControllerLogin _loginlogic = new ControllerLogin();
+ 
         public void LoadIn()
         {
-
             string ip = "145.93.64.66";
 
 

@@ -29,5 +29,15 @@
         <Label x:Name="Lbl_InterestName" Content="Pick Interest name" HorizontalAlignment="Left" Margin="42,219,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Width="144"/>
         <Label x:Name="Lbl_CategoryName" Content="Pick category" HorizontalAlignment="Left" Margin="259,219,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Width="124"/>
         <ComboBox x:Name="CB_InterestCategory" HorizontalAlignment="Left" Height="23" Margin="259,245,0,0" VerticalAlignment="Top" Width="144" Background="White" />
+        <Label x:Name="Lbl_Warning" Content="" HorizontalAlignment="Left" Margin="42,268,0,0" VerticalAlignment="Top" Foreground="Red" Width="214" RenderTransformOrigin="0.5,0.5" FontWeight="Bold">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.015"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
     </Grid>
 </Window>

@@ -29,7 +29,7 @@
         <Button x:Name="Btn_Join" Content="Join" HorizontalAlignment="Left" Margin="284,473,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Join_Click" />
         <Button x:Name="Btn_Leave" Content="Leave" HorizontalAlignment="Left" Margin="284,513,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Leave_Click" />
         <Label x:Name="Lbl_Description_Copy" HorizontalContentAlignment="Center" Content="Description:" HorizontalAlignment="Left" Margin="14,112,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="18" Background="{x:Null}" Foreground="White" Width="110"/>
-        <TextBox x:Name="TB_OnlineOffline" HorizontalAlignment="Left" Height="25" Margin="452,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" FontSize="16" FontFamily="Segoe UI Semibold" SelectionBrush="#FFFFE000"/>
+        <TextBox x:Name="TB_OnlineOffline" IsReadOnly="True" IsHitTestVisible="False" HorizontalAlignment="Left" Height="25" Margin="452,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" FontSize="16" FontFamily="Segoe UI Semibold" SelectionBrush="#FFFFE000"/>
         <Button x:Name="Btn_Edit" Content="Edit" HorizontalAlignment="Left" Margin="654,513,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_Edit_Click"  />
 
 

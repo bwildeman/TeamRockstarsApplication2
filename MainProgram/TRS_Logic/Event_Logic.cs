@@ -62,5 +62,13 @@ namespace TRS_Logic
         {
             eventRepo.UpdateEvent(selectedEvent);
         }
+
+        public void ValidateStartDate(DateTime? value)
+        {
+            if (value != null)
+            {
+                
+            }
+        }
     }
 }

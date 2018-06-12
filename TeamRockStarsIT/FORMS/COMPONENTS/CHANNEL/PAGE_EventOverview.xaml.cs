@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using TRS_Domain.EVENT;
@@ -94,22 +95,40 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
 
         private void Btn_Join_Click(object sender, RoutedEventArgs e)
         {
-            if (!LB_Users.Items.Contains(_currentUser))
+            if (LB_Users.Items.Cast<TRS_Domain.USER.Data>().ToList().Count > 0)
+            {
+                foreach (var user in LB_Users.Items.Cast<TRS_Domain.USER.Data>().ToList())
+                {
+                    if (user.UserId != _currentUser.UserId)
+                    {
+                        _eventLogic.AddUserToEvent(_currentEvent.Id, _currentUser.UserId);
+                        LB_Users.Items.Add(_currentUser);
+                        break;
+                    }
+                }
+            }
+            else
             {
                 _eventLogic.AddUserToEvent(_currentEvent.Id, _currentUser.UserId);
-                LB_Users.Items.Add(_currentUser);
+                LB_Users.Items.Add((_currentUser));
             }
 
         }
 
         private void Btn_Leave_Click(object sender, RoutedEventArgs e)
         {
-            if (LB_Users.Items.Contains(_currentUser))
+            if (LB_Users.Items.Cast<TRS_Domain.USER.Data>().ToList().Count > 0)
             {
-                _eventLogic.RemoveUserFromEvent(_currentEvent.Id, _currentUser.UserId);
-                LB_Users.Items.Remove(_currentUser);
+                foreach (var user in LB_Users.Items.Cast<TRS_Domain.USER.Data>().ToList())
+                {
+                    if (user.UserId == _currentUser.UserId)
+                    {
+                        _eventLogic.RemoveUserFromEvent(_currentEvent.Id, _currentUser.UserId);
+                        LB_Users.Items.Remove(user);
+                        break;
+                    }
+                }
             }
-
         }
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)

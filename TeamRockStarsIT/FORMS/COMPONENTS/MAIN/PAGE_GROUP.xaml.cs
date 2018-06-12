@@ -61,10 +61,6 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                         Lb_Channel.Items.Add(item);
                     }
                     break;
-                case Channel.Forum:
-                    Lbl_SelectedChannel.Content = "Forum";
-                    Btn_AddChannel.Content = "Create forum";
-                    break;
                 default:
                     Lbl_SelectedChannel.Content = "Channel";
                     Btn_AddChannel.Content = "Placeholder";
@@ -116,8 +112,6 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                     case Channel.Event:
                         Fr_Channel.Content = new CHANNEL.PAGE_EventOverview(_contentFrame, Fr_Channel, (TRS_Domain.EVENT.Data)Lb_Channel.SelectedItem, _client, _selectedGroup, client, Main);
                         break;
-                    case Channel.Forum:
-                        break;
                 }
             }
         }
@@ -135,8 +129,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         public enum Channel
         {
             Chat = 1,
-            Event = 2,
-            Forum = 3
+            Event = 2
         }
 
         private void Btn_AddChannel_Click(object sender, RoutedEventArgs e)
@@ -151,9 +144,6 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                 case Channel.Event:
                     Fr_Channel.Content = new CHANNEL.PAGE_AddEvent(_selectedGroup, _client, _contentFrame, _selectedGroup, client, Main);
                     break;
-                case Channel.Forum:
-
-                    break;
             }
             LoadChannelList();
         }
@@ -165,6 +155,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
         private void Btn_EditGrouo_Click(object sender, RoutedEventArgs e)
         {
+            Lb_Channel.SelectedIndex = -1;
             Fr_Channel.Content = new  FORMS.COMPONENTS.OTHERS.MENU.General(_selectedGroup.GroupId, _contentFrame, _client, Main );
         }
 

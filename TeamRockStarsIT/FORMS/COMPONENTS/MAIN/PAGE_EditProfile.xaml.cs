@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using TeamRockStarsIT.FORMS.COMPONENTS.OTHERS;
+using TRS_Domain.EXCEPTIONS;
 using TRS_Domain.INTEREST;
 using TRS_Logic;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -39,6 +32,12 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         private DispatcherTimer timer;
 
         //  Private methodes:
+        private void ShowWarning(string message)
+        {
+            Lbl_Warning.Visibility = Visibility.Visible;
+            Lbl_Warning.Content = message;
+        }
+
         private void FillComboboxes()
         {
             CBox_Region.ItemsSource = new List<string> { "Groningen", "Friesland", "Drenthe", "Overijssel", "Flevoland", "Gelderland", "Utrecht", "Noord-Holland", "Zuid-Holland", "Zeeland", "Noord-Brabant", "Limburg" };
@@ -104,7 +103,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             TB_Email.Text = _selectedUser.Email;
             TB_PhoneNumber.Text = _selectedUser.Phonenumber;
             TB_Function.Text = _selectedUser.Department;
-            TB_Qoute.Text = _selectedUser.Quote;
+            TB_Quote.Text = _selectedUser.Quote;
             TB_Portfolio.Text = _selectedUser.Portfolio;
             switch (_selectedUser.Gender)
             {
@@ -196,7 +195,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         {
             try
             {
-                if (_userLogic.SaveUser(_selectedUser.UserId, TB_Name.Text, TB_Surname.Text, CBox_Region.Text, TB_Residence.Text, TB_Email.Text, TB_PhoneNumber.Text, TB_ProfilePic.Text, CBox_Gender.Text, TB_Function.Text, TB_Qoute.Text, TB_Portfolio.Text))
+                if (_userLogic.SaveUser(_selectedUser.UserId, TB_Name.Text, TB_Surname.Text, CBox_Region.Text, TB_Residence.Text, TB_Email.Text, TB_PhoneNumber.Text, TB_ProfilePic.Text, CBox_Gender.Text, TB_Function.Text, TB_Quote.Text, TB_Portfolio.Text))
                 {
                     SaveUserInterests(_selectedUser.UserId);
                     _contentFrame.Content = new PageShowProfile(_client, _selectedUser, _clientFrame, _contentFrame);
@@ -206,10 +205,14 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                     Console.WriteLine("Something went wrong in saving the user, check PAGE_EditProfile.xaml.cs");
                 }
             }
+            catch (MaxPhotoSizeReached ex)
+            {
+                TB_ProfilePic.Text = "";
+                ShowWarning(ex.Message);
+            }
             catch (Exception ex)
             {
-                Lbl_Warning.Visibility = Visibility.Visible;
-                Lbl_Warning.Content = ex.Message;
+                ShowWarning(ex.Message);
             }
         }
 
@@ -248,12 +251,16 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         private void Btn_AddInterest_Click(object sender, RoutedEventArgs e)
         {
             FORM_CreateInterest createNewInterest = new FORM_CreateInterest(_selectedUser);
-            createNewInterest.Show();
-            if (createNewInterest.DialogResult.HasValue && createNewInterest.DialogResult.Value)
+            bool? result = createNewInterest.ShowDialog();
+            switch (result)
             {
+                case true:
+                    Console.WriteLine("Result is true");
+                    break;
 
+                default:
+                    break;
             }
-
         }
 
         private void TB_Name_LostFocus(object sender, RoutedEventArgs e)

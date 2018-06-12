@@ -121,10 +121,9 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             {
                 ShowWarning(ex.Message);
             }
-
-
         }
 
+         
         private string CheckLocation()
         {
             var location = "";
@@ -157,5 +156,17 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             return isOnline;
         }
 
+        private void DateP_Start_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Console.WriteLine("entered");
+                _eventLogic.ValidateStartDate(DateP_Start.Value);
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
     }
 }
