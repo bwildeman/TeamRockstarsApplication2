@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU.Members"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU"
+             mc:Ignorable="d" 
+             d:DesignHeight="855" d:DesignWidth="750">
+    <Grid>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="10,-50,0,0" VerticalAlignment="Top" Width="720"/>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="10,250,0,0" VerticalAlignment="Top" Width="720"/>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="10,550,0,0" VerticalAlignment="Top" Width="720"/>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="10,800,0,0" VerticalAlignment="Top" Width="720"/>
+    </Grid>
+</UserControl>

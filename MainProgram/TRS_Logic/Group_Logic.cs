@@ -47,7 +47,11 @@ namespace TRS_Logic
             return groupRepo.JoinGroup(client,Group);
         }
 
-        public bool CreateGroup(TRS_Domain.USER.Data client, string Name, string Description, object selectedInterest, string picturePath, byte[] bitMap)
+        public void Leavegroup(int userid, int groupid)
+        {
+            groupRepo.LeaveGroup(userid,groupid);
+        }
+        public bool CreateGroup(TRS_Domain.USER.Data client, string Name, string Description, object selectedInterest, string picturePath, byte[] bitMap, string region)
         {
             //  Define output:
             bool output = false;
@@ -60,11 +64,11 @@ namespace TRS_Logic
                 {
                     if (bitMap != null)
                     {
-                        output = groupRepo.AddGroup(client, Name, Description, bitMap);
+                        output = groupRepo.AddGroup(client, Name, Description, bitMap, region);
                     }
                     else
                     {
-                        output = groupRepo.AddGroup(client, Name, Description);
+                        output = groupRepo.AddGroup(client, Name, Description, region);
                     }
                 }
             }

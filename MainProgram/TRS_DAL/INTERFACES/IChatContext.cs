@@ -10,7 +10,7 @@ namespace TRS_DAL.INTERFACES
 
         void AddChat(int groupId, string name, string description);
 
-        List<TRS_Domain.CHAT.Data> GetAllChats(int groupId);
+        List<TRS_Domain.CHANNEL.CHAT.Chat> GetAllChats(int groupId);
 
         List<TRS_Domain.CHAT.Message> GetMessages(int chatId);
 

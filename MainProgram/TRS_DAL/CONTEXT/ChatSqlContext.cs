@@ -108,10 +108,10 @@ namespace TRS_DAL.CONTEXT
             }
         }
 
-        public List<TRS_Domain.CHAT.Data> GetAllChats(int groupId)
+        public List<TRS_Domain.CHANNEL.CHAT.Chat> GetAllChats(int groupId)
         {
             //  Define output:
-            List<TRS_Domain.CHAT.Data> output = new List<TRS_Domain.CHAT.Data>();
+            List<TRS_Domain.CHANNEL.CHAT.Chat> output = new List<TRS_Domain.CHANNEL.CHAT.Chat>();
 
             //Try-Catch for safety:
             try
@@ -148,7 +148,7 @@ namespace TRS_DAL.CONTEXT
                                 int chatId = Convert.ToInt32(reader["ChatID"]);
                                 string chatName = Convert.ToString(reader["ChatName"]);
                                 string chatDescription = Convert.ToString(reader["ChatDescription"]);
-                                output.Add(new TRS_Domain.CHAT.Data(chatId, chatName, chatDescription));
+                                output.Add(new TRS_Domain.CHANNEL.CHAT.Chat(chatId, chatName, chatDescription));
                             }
                         }
                     }

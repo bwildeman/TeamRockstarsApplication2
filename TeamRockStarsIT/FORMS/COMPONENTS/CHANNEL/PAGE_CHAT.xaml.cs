@@ -23,16 +23,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
     public partial class PageChat : Page
     {
         //  References:
-
         ChatLogic _chatLogic = new ChatLogic();
         ClientClass client;
-
         //  Memory:
-
         private Frame _contentFrame;
         private Frame _channelFrame;
         private TRS_Domain.USER.Data _client;
-        TRS_Domain.CHAT.Data _selectedChat;
+        TRS_Domain.CHANNEL.CHAT.Chat _selectedChat;
         private List<TRS_Domain.CHAT.Message> ChatList { get; set; }
         private List<TRS_Domain.CHAT.Message> NewMsg { get; set; }
         bool state = true;
@@ -40,7 +37,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
         bool state3 = false;
 
 
-        public PageChat(Frame contentFrame, Frame channelFrame, TRS_Domain.CHAT.Data selectedChat, TRS_Domain.USER.Data _client,ClientClass client)
+        public PageChat(Frame contentFrame, Frame channelFrame, TRS_Domain.CHANNEL.CHAT.Chat selectedChat, TRS_Domain.USER.Data _client,ClientClass client)
         {
             _contentFrame = contentFrame;
             _channelFrame = channelFrame;
@@ -58,7 +55,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             Lb_Chat.Items.Clear();
             while (state == true)
             {
-                    client.LoadChat(_selectedChat.ChatId);
+                    client.LoadChat(_selectedChat.Id);
                     state2 = true;
                     while (state2 == true)
                     {
@@ -81,9 +78,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
                         }
                     } 
             }
-                
-                Thread thread = new Thread(CheckForUpdate);
-                thread.Start();
+                Task task = Task.Run((Action)CheckForUpdate);
         }
 
         private void Txt_Message_KeyDown(object sender, KeyEventArgs e)
@@ -91,13 +86,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             if (e.Key == Key.Enter)
             {
                 state3 = false;
-                client.Msg(Txt_Message.Text, _selectedChat.ChatId);
+                client.Msg(Txt_Message.Text, _selectedChat.Id);
                 Txt_Message.Clear();
             }
             
         }
 
-        
+        //
         public void CheckForUpdate()
         {
             while (state3 == false)
@@ -109,6 +104,8 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
                     {
                         this.Dispatcher.Invoke(() =>
                         {
+                            //Lb_Chat.Items.Add(item.SendDate + ": " + item.Username + ": " + item.Text);
+
                             TextBlock txtBlock = new TextBlock();
                             txtBlock.TextWrapping = TextWrapping.Wrap;
                             txtBlock.Text = $"{item.SendDate}: {item.Username}: {item.Text}";
@@ -117,9 +114,9 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
                     }
                     client.ClearMsgList();
                     client.NewMsgLoad = false;
-                    
                 }
             }
+           
         }
 
         private void Txt_Message_KeyUp(object sender, KeyEventArgs e)

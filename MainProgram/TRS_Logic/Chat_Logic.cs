@@ -10,7 +10,8 @@ namespace TRS_Logic
     {
         //  Add DAL reference
         ChatRepository _chatRepo = new ChatRepository();
-        public List<TRS_Domain.CHAT.Data> GetAllChats(int groupId)
+        ChannelRepository _channelRepository = new ChannelRepository();
+        public List<TRS_Domain.CHANNEL.CHAT.Chat> GetAllChats(int groupId)
         {
             return _chatRepo.GetAllChats(groupId);
         }
@@ -25,5 +26,9 @@ namespace TRS_Logic
             _chatRepo.AddMessage(id,chat,msg,dateTime);
         }
 
+        public void AddChannel(string name,string discription,int groupID)
+        {
+           _channelRepository.AddChannel(name, discription, 1,groupID);
+        }
     }
 }

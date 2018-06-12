@@ -77,7 +77,7 @@ namespace TeamRockStarsIT.FORMS
         {
             if (LB_Groups.SelectedItem != null)
             {
-                Fr_Main.Content = new PageGroup(Fr_Main, (TRS_Domain.GROUP.Data)LB_Groups.SelectedItem,_client,client, PageGroup.Channel.Chat);
+                Fr_Main.Content = new PageGroup(Fr_Main, (TRS_Domain.GROUP.Data)LB_Groups.SelectedItem,_client,client, PageGroup.Channel.Chat, this);
             }
         }
 

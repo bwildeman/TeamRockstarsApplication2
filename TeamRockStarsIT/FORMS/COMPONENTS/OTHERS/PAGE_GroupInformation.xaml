@@ -14,7 +14,7 @@
                 <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/ROCKSTAR LOGO SEETHROUGH.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Button x:Name="BTN_JoinGroup" Content="Join" Margin="85,252,85,0" VerticalAlignment="Top" Height="38" Background="#FFFFE000" FontFamily="Segoe UI Semibold" FontSize="18" Click="BTN_JoinGroup_Click"/>
+        <Button x:Name="BTN_JoinGroup" Content="Join" Margin="85,252,85,0" VerticalAlignment="Top" Height="38" Background="#FFFFE029" FontFamily="Segoe UI Semibold" FontSize="18" Click="BTN_JoinGroup_Click"/>
         <Label x:Name="Lbl_GroupName"  Content="Easter_Egg#001" HorizontalContentAlignment="Center" Margin="10,210,10,38" FontSize="18" FontFamily="Segoe UI Semibold" Foreground="White"/>
 
     </Grid>
