@@ -205,7 +205,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
                     Console.WriteLine("Something went wrong in saving the user, check PAGE_EditProfile.xaml.cs");
                 }
             }
-            catch(MaxPhotoSizeReached ex)
+            catch (MaxPhotoSizeReached ex)
             {
                 TB_ProfilePic.Text = "";
                 ShowWarning(ex.Message);
@@ -251,12 +251,16 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         private void Btn_AddInterest_Click(object sender, RoutedEventArgs e)
         {
             FORM_CreateInterest createNewInterest = new FORM_CreateInterest(_selectedUser);
-            createNewInterest.Show();
-            if (createNewInterest.DialogResult.HasValue && createNewInterest.DialogResult.Value)
+            bool? result = createNewInterest.ShowDialog();
+            switch (result)
             {
+                case true:
+                    Console.WriteLine("Result is true");
+                    break;
 
+                default:
+                    break;
             }
-
         }
 
         private void TB_Name_LostFocus(object sender, RoutedEventArgs e)

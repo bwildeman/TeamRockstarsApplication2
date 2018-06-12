@@ -39,10 +39,9 @@
         <Label x:Name="Lbl_Gender" Content="Gender:" HorizontalAlignment="Left" Margin="30,253,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18" FontWeight="Bold"/>
         <ComboBox x:Name="CBox_Gender" HorizontalAlignment="Left" Margin="169,253,0,0" VerticalAlignment="Top" Width="221" FontSize="16" FontFamily="Segoe UI Semibold" RenderTransformOrigin="-1.197,3.308"/>
         <TextBox x:Name="TB_Portfolio" MaxLength="60000" MaxLines="100" HorizontalAlignment="Left" Height="228" Margin="441,267,0,0" TextWrapping="Wrap" Text="Portfolio" VerticalAlignment="Top" Width="516" SelectionBrush="#FFFFE000" FontFamily="Segoe UI Semibold" FontSize="16"/>
-        <Button x:Name="Btn_AddInterest" Content="Add interest" HorizontalAlignment="Left" Margin="798,50,0,0" VerticalAlignment="Top" Width="108" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" IsCancel="True" Click="Btn_AddInterest_Click"/>
+        <Button x:Name="Btn_AddInterest" Content="Add interest" HorizontalAlignment="Left" Margin="798,50,0,0" VerticalAlignment="Top" Width="108" Background="#FFFFE000" BorderBrush="Black" FontSize="16" FontFamily="Segoe UI Semibold" Click="Btn_AddInterest_Click"/>
         <Label x:Name="Lbl_Warning" Content="[Warning]" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="90,509,0,0" VerticalAlignment="Top" Foreground="#FFCF3F3F" FontFamily="Segoe UI Semibold" FontSize="18" FontWeight="Bold" RenderTransformOrigin="0.091,1.967" Width="787" Visibility="Hidden"/>
         <Button x:Name="Btn_ChangePassword" Visibility="Hidden" Content="Change password" HorizontalAlignment="Left" Margin="169,415,0,0" VerticalAlignment="Top" Width="221" Background="#FFFFE000" FontSize="16" FontFamily="Segoe UI Semibold" Height="26" Click="Btn_ChangePassword_Click"/>
         <Label x:Name="Lbl_PasswordMessage" Content="[Message]" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="169,446,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF45990B" FontSize="16" FontFamily="Segoe UI Semibold" Width="221" Visibility="Hidden"/>
-
     </Grid>
 </Page>
