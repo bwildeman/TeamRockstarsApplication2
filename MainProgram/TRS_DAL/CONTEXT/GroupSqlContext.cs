@@ -416,7 +416,28 @@ namespace TRS_DAL.CONTEXT
 
         public void UpdateImage(int id, byte[] newImage)
         {
-            throw new NotImplementedException();
+
+            using (MySqlConnection Conn = _connectDb.GetConnection())
+            {
+                Conn.Open();
+
+                string Query = "UPDATE `groups` SET `GroupImage` = @Img WHERE `GroupID` = @GroupID";
+
+                MySqlParameter param1 = new MySqlParameter();
+                param1.ParameterName = "@Img";
+                param1.Value = newImage;
+
+                MySqlParameter param2 = new MySqlParameter();
+                param2.ParameterName = "@GroupID";
+                param2.Value = id;
+
+                MySqlCommand command = new MySqlCommand(Query, Conn);
+
+                command.Parameters.Add(param1);
+                command.Parameters.Add(param2);
+
+                _connectDb.ExecuteNonQuery(command);
+            }
         }
 
         public void UpdateRegion(int id, string newRegion)

@@ -86,6 +86,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU
                 PicturePath = filedialog.FileName;
                 ShowImage();
             }
+            GroupControl_Logic.UpdateImg(groupId,BitMap);
         }
         
 

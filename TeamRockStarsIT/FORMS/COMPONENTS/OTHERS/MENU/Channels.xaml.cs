@@ -39,14 +39,22 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             //  initialize the page
-            object[] Channels = TRS_Logic.GroupControl_Logic.GetChannels(groupId);
-            DG_Channels.Items.Add(Channels);
+            //object[] Channels = TRS_Logic.GroupControl_Logic.GetChannels(groupId);
+            //DG_Channels.Items.Add(Channels);
         }
 
         private void BTN_AddChannel_Click(object sender, RoutedEventArgs e)
         {
-            //Window w = new WINDOW_AddChannel(_selectedGroup.GroupId);
-            //w.ShowDialog();
+            Window w = new WINDOW_AddChannel(groupId);
+            bool? result = w.ShowDialog();
+            switch (result)
+            {
+                case true:
+                    //Update
+                    break;
+                 default:
+                     break;
+            }
         }
 
         private void BTN_CS_Edit_Click(object sender, RoutedEventArgs e)

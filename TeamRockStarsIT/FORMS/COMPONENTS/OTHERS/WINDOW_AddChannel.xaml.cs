@@ -39,6 +39,13 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.OTHERS
         private void BTN_Create_Click_1(object sender, RoutedEventArgs e)
         {
             chatlogic.AddChannel(TB_ChannelName.Text,TB_ChannelDEscr.Text,_groupID);
+            DialogResult = true;
+            this.Close();
+        }
+
+        private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
             this.Close();
         }
     }

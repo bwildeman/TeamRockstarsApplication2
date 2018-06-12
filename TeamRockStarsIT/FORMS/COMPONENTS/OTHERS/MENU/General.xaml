@@ -4,29 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeamRockStarsIT.FORMS.COMPONENTS.OTHERS.MENU"
-             mc:Ignorable="d" d:DesignWidth="750" Height="605.333">
+             mc:Ignorable="d" Height="521.333" Width="743">
 
-    <Grid Width="750" Margin="25,0,-25,10" Loaded="Grid_Loaded">
+    <Grid Margin="10,0,0,0" Loaded="Grid_Loaded">
+        <Rectangle Name="IMG_GroupImage" HorizontalAlignment="Left" Height="200" Margin="20,42,0,0" VerticalAlignment="Top" Width="200" RadiusY="99.5" RadiusX="99.5">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/ROCKSTAR LOGO SEETHROUGH.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock HorizontalAlignment="Left" FontSize="18" Foreground="White" Margin="225,106,0,0" TextWrapping="Wrap" Text="Group Foto" VerticalAlignment="Top" Width="155" Height="32" FontFamily="Segoe UI Semibold"/>
+        <Button Content="Upload Image" HorizontalAlignment="Left" Margin="225,138,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_UploudImage_Click" FontFamily="Segoe UI Semibold" Background="#FFFFE000"/>
 
-        <Separator HorizontalAlignment="Left" Height="100" Margin="10,-50,0,0" VerticalAlignment="Top" Width="720"/>
-        <Rectangle Name="IMG_GroupImage" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="200" Margin="20,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="200"/>
-        <TextBlock HorizontalAlignment="Left" FontSize="16" Foreground="White" Margin="225,56,0,0" TextWrapping="Wrap" Text="Group Foto" VerticalAlignment="Top" Width="155" Height="32"/>
-        <TextBlock HorizontalAlignment="Left" Foreground="Gray" Margin="225,93,0,0" TextWrapping="Wrap" Text="Sample text, Sample text, Sample text, Sample text, Sample text, Sample text, Sample text, Sample text" VerticalAlignment="Top" Height="77" Width="155"/>
-        <Button Content="Uploud Image" HorizontalAlignment="Left" Margin="225,175,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_UploudImage_Click"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="18" Foreground="White" Margin="413,58,0,0" TextWrapping="Wrap" Text="Group Name" VerticalAlignment="Top" Width="155" Height="32" FontFamily="Segoe UI Semibold"/>
+        <TextBox Name="TB_GroupName" HorizontalAlignment="Left" Height="35" Margin="413,90,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="214" FontFamily="Segoe UI Semibold" FontSize="16"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="632,90,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="BTN_SaveGroupName_Click" FontFamily="Segoe UI Semibold" Background="#FFFFE000"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="18" Foreground="White" Margin="413,148,0,0" TextWrapping="Wrap" Text="Group Regio" VerticalAlignment="Top" Width="155" Height="32" FontFamily="Segoe UI Semibold"/>
+        <ComboBox Name="CB_Region"  HorizontalAlignment="Left" Height="35" Margin="413,180,0,0" VerticalAlignment="Top" Width="146" FontFamily="Segoe UI Semibold" FontSize="14"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="564,180,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="BTN_SaveGroupRegion_Click" FontFamily="Segoe UI Semibold" Background="#FFFFE000"/>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="9,213,0,0" VerticalAlignment="Top" Width="720" Background="#FFFFE000"/>
 
-        <TextBlock HorizontalAlignment="Left" FontSize="16" Foreground="White" Margin="413,58,0,0" TextWrapping="Wrap" Text="Group Name" VerticalAlignment="Top" Width="155" Height="32"/>
-        <TextBox Name="TB_GroupName" HorizontalAlignment="Left" Height="35" Margin="413,90,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="155"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="582,90,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="BTN_SaveGroupName_Click"/>
-        <TextBlock HorizontalAlignment="Left" FontSize="16" Foreground="White" Margin="413,148,0,0" TextWrapping="Wrap" Text="Group Regio" VerticalAlignment="Top" Width="155" Height="32"/>
-        <ComboBox Name="CB_Region"  HorizontalAlignment="Left" Height="35" Margin="413,180,0,0" VerticalAlignment="Top" Width="155"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="582,180,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="BTN_SaveGroupRegion_Click"/>
-        <Separator HorizontalAlignment="Left" Height="100" Margin="10,250,0,0" VerticalAlignment="Top" Width="720"/>
-
-        <TextBlock HorizontalAlignment="Left" FontSize="16" Foreground="White" Margin="20,318,0,0" TextWrapping="Wrap" Text="Group Description" VerticalAlignment="Top" Width="155" Height="32"/>
-        <TextBox Name="RTB_Description" HorizontalAlignment="Left" Height="195" Margin="20,355,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="360"/>
-        <Button Content="Empty" HorizontalAlignment="Left" Margin="443,355,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_EmptyDescription_Click"/>
-        <Button Content="Reset" HorizontalAlignment="Left" Margin="443,430,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_ResetDescription_Click"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="443,505,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_SaveDescription_Click"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="18" Foreground="White" Margin="20,270,0,0" TextWrapping="Wrap" Text="Group Description" VerticalAlignment="Top" Width="155" Height="32" FontFamily="Segoe UI Semibold"/>
+        <TextBox Name="RTB_Description" HorizontalAlignment="Left" Height="202" Margin="20,307,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="539" FontFamily="Segoe UI Semibold" FontSize="16"/>
+        <Button Content="Empty" HorizontalAlignment="Left" Margin="582,310,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_EmptyDescription_Click" FontFamily="Segoe UI Semibold" Background="#FFFFE000"/>
+        <Button Content="Reset" HorizontalAlignment="Left" Margin="582,385,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_ResetDescription_Click" FontFamily="Segoe UI Semibold" Background="#FFFFE000"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="582,460,0,0" VerticalAlignment="Top" Width="125" Height="40" Click="BTN_SaveDescription_Click" FontFamily="Segoe UI Semibold" Background="#FFFFE000"/>
 
     </Grid>
 </UserControl>

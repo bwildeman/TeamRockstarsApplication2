@@ -16,6 +16,11 @@ namespace TRS_Logic
             return GP.GetGroupInfo(id);
         }
 
+        public static void UpdateImg(int groupid, byte[] img)
+        {
+            GP.UpdateImage(groupid,img);
+        }
+
         public static void SaveGroupName(int id, string text)
         {
             GP.UpdateName(id, text);

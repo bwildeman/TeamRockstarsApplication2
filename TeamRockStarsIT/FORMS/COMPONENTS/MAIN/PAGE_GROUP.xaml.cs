@@ -99,8 +99,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             if (_selectedGroup.GroupLeader == _client.UserId)
             {
                 Btn_EditGrouo.Visibility = Visibility.Visible;
-                Btn_EditChannel.Visibility = Visibility.Visible;
-                Lb_Channel.Height = 367;
+                Lb_Channel.Height = 399;
 
             }
         }

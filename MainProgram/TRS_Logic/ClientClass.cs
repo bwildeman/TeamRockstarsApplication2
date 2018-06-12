@@ -87,7 +87,7 @@ namespace TRS_Logic
 
         public List<TRS_Domain.CHAT.Message> LoadinChat()
         {
-<<<<<<< HEAD
+
             return ChatList;
         }
 

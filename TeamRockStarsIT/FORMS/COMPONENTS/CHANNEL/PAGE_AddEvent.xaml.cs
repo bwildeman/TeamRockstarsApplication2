@@ -114,7 +114,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.CHANNEL
             {
                 if (_eventLogic.CreateNewGroupEvent(new Data(_currentGroupId, _userId, TB_Name.Text, Convert.ToDateTime(DateP_Start.Value), Convert.ToDateTime(DateP_End.Value), CheckRadioButtons(), CheckLocation(), TB_Description.Text)))
                 {
-                    _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client, MAIN.PageGroup.Channel.Event);
+                    _mainFrame.Content = new MAIN.PageGroup(_mainFrame, _selectedGroup, _user, _client, MAIN.PageGroup.Channel.Event, _main);
                 }
             }
             catch(Exception ex)
