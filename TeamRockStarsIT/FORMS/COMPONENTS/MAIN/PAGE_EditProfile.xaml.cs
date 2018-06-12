@@ -67,13 +67,17 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
         private void FillCategoryInterestsListbox()
         {
-            LB_Interests.Items.Clear();
-            List<TRS_Domain.INTEREST.Data> categoryInterest =
-                _interestLogic.GetUserCategoryInterests((int)CB_InterestCategory.SelectedValue, _selectedUser.UserId);
-            foreach (var item in categoryInterest)
+            if (CB_InterestCategory.SelectedIndex != -1)
             {
-                LB_Interests.Items.Add(item);
+                LB_Interests.Items.Clear();
+                List<TRS_Domain.INTEREST.Data> categoryInterest =
+                    _interestLogic.GetUserCategoryInterests((int)CB_InterestCategory.SelectedValue, _selectedUser.UserId);
+                foreach (var item in categoryInterest)
+                {
+                    LB_Interests.Items.Add(item);
+                }
             }
+
         }
 
         private void RemoveUserInterestFromList()
