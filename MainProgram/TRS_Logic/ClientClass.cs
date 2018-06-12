@@ -29,7 +29,7 @@ namespace TRS_Logic
  
         public void LoadIn()
         {
-            string ip = "145.93.72.197";
+            string ip = "145.93.45.228";
 
 
             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -183,14 +183,18 @@ namespace TRS_Logic
                     break;
 
                 case PacketType.Chat:
-                        NewMsg.Add(new TRS_Domain.CHAT.Message(p.Gdata[0],p.Gdata[1],p.Gdata[3]));
-                        
+                    if (Convert.ToInt32(p.Gdata[2]) == chatindex)
+                    {
+                        NewMsg.Add(new TRS_Domain.CHAT.Message(p.Gdata[0], p.Gdata[1], p.Gdata[3]));
+
                         NewMsgLoad = true;
+                    }
                     break;
                 case PacketType.GetAllChat:
                     Console.WriteLine("Getting msg " + p.Gdata[1]);
                     foreach (TRS_Domain.CHAT.Message message in p.listmessage)
                     {
+                        chatindex = Convert.ToInt32(p.Gdata[1]);
                         ChatList.Add(new TRS_Domain.CHAT.Message(message.Username,message.Text,message.SendDate));
                     }
                     IsDone = true;
