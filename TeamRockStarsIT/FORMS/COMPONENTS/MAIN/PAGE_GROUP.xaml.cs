@@ -155,6 +155,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
         private void Btn_EditGrouo_Click(object sender, RoutedEventArgs e)
         {
+            Lb_Channel.SelectedIndex = -1;
             Fr_Channel.Content = new  FORMS.COMPONENTS.OTHERS.MENU.General(_selectedGroup.GroupId, _contentFrame, _client, Main );
         }
 

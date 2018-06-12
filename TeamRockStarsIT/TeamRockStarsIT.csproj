@@ -152,8 +152,6 @@
     <Compile Include="FORMS\COMPONENTS\OTHERS\PAGE_UserInformation.xaml.cs">
       <DependentUpon>PAGE_UserInformation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FORMS\COMPONENTS\OTHERS\Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
     <Compile Include="FORMS\COMPONENTS\OTHERS\WINDOW_AddChannel.xaml.cs">
       <DependentUpon>WINDOW_AddChannel.xaml</DependentUpon>
     </Compile>
@@ -269,7 +267,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FORMS\COMPONENTS\OTHERS\Window1.xaml">
     <Page Include="FORMS\COMPONENTS\OTHERS\WINDOW_AddChannel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
