@@ -73,6 +73,11 @@ namespace TRS_DAL.REPOSITORIES
         {
             groupContext.UpdateStartUpChannel(selectedChannel);
         }
+
+        public void LeaveGroup(int userID, int GroupID)
+        {
+            groupContext.LeaveGroup(userID,GroupID);
+        }
     }
 }
 

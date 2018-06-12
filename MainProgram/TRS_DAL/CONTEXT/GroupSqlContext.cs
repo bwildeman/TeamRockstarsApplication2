@@ -534,5 +534,46 @@ namespace TRS_DAL.CONTEXT
             return output;
         }
 
+        public void LeaveGroup(int userID, int GroupID)
+        {
+            try
+            {
+                using (MySqlConnection Conn = _connectDb.GetConnection())
+                {
+                    //  Open Connection:
+                    Conn.Open();
+
+                    //  the incomplete query
+                    MainQuery =
+                        "DELETE FROM `group_members` WHERE GroupID= @GroupID AND UserID = @UserID";
+
+
+                    //  DEFINE the paramaters
+                    MySqlParameter param1 = new MySqlParameter();
+                    param1.ParameterName = "@UserID";
+                    param1.Value = userID;
+
+                    MySqlParameter param2 = new MySqlParameter();
+                    param2.ParameterName = "@GroupID";
+                    param2.Value = GroupID;
+
+                    //  build the command
+                   
+                    MainCommand = new MySqlCommand(MainQuery, Conn);
+
+                    //  add the parameters to the command
+                    MainCommand.Parameters.Add(param1);
+                    MainCommand.Parameters.Add(param2);
+
+                    //  use the command
+                    _connectDb.ExecuteNonQuery(MainCommand);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
     }
 }

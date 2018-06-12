@@ -47,6 +47,10 @@ namespace TRS_Logic
             return groupRepo.JoinGroup(client,Group);
         }
 
+        public void Leavegroup(int userid, int groupid)
+        {
+            groupRepo.LeaveGroup(userid,groupid);
+        }
         public bool CreateGroup(TRS_Domain.USER.Data client, string Name, string Description, object selectedInterest, string picturePath, byte[] bitMap, string region)
         {
             //  Define output:

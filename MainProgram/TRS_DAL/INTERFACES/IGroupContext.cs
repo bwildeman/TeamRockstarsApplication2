@@ -47,6 +47,8 @@ namespace TRS_DAL.INTERFACES
         #endregion
         #region Delete Methods
 
+        void LeaveGroup(int userID, int GroupID);
+
         #endregion
     }
 }

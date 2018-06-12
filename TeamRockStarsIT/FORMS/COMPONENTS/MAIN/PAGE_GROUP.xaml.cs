@@ -27,6 +27,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
         Group_Logic _groupLogic = new Group_Logic();
         ChatLogic _chatLogic = new ChatLogic();
         Event_Logic eventLogic = new Event_Logic();
+        ClientLogic clientLogic = new ClientLogic();
         ClientClass client;
         private FORMS.FormMain Main;
         TRS_Domain.USER.Data _client;
@@ -99,7 +100,7 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
             {
                 Btn_EditGrouo.Visibility = Visibility.Visible;
                 Btn_EditChannel.Visibility = Visibility.Visible;
-                Lb_Channel.Height = 399;
+                Lb_Channel.Height = 367;
 
             }
         }
@@ -170,7 +171,15 @@ namespace TeamRockStarsIT.FORMS.COMPONENTS.MAIN
 
         private void Btn_LEAVE_Click(object sender, RoutedEventArgs e)
         {
+            _groupLogic.Leavegroup(_client.UserId,_selectedGroup.GroupId);
+            _client = clientLogic.LoadClient(_client.UserId);
+            Main.LB_Groups.Items.Clear();
+            foreach (var item in _client.Groups)
+            {
+                Main.LB_Groups.Items.Add(item);
+            }
 
+            _contentFrame.Content = null;
         }
     }
 }
