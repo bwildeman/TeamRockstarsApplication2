@@ -76,10 +76,7 @@ namespace Server
                 case PacketType.Chat:
                     foreach (ClientData c in _clients)
                     {
-                        if (currgroep == p.Gdata[2])
-                        {
-                            c.clientSocket.Send(p.ToBytes());
-                        } 
+                       c.clientSocket.Send(p.ToBytes());
                     }
                     break;
                 case PacketType.GetAllChat:
