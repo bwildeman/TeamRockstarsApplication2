@@ -29,7 +29,7 @@ namespace TRS_DAL.CONTEXT
                     _mainQuery = "SELECT EventID, UserID, GroupID, Name, StartDate, EndDate, Online, Location_Url, Description " +
                                  "FROM event " +
                                  "WHERE GroupID = @groupId " +
-                                 "AND StartDate > UTC_DATE";
+                                 "AND EndDate > UTC_DATE";
 
                     //  build the command
                     _mainCommand = new MySqlCommand(_mainQuery, conn);

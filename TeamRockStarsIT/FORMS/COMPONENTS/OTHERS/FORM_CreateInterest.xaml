@@ -10,8 +10,8 @@
         <Grid.Background>
             <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/BlackBackGround1.jpg"/>
         </Grid.Background>
-        <ListBox x:Name ="LB_VerifiedInterests" HorizontalAlignment="Left" Height="163" Margin="42,41,0,0" VerticalAlignment="Top" Width="144" MouseDoubleClick="LB_VerifiedInterests_MouseDoubleClick" />
-        <ListBox x:Name ="LB_NonVerifiedInterests" HorizontalAlignment="Left" Height="161" Margin="259,43,0,0" VerticalAlignment="Top" Width="144"  RenderTransformOrigin="0.5,0.5" MouseDoubleClick="LB_NonVerifiedInterests_MouseDoubleClick" />
+        <ListBox x:Name ="LB_VerifiedInterests" FontSize="16" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Height="163" Margin="42,41,0,0" VerticalAlignment="Top" Width="144" MouseDoubleClick="LB_VerifiedInterests_MouseDoubleClick" />
+        <ListBox x:Name ="LB_NonVerifiedInterests" FontSize="16" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Height="161" Margin="259,43,0,0" VerticalAlignment="Top" Width="144"  RenderTransformOrigin="0.5,0.5" MouseDoubleClick="LB_NonVerifiedInterests_MouseDoubleClick" />
         <Label x:Name="Lbl_Interest" Content="Verified interests" HorizontalAlignment="Left" Margin="58,5,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Width="122">
             <Label.RenderTransform>
                 <TransformGroup>
@@ -28,7 +28,7 @@
         <TextBox x:Name="TB_InterestName" HorizontalAlignment="Left" Height="23" Margin="42,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Background="White" SelectionBrush="#FFFFE000" Text=""/>
         <Label x:Name="Lbl_InterestName" Content="Pick Interest name" HorizontalAlignment="Left" Margin="42,219,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Width="144"/>
         <Label x:Name="Lbl_CategoryName" Content="Pick category" HorizontalAlignment="Left" Margin="259,219,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Width="124"/>
-        <ComboBox x:Name="CB_InterestCategory" HorizontalAlignment="Left" Height="23" Margin="259,245,0,0" VerticalAlignment="Top" Width="144" Background="White" />
+        <ComboBox x:Name="CB_InterestCategory" FontSize="16" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Height="23" Margin="259,245,0,0" VerticalAlignment="Top" Width="144" Background="White" />
         <Label x:Name="Lbl_Warning" Content="" HorizontalAlignment="Left" Margin="42,268,0,0" VerticalAlignment="Top" Foreground="Red" Width="214" RenderTransformOrigin="0.5,0.5" FontWeight="Bold">
             <Label.RenderTransform>
                 <TransformGroup>

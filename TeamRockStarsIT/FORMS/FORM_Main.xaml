@@ -4,27 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamRockStarsIT.FORMS"
-        mc:Ignorable="d"
-        Title="FORM_Main" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
+        mc:Ignorable="d" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/BlackBackGround1.jpg"/>
     </Window.Background>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="876*"/>
+            <ColumnDefinition Width="317*"/>
+        </Grid.ColumnDefinitions>
         <Frame x:Name="Fr_UserInformation" MouseDoubleClick="Fr_UserInformation_MouseDoubleClick" Content="Here comes user info" HorizontalAlignment="Left" Height="200" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Foreground="White" FontSize="18" FontFamily="Segoe UI Semibold" NavigationUIVisibility="Hidden"/>
         <ListBox x:Name="LB_Groups" HorizontalAlignment="Left" Height="516" Margin="10,243,0,0" VerticalAlignment="Top" Width="200" Background="{x:Null}" BorderBrush="#FFFFE000" FontSize="18" Foreground="White" FontFamily="Segoe UI Semibold" SelectionChanged="LB_Groups_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-        <Frame x:Name="Fr_Main" Content="Here comes the main frame" HorizontalAlignment="Left" Height="549" Margin="215,210,0,0" VerticalAlignment="Top" Width="967" FontSize="16" Foreground="White" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="Fr_Main" Content="Here comes the main frame" HorizontalAlignment="Left" Height="549" Margin="215,210,0,0" VerticalAlignment="Top" Width="967" FontSize="16" Foreground="White" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
         <Button x:Name="Btn_CreateGroup" Content="Add Group" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" Width="200" Background="#FFFFE000" BorderBrush="#FFFFE000" FontSize="18" FontFamily="Segoe UI Semibold" Click="Btn_CreateGroup_Click"/>
-        <Rectangle HorizontalAlignment="Left" Height="156" Margin="210,30,0,0" VerticalAlignment="Top" Width="960" RadiusY="60.5" RadiusX="60.5" Stroke="#FFFFE000">
+        <Rectangle HorizontalAlignment="Left" Height="156" Margin="210,30,0,0" VerticalAlignment="Top" Width="960" RadiusY="60.5" RadiusX="60.5" Stroke="#FFFFE000" Grid.ColumnSpan="2">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/TeamRockStarsIT;component/RESCOURCES/rockstar.jpg" Stretch="UniformToFill"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Label Content="TEAM ROCKSTARS IT" HorizontalAlignment="Left" Margin="369,60,0,0" VerticalAlignment="Top" FontSize="72" FontFamily="Segoe UI Semibold" Foreground="White" Height="100" Width="702" Background="{x:Null}">
+        <Label Content="TEAM ROCKSTARS IT" HorizontalAlignment="Left" Margin="369,60,0,0" VerticalAlignment="Top" FontSize="72" FontFamily="Segoe UI Semibold" Foreground="White" Height="100" Width="702" Background="{x:Null}" Grid.ColumnSpan="2">
             <Label.Effect>
                 <DropShadowEffect Direction="120" BlurRadius="10" Opacity="0.3" RenderingBias="Quality"/>
             </Label.Effect>
         </Label>
-        <Label Content="THE IT ROCKSTAR LIFESTYLE" HorizontalAlignment="Left" Margin="780,149,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" Width="275" FontSize="20">
+        <Label Content="THE IT ROCKSTAR LIFESTYLE" HorizontalAlignment="Left" Margin="780,149,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" Width="275" FontSize="20" Grid.ColumnSpan="2">
             <Label.Effect>
                 <DropShadowEffect Direction="120" Opacity="0.3" RenderingBias="Quality" BlurRadius="10"/>
             </Label.Effect>
